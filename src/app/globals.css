@@ -1710,6 +1710,10 @@
     @apply shadow-[0px_0px_0px_1px_rgba(10,13,18,0.18)_inset,0px_-2px_0px_0px_rgba(10,13,18,0.05)_inset];
   }
 
+  .shadow-xs {
+    @apply shadow-[0px_1px_2px_0px_rgba(10,13,18,0.05)];
+  }
+
   .display-2xl {
     @apply text-7xl leading-[90px] tracking-[-1.44px];
   }
