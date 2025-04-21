@@ -18,6 +18,7 @@ export type TypographyColor =
   | "primary"
   | "secondary"
   | "tertiary"
+  | "quaternary"
   | "brand"
   | "error"
   | "warning"
@@ -30,7 +31,7 @@ export type TypographyWeight = "normal" | "medium" | "semibold" | "bold";
 export type TypographyAlign = "left" | "center" | "right" | "justify";
 
 export type TypographyProps = PropsWithChildren<{
-  variant: TypographyVariant;
+  variant?: TypographyVariant;
   color?: TypographyColor;
   weight?: TypographyWeight;
   align?: TypographyAlign;
@@ -56,6 +57,7 @@ const colorStyles: Record<TypographyColor, string> = {
   primary: "text-text-primary",
   secondary: "text-text-secondary",
   tertiary: "text-text-tertiary",
+  quaternary: "text-text-quaternary",
   brand: "text-text-brand-primary",
   error: "text-text-error-primary",
   warning: "text-text-warning-primary",
@@ -93,7 +95,7 @@ const variantElements: Record<TypographyVariant, ElementType> = {
 };
 
 export default function Typography({
-  variant,
+  variant = "Medium",
   color = "primary",
   weight = "normal",
   align = "left",

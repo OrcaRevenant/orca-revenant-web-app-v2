@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import Footer from "./components/Footer";
+import NavBar from "./components/NavBar";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -19,8 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="light">
-      <body className={`${montserrat.variable} font-sans`}>{children}</body>
+    <html lang="en" className="dark overflow-x-hidden">
+      <body className={`${montserrat.variable} font-sans`}>
+        <NavBar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

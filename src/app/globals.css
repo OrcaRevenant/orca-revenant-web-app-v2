@@ -1684,7 +1684,7 @@
 
 @layer base {
   body {
-    @apply bg-bg-primary text-text-primary;
+    @apply bg-bg-secondary text-text-primary;
   }
 }
 
@@ -1706,6 +1706,8 @@
     z-index: -1;
   }
 
+  /* Shadow Variables */
+
   .shadow-xs-skeuomorphic {
     @apply shadow-[0px_0px_0px_1px_rgba(10,13,18,0.18)_inset,0px_-2px_0px_0px_rgba(10,13,18,0.05)_inset];
   }
@@ -1713,6 +1715,32 @@
   .shadow-xs {
     @apply shadow-[0px_1px_2px_0px_rgba(10,13,18,0.05)];
   }
+
+  .shadow-sm {
+    @apply shadow-[0px_1px_3px_0px_rgba(10,13,18,0.10),0px_1px_2px_-1px_rgba(10,13,18,0.10)];
+  }
+
+  .shadow-md {
+    @apply shadow-[0px_4px_6px_-1px_rgba(10,13,18,0.10),0px_2px_4px_-2px_rgba(10,13,18,0.06)];
+  }
+
+  .shadow-lg {
+    @apply shadow-[0px_12px_16px_-4px_rgba(10,13,18,0.08),0px_4px_6px_-2px_rgba(10,13,18,0.03),0px_2px_2px_-1px_rgba(10,13,18,0.04)];
+  }
+
+  .shadow-xl {
+    @apply shadow-[0px_20px_24px_-4px_rgba(10,13,18,0.08),0px_8px_8px_-4px_rgba(10,13,18,0.03),0px_3px_3px_-1.5px_rgba(10,13,18,0.04)];
+  }
+
+  .shadow-2xl {
+    @apply shadow-[0px_24px_48px_-12px_rgba(10,13,18,0.18),0px_4px_4px_-2px_rgba(10,13,18,0.04)];
+  }
+
+  .shadow-3xl {
+    @apply shadow-[0px_32px_64px_-12px_rgba(10,13,18,0.14),0px_5px_5px_-2.5px_rgba(10,13,18,0.04)];
+  }
+
+  /* Typography Variables */
 
   .display-2xl {
     @apply text-7xl leading-[90px] tracking-[-1.44px];
@@ -1757,4 +1785,42 @@
   .xs {
     @apply text-[12px] leading-[18px];
   }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--fg-tertiary);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--fg-secondary);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none;
+  scrollbar-color: var(--fg-tertiary) var(--bg-secondary);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
