@@ -24,7 +24,7 @@ const buttonVariants = cva(
         primary:
           "shadow-xs-skeuomorphic skeuemorphic-gradient-border bg-button-primary-bg hover:bg-button-primary-bg-hover text-button-primary-fg hover:text-button-primary-fg-hover focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-button-primary-bg focus:ring-offset-bg-primary disabled:bg-bg-disabled disabled:border-bg-disabled-subtle disabled:text-fg-disabled",
         secondaryGray:
-          "bg-button-secondary-bg border-button-secondary-border border-[1px] text-button-secondary-fg hover:bg-button-secondary-error-bg-hover hover:text-button-secondary-error-fg-hover hover:border-button-secondary-border-hover focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-button-primary-bg focus:ring-offset-bg-primary disabled:bg-bg-primary disabled:border-bg-disabled-subtle disabled:text-fg-disabled",
+          "bg-button-secondary-bg border-button-secondary-border border-[1px] text-button-secondary-fg hover:bg-button-secondary-bg-hover hover:text-button-secondary-fg-hover hover:border-button-secondary-border-hover focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-button-primary-bg focus:ring-offset-bg-primary disabled:bg-bg-primary disabled:border-bg-disabled-subtle disabled:text-fg-disabled",
         secondaryColor:
           "bg-button-secondary-color-bg border-button-secondary-color-border border-[1px] text-button-secondary-color-fg hover:bg-button-secondary-color-bg-hover hover:text-button-secondary-color-fg-hover focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-button-primary-bg focus:ring-offset-bg-primary disabled:bg-bg-primary disabled:border-bg-disabled-subtle disabled:text-fg-disabled",
         tertiaryGray:
