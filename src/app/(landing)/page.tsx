@@ -1,9 +1,9 @@
-import { Button } from "./components/ui/button";
-import { Container } from "./components/ui/container";
-import IconSelector from "./components/ui/icon-selector";
-import Typography from "./components/ui/typography";
+import { Button } from "../components/ui/button";
+import { Container } from "../components/ui/container";
+import IconSelector from "../components/ui/icon-selector";
+import Typography from "../components/ui/typography";
 
-export default function Home() {
+export default function LandingPage() {
   return (
     <main className="h-screen w-screen">
       <div className="relative flex flex-col h-full w-full justify-center items-center">

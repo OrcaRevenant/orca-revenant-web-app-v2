@@ -11,6 +11,7 @@ export default function AppBar({
   children,
   position = "relative",
   className,
+  ...rest
 }: PropsWithChildren<AppBarProps>) {
   const positionClasses = {
     fixed: "fixed top-0 left-0 right-0 z-100",
@@ -21,6 +22,7 @@ export default function AppBar({
 
   return (
     <nav
+      {...rest}
       className={cn(`flex flex-row ${positionClasses[position]}`, className)}
     >
       {children}
