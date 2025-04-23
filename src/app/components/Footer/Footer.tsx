@@ -11,10 +11,8 @@ export default function Footer() {
     <div className="bg-bg-primary">
       <Container maxWidth="3xl">
         <div
-          className={cn(
-            "flex flex-row items-center justify-between px-8",
-            `h-[144px]`
-          )}
+          className={cn("flex flex-row items-center justify-between px-8")}
+          style={{ height: `${FOOTER_HEIGHT}px` }}
         >
           <Logo />
           <div className="flex flex-row items-center gap-8">

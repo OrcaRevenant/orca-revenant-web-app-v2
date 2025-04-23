@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import Logo from "../Logo";
 import AppBar from "../ui/app-bar";
 import { Button } from "../ui/button";
@@ -15,9 +16,9 @@ export type NavBarProps = {
 export default function NavBar({ className }: NavBarProps) {
   return (
     <AppBar
+      style={{ height: `${NAVBAR_HEIGHT}px` }}
       className={cn(
         "bg-bg-primary border-border-secondary border-b-1",
-        `h-[${NAVBAR_HEIGHT}px]`,
         className
       )}
       position="sticky"
@@ -33,10 +34,12 @@ export default function NavBar({ className }: NavBarProps) {
               <IconSelector icon="Announcement01" />
               Feedback
             </Button>
-            <Button variant="primary" size="md">
-              <IconSelector icon="LogIn03" />
-              Login
-            </Button>
+            <Link href="/auth/signin">
+              <Button variant="primary" size="md">
+                <IconSelector icon="LogIn03" />
+                Login
+              </Button>
+            </Link>
           </div>
         </div>
       </Container>
