@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --color-brand: #ff00000;
   /* Typography */
   --font-sans: var(--font-montserrat);
   /* Text Colors */
@@ -457,23 +458,6 @@
   --radius-3xl: calc(var(--radius) * 5);
   --radius-4xl: calc(var(--radius) * 6);
   --radius-full: calc(var(--radius) + 9999px);
-  --spacing-none: calc(var(--spacing) * 0);
-  --spacing-xxs: calc(var(--spacing) - 2px);
-  --spacing-xs: calc(var(--spacing) * 1px);
-  --spacing-sm: calc(var(--spacing) * 1.5px);
-  --spacing-md: calc(var(--spacing) * 2px);
-  --spacing-lg: calc(var(--spacing) * 3px);
-  --spacing-xl: calc(var(--spacing) * 4px);
-  --spacing-2xl: calc(var(--spacing) * 5px);
-  --spacing-3xl: calc(var(--spacing) * 6px);
-  --spacing-4xl: calc(var(--spacing) * 8px);
-  --spacing-5xl: calc(var(--spacing) * 10px);
-  --spacing-6xl: calc(var(--spacing) * 12px);
-  --spacing-7xl: calc(var(--spacing) * 16px);
-  --spacing-8xl: calc(var(--spacing) * 20px);
-  --spacing-9xl: calc(var(--spacing) * 24px);
-  --spacing-10xl: calc(var(--spacing) * 32px);
-  --spacing-11xl: calc(var(--spacing) * 40px);
 }
 
 :root {
@@ -481,8 +465,6 @@
   --font-sans: var(--font-montserrat);
   /* Radius Variables */
   --radius: 4px;
-  /* Spacing Variables */
-  --spacing: 4px;
   /* Palette Colors */
   --base-white: #fff;
   --base-black: #000;
@@ -1747,43 +1729,43 @@
   }
 
   .display-xl {
-    @apply text-[60px] leading-[72px] tracking-[-1.2px];
+    @apply text-6xl leading-[72px] tracking-[-1.2px];
   }
 
   .display-lg {
-    @apply text-[48px] leading-[60px] tracking-[-0.96px];
+    @apply text-5xl leading-[60px] tracking-[-0.96px];
   }
 
   .display-md {
-    @apply text-[36px] leading-[44px] tracking-[-0.72px];
+    @apply text-4xl leading-[44px] tracking-[-0.72px];
   }
 
   .display-sm {
-    @apply text-[30px] leading-[38px];
+    @apply text-3xl leading-[38px];
   }
 
   .display-xs {
-    @apply text-[24px] leading-[32px];
+    @apply text-2xl leading-[32px];
   }
 
   .xl {
-    @apply text-[20px] leading-[30px];
+    @apply text-xl leading-[30px];
   }
 
   .lg {
-    @apply text-[18px] leading-[28px];
+    @apply text-lg leading-[28px];
   }
 
   .md {
-    @apply text-[16px] leading-[24px];
+    @apply text-base leading-[24px];
   }
 
   .sm {
-    @apply text-[14px] leading-[20px];
+    @apply text-sm leading-[20px];
   }
 
   .xs {
-    @apply text-[12px] leading-[18px];
+    @apply text-xs leading-[18px];
   }
 }
 
