@@ -1,49 +1,7 @@
 import { cn } from "@/lib/utils";
-import { ElementType, forwardRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-
-export type TypographyVariant =
-  | "Display2XLarge"
-  | "DisplayXLarge"
-  | "DisplayLarge"
-  | "DisplayMedium"
-  | "DisplaySmall"
-  | "DisplayXSmall"
-  | "XLarge"
-  | "Large"
-  | "Medium"
-  | "Small"
-  | "XSmall";
-
-export type TypographyColor =
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "quaternary"
-  | "brand"
-  | "error"
-  | "warning"
-  | "success"
-  | "white"
-  | "disabled";
-
-export type TypographyWeight = "normal" | "medium" | "semibold" | "bold";
-
-export type TypographyAlign = "left" | "center" | "right" | "justify";
-
-const variantElements: Record<TypographyVariant, ElementType> = {
-  Display2XLarge: "h1",
-  DisplayXLarge: "h2",
-  DisplayLarge: "h3",
-  DisplayMedium: "h4",
-  DisplaySmall: "h5",
-  DisplayXSmall: "h6",
-  XLarge: "p",
-  Large: "p",
-  Medium: "p",
-  Small: "p",
-  XSmall: "p",
-};
+import safeForwardRef from "@/app/utils/safe-forward-ref";
+import { PropsWithoutRef } from "react";
 
 export const typographyVariants = cva("", {
   variants: {
@@ -97,27 +55,50 @@ export const typographyVariants = cva("", {
   },
 });
 
-export interface TypographyProps
-  extends VariantProps<typeof typographyVariants>,
-    Omit<React.HTMLAttributes<HTMLElement>, "color"> {
-  children: React.ReactNode;
-}
+type AsProp<E extends React.ElementType> = {
+  as?: E;
+};
 
-const Typography = forwardRef<HTMLElement, TypographyProps>(
-  (
+type PropsToOmit<E extends React.ElementType, P> = keyof (AsProp<E> & P);
+
+export type PolymorphicComponentProps<
+  E extends React.ElementType,
+  Props = object
+> = React.PropsWithChildren<Props & AsProp<E>> &
+  Omit<React.ComponentPropsWithoutRef<E>, PropsToOmit<E, Props>>;
+
+export type PolymorphicRef<E extends React.ElementType> =
+  React.ComponentPropsWithRef<E>["ref"];
+
+export type PolymorphicComponentPropsWithRef<
+  E extends React.ElementType,
+  Props = object
+> = PolymorphicComponentProps<E, Props> & { ref?: PolymorphicRef<E> };
+
+export type TypographyProps<E extends React.ElementType = React.ElementType> =
+  PolymorphicComponentPropsWithRef<E, VariantProps<typeof typographyVariants>>;
+
+type TypographyComponent = <E extends React.ElementType = `p`>(
+  props: TypographyProps<E>
+) => React.ReactNode;
+
+const Typography: TypographyComponent = safeForwardRef(
+  "Typography",
+  <E extends React.ElementType = "p">(
     {
-      variant = "medium",
-      color = "primary",
-      weight = "normal",
-      align = "left",
-      truncate = false,
+      as,
+      variant,
+      color,
+      weight,
+      align,
+      truncate,
       className,
       children,
       ...props
-    },
-    ref
+    }: PropsWithoutRef<TypographyProps<E>>,
+    ref: PolymorphicRef<E>
   ) => {
-    const Element = variantElements[variant as TypographyVariant];
+    const Element = as || "p";
 
     return (
       <Element
@@ -139,7 +120,5 @@ const Typography = forwardRef<HTMLElement, TypographyProps>(
     );
   }
 );
-
-Typography.displayName = "Typography";
 
 export default Typography;
