@@ -1,1 +1,3 @@
-export * from "./avatar"; 
+export { default } from "./avatar";
+export { default as AvatarImage } from "./avatar-image";
+export { default as AvatarFallback } from "./avatar-fallback"; 
