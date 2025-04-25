@@ -4,12 +4,12 @@ import { useRouter } from "next/navigation";
 
 export type LogoProps = {
   className?: string;
-  textLogo?: boolean;
+  disableTextLogo?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export default function Logo({
   className,
-  textLogo = true,
+  disableTextLogo,
   ...rest
 }: LogoProps) {
   const router = useRouter();
@@ -197,7 +197,7 @@ export default function Logo({
           </clipPath>
         </defs>
       </svg>
-      {textLogo && (
+      {!disableTextLogo && (
         <svg
           width="97"
           height="48"

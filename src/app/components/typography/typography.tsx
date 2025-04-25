@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import { ElementType, PropsWithChildren } from "react";
+import { ElementType, forwardRef } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 
 export type TypographyVariant =
   | "Display2XLarge"
@@ -30,56 +31,6 @@ export type TypographyWeight = "normal" | "medium" | "semibold" | "bold";
 
 export type TypographyAlign = "left" | "center" | "right" | "justify";
 
-export type TypographyProps = PropsWithChildren<{
-  variant?: TypographyVariant;
-  color?: TypographyColor;
-  weight?: TypographyWeight;
-  align?: TypographyAlign;
-  truncate?: boolean;
-  className?: string;
-}>;
-
-const variantStyles: Record<TypographyVariant, string> = {
-  Display2XLarge: "display-2xl",
-  DisplayXLarge: "display-xl",
-  DisplayLarge: "display-lg",
-  DisplayMedium: "display-md",
-  DisplaySmall: "display-sm",
-  DisplayXSmall: "display-xs",
-  XLarge: "xl",
-  Large: "lg",
-  Medium: "md",
-  Small: "sm",
-  XSmall: "xs",
-};
-
-const colorStyles: Record<TypographyColor, string> = {
-  primary: "text-text-primary",
-  secondary: "text-text-secondary",
-  tertiary: "text-text-tertiary",
-  quaternary: "text-text-quaternary",
-  brand: "text-text-brand-primary",
-  error: "text-text-error-primary",
-  warning: "text-text-warning-primary",
-  success: "text-text-success-primary",
-  white: "text-text-white",
-  disabled: "text-text-disabled",
-};
-
-const weightStyles: Record<TypographyWeight, string> = {
-  normal: "font-normal",
-  medium: "font-medium",
-  semibold: "font-semibold",
-  bold: "font-bold",
-};
-
-const alignStyles: Record<TypographyAlign, string> = {
-  left: "text-left",
-  center: "text-center",
-  right: "text-right",
-  justify: "text-justify",
-};
-
 const variantElements: Record<TypographyVariant, ElementType> = {
   Display2XLarge: "h1",
   DisplayXLarge: "h2",
@@ -94,33 +45,101 @@ const variantElements: Record<TypographyVariant, ElementType> = {
   XSmall: "p",
 };
 
-export default function Typography({
-  variant = "Medium",
-  color = "primary",
-  weight = "normal",
-  align = "left",
-  truncate = false,
-  children,
-  className,
-}: TypographyProps) {
-  const Element = variantElements[variant];
-  const baseStyles = variantStyles[variant];
-  const colorStyle = colorStyles[color];
-  const weightStyle = weightStyles[weight];
-  const alignStyle = alignStyles[align];
+export const typographyVariants = cva("", {
+  variants: {
+    variant: {
+      display2XLarge: "display-2xl",
+      displayXLarge: "display-xl",
+      displayLarge: "display-lg",
+      displayMedium: "display-md",
+      displaySmall: "display-sm",
+      displayXSmall: "display-xs",
+      xLarge: "xl",
+      large: "lg",
+      medium: "md",
+      small: "sm",
+      xSmall: "xs",
+    },
+    color: {
+      primary: "text-text-primary",
+      secondary: "text-text-secondary",
+      tertiary: "text-text-tertiary",
+      quaternary: "text-text-quaternary",
+      brand: "text-text-brand-primary",
+      error: "text-text-error-primary",
+      warning: "text-text-warning-primary",
+      success: "text-text-success-primary",
+      white: "text-text-white",
+      disabled: "text-text-disabled",
+    },
+    weight: {
+      normal: "font-normal",
+      medium: "font-medium",
+      semibold: "font-semibold",
+      bold: "font-bold",
+    },
+    align: {
+      left: "text-left",
+      center: "text-center",
+      right: "text-right",
+      justify: "text-justify",
+    },
+    truncate: {
+      true: "truncate",
+    },
+  },
+  defaultVariants: {
+    variant: "medium",
+    color: "primary",
+    weight: "normal",
+    align: "left",
+    truncate: false,
+  },
+});
 
-  return (
-    <Element
-      className={cn(
-        baseStyles,
-        colorStyle,
-        weightStyle,
-        alignStyle,
-        truncate && "truncate",
-        className
-      )}
-    >
-      {children}
-    </Element>
-  );
-} 
+export interface TypographyProps
+  extends VariantProps<typeof typographyVariants>,
+    Omit<React.HTMLAttributes<HTMLElement>, "color"> {
+  children: React.ReactNode;
+}
+
+const Typography = forwardRef<HTMLElement, TypographyProps>(
+  (
+    {
+      variant = "medium",
+      color = "primary",
+      weight = "normal",
+      align = "left",
+      truncate = false,
+      className,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const Element = variantElements[variant as TypographyVariant];
+
+    return (
+      <Element
+        ref={ref}
+        className={cn(
+          typographyVariants({
+            variant,
+            color,
+            weight,
+            align,
+            truncate,
+            className,
+          })
+        )}
+        {...props}
+      >
+        {children}
+      </Element>
+    );
+  }
+);
+
+Typography.displayName = "Typography";
+
+export default Typography;

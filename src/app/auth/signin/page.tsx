@@ -17,9 +17,9 @@ export default function SigninPage() {
           <div className="flex flex-col justify-center items-center z-10 gap-8 w-[360px] h-full">
             <div className="flex flex-col justify-center items-center gap-8 w-full h-full">
               <div className="flex flex-col items-center gap-6 w-full">
-                <Logo textLogo={false} />
+                <Logo disableTextLogo />
                 <div className="flex flex-col items-center gap-3 w-full">
-                  <Typography variant="DisplayMedium" weight="semibold">
+                  <Typography variant="displayMedium" weight="semibold">
                     Welcome back
                   </Typography>
                   <Typography color="tertiary">
@@ -46,7 +46,7 @@ export default function SigninPage() {
                 </div>
               </div>
               <div className="flex flex-row items-center gap-1">
-                <Typography variant="Small" color="tertiary">
+                <Typography variant="small" color="tertiary">
                   Don’t have an account?
                 </Typography>
                 <Link href="/auth/signup">
@@ -56,7 +56,7 @@ export default function SigninPage() {
             </div>
           </div>
           <div className="flex flex-row w-full p-8">
-            <Typography variant="Small" color="tertiary">
+            <Typography variant="small" color="tertiary">
               © Orca 2077
             </Typography>
           </div>

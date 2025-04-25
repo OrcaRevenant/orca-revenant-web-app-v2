@@ -22,7 +22,7 @@ export default function LandingPage() {
           <div className="flex flex-col items-center gap-5">
             <div className="flex flex-col">
               <Typography
-                variant="Display2XLarge"
+                variant="display2XLarge"
                 weight="semibold"
                 color="primary"
                 align="center"
@@ -30,7 +30,7 @@ export default function LandingPage() {
                 Connect, Track, and Maximize Your Profits Effortlessly.
               </Typography>
               <Typography
-                variant="Medium"
+                variant="medium"
                 weight="medium"
                 color="secondary"
                 align="center"
@@ -49,7 +49,7 @@ export default function LandingPage() {
                 Get Started
               </Button>
             </div>
-            <Typography variant="XSmall" color="tertiary">
+            <Typography variant="xSmall" color="tertiary">
               Powered by Orca 🐳
             </Typography>
           </div>

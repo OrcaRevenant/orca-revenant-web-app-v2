@@ -20,7 +20,7 @@ export default function SignupPage() {
             <div className="flex flex-col justify-center items-center gap-8 w-full h-full">
               <div className="flex flex-col items-center gap-6 w-full">
                 <div className="flex flex-col  gap-3 w-full">
-                  <Typography variant="DisplayMedium" weight="semibold">
+                  <Typography variant="displayMedium" weight="semibold">
                     Sign up
                   </Typography>
                   <Typography color="tertiary">
@@ -56,7 +56,7 @@ export default function SignupPage() {
                 </div>
               </div>
               <div className="flex flex-row items-center gap-1">
-                <Typography variant="Small" color="tertiary">
+                <Typography variant="small" color="tertiary">
                   Already have an account?
                 </Typography>
                 <Link href="/auth/signin">
@@ -66,11 +66,11 @@ export default function SignupPage() {
             </div>
           </div>
           <div className="flex flex-row justify-between w-full p-8">
-            <Typography variant="Small" color="tertiary">
+            <Typography variant="small" color="tertiary">
               © Orca 2077
             </Typography>
             <Typography
-              variant="Small"
+              variant="small"
               color="tertiary"
               className="flex flex-row items-center gap-2"
             >

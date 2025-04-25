@@ -33,12 +33,12 @@ export default function Checkbox({ label, helperText, className, ...props }: Che
 
       <div className="flex flex-col">
         {label && (
-          <Typography variant="Small" weight="medium">
+          <Typography variant="small" weight="medium">
             {label}
           </Typography>
         )}
         {helperText && (
-          <Typography variant="Small" color="tertiary">
+          <Typography variant="small" color="tertiary">
             {helperText}
           </Typography>
         )}

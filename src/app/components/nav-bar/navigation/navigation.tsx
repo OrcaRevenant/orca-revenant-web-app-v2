@@ -40,7 +40,7 @@ export default function Navigation() {
                             {link.name}
                           </div>
                           {link.comingSoon && (
-                            <Typography variant="XSmall" color="disabled">
+                            <Typography variant="xSmall" color="disabled">
                               Coming Soon
                             </Typography>
                           )}

@@ -95,7 +95,7 @@ export default function Input({
       </div>
       {helperText && (
         <Typography
-          variant="Small"
+          variant="small"
           color={variant === "destructive" ? "error" : "tertiary"}
         >
           {helperText}

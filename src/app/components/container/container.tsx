@@ -1,48 +1,46 @@
 import { cn } from "@/lib/utils";
 import { HTMLAttributes, forwardRef } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 
-interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
-  maxWidth?:
-    | "xxs"
-    | "xs"
-    | "sm"
-    | "md"
-    | "lg"
-    | "xl"
-    | "2xl"
-    | "3xl"
-    | "4xl"
-    | "5xl"
-    | "6xl"
-    | false;
-  fixed?: boolean;
-}
+export const containerVariants = cva(
+  "w-full mx-auto",
+  {
+    variants: {
+      maxWidth: {
+        xxs: "max-w-[320px]",
+        xs: "max-w-[384px]",
+        sm: "max-w-[480px]",
+        md: "max-w-[560px]",
+        lg: "max-w-[640px]",
+        xl: "max-w-[768px]",
+        "2xl": "max-w-[1024px]",
+        "3xl": "max-w-[1280px]",
+        "4xl": "max-w-[1440px]",
+        "5xl": "max-w-[1600px]",
+        "6xl": "max-w-[1920px]",
+        false: "max-w-none",
+      },
+      fixed: {
+        true: "",
+        false: ""
+      }
+    },
+    defaultVariants: {
+      maxWidth: "lg",
+      fixed: false
+    }
+  }
+);
 
-const maxWidthClasses = {
-  xxs: "max-w-[320px]",
-  xs: "max-w-[384px]",
-  sm: "max-w-[480px]",
-  md: "max-w-[560px]",
-  lg: "max-w-[640px]",
-  xl: "max-w-[768px]",
-  "2xl": "max-w-[1024px]",
-  "3xl": "max-w-[1280px]",
-  "4xl": "max-w-[1440px]",
-  "5xl": "max-w-[1600px]",
-  "6xl": "max-w-[1920px]",
-  false: "max-w-none",
-};
+interface ContainerProps extends HTMLAttributes<HTMLDivElement>,
+  VariantProps<typeof containerVariants> {}
 
 const Container = forwardRef<HTMLDivElement, ContainerProps>(
-  ({ className, maxWidth = "lg", children, ...props }, ref) => {
+  ({ className, maxWidth, fixed, children, ...props }, ref) => {
     return (
       <div
         ref={ref}
-        className={cn(
-          "w-full mx-auto",
-          maxWidth !== false && maxWidthClasses[maxWidth],
-          className
-        )}
+        className={cn(containerVariants({ maxWidth, fixed, className }))}
         {...props}
       >
         {children}

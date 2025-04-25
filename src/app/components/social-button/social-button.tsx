@@ -11,13 +11,11 @@ export const socialButtonVariants = cva(
 
 export default function SocialButton({
   className,
-  asChild = false,
   icon,
   label,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof socialButtonVariants> & {
-    asChild?: boolean;
     icon: SupportedSocials;
     label?: string;
   }) {
@@ -29,10 +27,10 @@ export default function SocialButton({
     >
       <SocialIconSelector icon={icon} />
       {label && (
-        <Typography variant="Medium" weight="medium" color="secondary">
+        <Typography variant="medium" weight="medium" color="secondary">
           {label}
         </Typography>
       )}
     </button>
   );
-} 
+}
