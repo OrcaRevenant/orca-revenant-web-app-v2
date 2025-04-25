@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Logo from "@/app/components/logo";
 import AppBar from "@/app/components/app-bar";
-import { Button } from "@/app/components/button";
-import { Container } from "@/app/components/container";
+import Button from "@/app/components/button";
+import Container from "@/app/components/container";
 import IconSelector from "@/app/components/icon-selector";
 import Navigation from "@/app/components/nav-bar/navigation";
 

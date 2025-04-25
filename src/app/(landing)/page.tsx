@@ -1,5 +1,5 @@
-import { Button } from "@/app/components/button";
-import { Container } from "@/app/components/container";
+import Button from "@/app/components/button";
+import Container from "@/app/components/container";
 import IconSelector from "@/app/components/icon-selector";
 import Typography from "@/app/components/typography";
 

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import Logo from "@/app/components/logo";
-import { Button } from "@/app/components/button";
-import { Container } from "@/app/components/container";
+import Button from "@/app/components/button";
+import Container from "@/app/components/container";
 import Typography from "@/app/components/typography";
 
 const FOOTER_HEIGHT = 144;

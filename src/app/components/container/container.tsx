@@ -33,7 +33,7 @@ const maxWidthClasses = {
   false: "max-w-none",
 };
 
-export const Container = forwardRef<HTMLDivElement, ContainerProps>(
+const Container = forwardRef<HTMLDivElement, ContainerProps>(
   ({ className, maxWidth = "lg", children, ...props }, ref) => {
     return (
       <div
@@ -51,4 +51,6 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
   }
 );
 
-Container.displayName = "Container"; 
+Container.displayName = "Container";
+
+export default Container; 

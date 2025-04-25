@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "@/app/components/button";
+import Button from "@/app/components/button";
 import IconSelector from "@/app/components/icon-selector";
 import NavigationMenu, {
   NavigationMenuContent,

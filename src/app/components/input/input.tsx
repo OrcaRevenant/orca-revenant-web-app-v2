@@ -32,7 +32,7 @@ const inputVariants = cva(
   }
 );
 
-function Input({
+export default function Input({
   className,
   type,
   label,
@@ -104,5 +104,3 @@ function Input({
     </div>
   );
 }
-
-export { Input };

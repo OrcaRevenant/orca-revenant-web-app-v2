@@ -1,1 +1,2 @@
-export * from "./social-button";
+export { default } from "./social-button";
+export { socialButtonVariants } from "./social-button";

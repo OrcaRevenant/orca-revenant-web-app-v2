@@ -1,9 +1,9 @@
 import Logo from "@/app/components/logo";
-import { Button } from "@/app/components/button";
-import { Container } from "@/app/components/container";
+import Button from "@/app/components/button";
+import Container from "@/app/components/container";
 import IconSelector from "@/app/components/icon-selector";
-import { Input } from "@/app/components/input";
-import { SocialButton } from "@/app/components/social-button";
+import Input from "@/app/components/input";
+import SocialButton from "@/app/components/social-button";
 import Typography from "@/app/components/typography";
 import Image from "next/image";
 import Link from "next/link";

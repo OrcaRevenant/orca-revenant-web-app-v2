@@ -12,7 +12,7 @@ type CheckboxProps = {
   helperText?: string;
 } & React.ComponentProps<typeof CheckboxPrimitive.Root>;
 
-function Checkbox({ label, helperText, className, ...props }: CheckboxProps) {
+export default function Checkbox({ label, helperText, className, ...props }: CheckboxProps) {
   return (
     <div className="flex flex-row space-x-2">
       <CheckboxPrimitive.Root
@@ -45,6 +45,4 @@ function Checkbox({ label, helperText, className, ...props }: CheckboxProps) {
       </div>
     </div>
   );
-}
-
-export { Checkbox }; 
+} 
