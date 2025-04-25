@@ -1,7 +1,7 @@
-import { Button } from "../components/ui/button";
-import { Container } from "../components/ui/container";
-import IconSelector from "../components/ui/icon-selector";
-import Typography from "../components/ui/typography";
+import { Button } from "@/app/components/button";
+import { Container } from "@/app/components/container";
+import IconSelector from "@/app/components/icon-selector";
+import Typography from "@/app/components/typography";
 
 export default function LandingPage() {
   return (
@@ -15,7 +15,7 @@ export default function LandingPage() {
             muted
             playsInline
           >
-            <source src="/assets/videos/arua.mp4" type="video/mp4" />
+            <source src="/assets/videos/arua.webm" type="video/webm" />
           </video>
         </div>
         <Container maxWidth="xl" className="relative z-10">

@@ -1,11 +1,11 @@
-import BackgroundPattern from "@/app/components/BackgroundPattern";
-import Logo from "@/app/components/Logo";
-import { Button } from "@/app/components/ui/button";
-import { Checkbox } from "@/app/components/ui/checkbox";
-import { Container } from "@/app/components/ui/container";
-import { Input } from "@/app/components/ui/input";
-import { SocialButton } from "@/app/components/ui/social-button";
-import Typography from "@/app/components/ui/typography";
+import BackgroundPattern from "@/app/components/background-pattern";
+import Logo from "@/app/components/logo";
+import { Button } from "@/app/components/button";
+import { Checkbox } from "@/app/components/checkbox";
+import { Container } from "@/app/components/container";
+import { Input } from "@/app/components/input";
+import { SocialButton } from "@/app/components/social-button";
+import Typography from "@/app/components/typography";
 import Image from "next/image";
 import Link from "next/link";
 
