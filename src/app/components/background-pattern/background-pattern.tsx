@@ -7,6 +7,7 @@ type BackgroundPatternProps = {
   pattern: "dots";
   size: "sm" | "md";
   mask: "redialCenter" | "redialDown" | "redialUp" | "linearUp" | "linearDown";
+  imageClassName?: React.HTMLAttributes<HTMLImageElement>["className"];
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export default function BackgroundPattern({
@@ -15,13 +16,17 @@ export default function BackgroundPattern({
   size,
   mask,
   className,
+  imageClassName,
 }: BackgroundPatternProps) {
   const patternConfig = backgroundPatternConfig[pattern];
 
   return (
     <div className={cn("absolute w-full h-full z-0", className)}>
       <Image
-        className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
+        className={cn(
+          "absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2",
+          imageClassName
+        )}
         style={{
           maskImage: backgroundMaskConfig[mask],
         }}
