@@ -17,6 +17,7 @@ export const typographyVariants = cva("", {
       medium: "md",
       small: "sm",
       xSmall: "xs",
+      inherit: "inherit",
     },
     color: {
       primary: "text-text-primary",
@@ -29,6 +30,7 @@ export const typographyVariants = cva("", {
       success: "text-text-success-primary",
       white: "text-text-white",
       disabled: "text-text-disabled",
+      inherit: "text-inherit",
     },
     weight: {
       normal: "font-normal",

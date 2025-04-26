@@ -10,7 +10,6 @@ export type IconSelectorProps = {
 
 export default function IconSelector({
   icon,
-  size = 20,
   dir = `ltr`,
   className,
   ...rest
@@ -25,10 +24,6 @@ export default function IconSelector({
     <IconComponent
       {...rest}
       className={cn("shrink-0", dir === "rtl" && "scale-x-[-1]", className)}
-      style={{
-        width: size,
-        height: size,
-      }}
     />
   );
-} 
+}

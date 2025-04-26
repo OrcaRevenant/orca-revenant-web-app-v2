@@ -25,7 +25,7 @@ export default function LandingPage() {
                 variant="display2XLarge"
                 weight="semibold"
                 color="primary"
-                align="center"
+                className="text-center"
               >
                 Connect, Track, and Maximize Your Profits Effortlessly.
               </Typography>
@@ -33,7 +33,7 @@ export default function LandingPage() {
                 variant="medium"
                 weight="medium"
                 color="secondary"
-                align="center"
+                className="text-center"
               >
                 Effortless Crypto Portfolio Tracking – Stay Ahead with Real-Time
                 Insights.

@@ -1,4 +1,5 @@
 import Avatar, { AvatarFallback, AvatarImage } from "@/app/components/avatar";
+import Badge from "@/app/components/badge";
 import Button from "@/app/components/button";
 import IconSelector from "@/app/components/icon-selector";
 import Paper from "@/app/components/paper";
@@ -78,7 +79,12 @@ export default function AssetsTable({ assets }: AssetsTableProps) {
                   </Typography>
                 </div>
               </TableCell>
-              <TableCell></TableCell>
+              <TableCell align="right">
+                <Badge size={"sm"} color="success">
+                  <IconSelector icon="TrendUp01" />
+                  <Typography variant={"inherit"} color={"success"}>+ 12%</Typography>
+                </Badge>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
