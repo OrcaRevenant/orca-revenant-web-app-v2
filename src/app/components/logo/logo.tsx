@@ -1,23 +1,20 @@
-"use client";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
+import Link, { LinkProps } from "next/link";
 
 export type LogoProps = {
   className?: string;
   disableTextLogo?: boolean;
-} & React.HTMLAttributes<HTMLDivElement>;
+} & Omit<LinkProps, "href">;
 
 export default function Logo({
   className,
   disableTextLogo,
   ...rest
 }: LogoProps) {
-  const router = useRouter();
-
   return (
-    <div
+    <Link
       className={cn("flex flex-row h-12 space-x-2 cursor-pointer", className)}
-      onClick={() => router.push("/")}
+      href={"/"}
       {...rest}
     >
       <svg
@@ -213,6 +210,6 @@ export default function Logo({
           </g>
         </svg>
       )}
-    </div>
+    </Link>
   );
 }

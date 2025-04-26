@@ -5,7 +5,7 @@ import Typography from "@/app/components/typography";
 
 export default function LandingPage() {
   return (
-    <main className="h-screen w-screen">
+    <main className="flex-1 w-screen">
       <div className="relative flex flex-col h-full w-full justify-center items-center">
         <div className="w-full h-full absolute inset-0 flex items-center justify-center">
           <video

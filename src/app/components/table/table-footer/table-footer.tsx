@@ -1,9 +1,10 @@
-"use client"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-
-export default function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
+export default function TableFooter({
+  className,
+  ...props
+}: React.ComponentProps<"tfoot">) {
   return (
     <tfoot
       data-slot="table-footer"
@@ -13,5 +14,5 @@ export default function TableFooter({ className, ...props }: React.ComponentProp
       )}
       {...props}
     />
-  )
-} 
+  );
+}

@@ -36,12 +36,6 @@ export const typographyVariants = cva("", {
       semibold: "font-semibold",
       bold: "font-bold",
     },
-    align: {
-      left: "text-left",
-      center: "text-center",
-      right: "text-right",
-      justify: "text-justify",
-    },
     truncate: {
       true: "truncate",
     },
@@ -50,7 +44,6 @@ export const typographyVariants = cva("", {
     variant: "medium",
     color: "primary",
     weight: "normal",
-    align: "left",
     truncate: false,
   },
 });
@@ -90,7 +83,6 @@ const Typography: TypographyComponent = safeForwardRef(
       variant,
       color,
       weight,
-      align,
       truncate,
       className,
       children,
@@ -108,7 +100,6 @@ const Typography: TypographyComponent = safeForwardRef(
             variant,
             color,
             weight,
-            align,
             truncate,
             className,
           })

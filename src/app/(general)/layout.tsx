@@ -13,10 +13,10 @@ export default function LandingLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <div className="flex flex-col h-full w-full">
       <NavBar />
       {children}
       <Footer />
-    </>
+    </div>
   );
 }

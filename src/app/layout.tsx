@@ -13,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang={appConfig.language} className="dark overflow-x-hidden">
-      <body className={`${appConfig.typography.fontFamily.variable} font-sans`}>
+    <html lang={appConfig.language} className="dark overflow-x-hidden h-full w-full">
+      <body className={`${appConfig.typography.fontFamily.variable} font-sans h-full w-full`}>
         {children}
       </body>
     </html>

@@ -1,7 +1,5 @@
-"use client"
-
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 export default function TableCaption({
   className,
@@ -13,5 +11,5 @@ export default function TableCaption({
       className={cn("text-muted-foreground mt-4 text-sm", className)}
       {...props}
     />
-  )
-} 
+  );
+}

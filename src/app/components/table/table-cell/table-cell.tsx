@@ -1,17 +1,21 @@
-"use client"
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import Typography, { TypographyProps } from "../../typography";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-
-export default function TableCell({ className, ...props }: React.ComponentProps<"td">) {
+export default function TableCell({
+  className,
+  ...props
+}: TypographyProps<"td">) {
   return (
-    <td
+    <Typography
+      as="td"
       data-slot="table-cell"
+      variant={"small"}
       className={cn(
-        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        "px-6 py-4 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
         className
       )}
       {...props}
     />
-  )
-} 
+  );
+}

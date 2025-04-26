@@ -1,9 +1,10 @@
-"use client"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-import * as React from "react"
-import { cn } from "@/lib/utils"
-
-export default function Table({ className, ...props }: React.ComponentProps<"table">) {
+export default function Table({
+  className,
+  ...props
+}: React.ComponentProps<"table">) {
   return (
     <div
       data-slot="table-container"
@@ -15,5 +16,5 @@ export default function Table({ className, ...props }: React.ComponentProps<"tab
         {...props}
       />
     </div>
-  )
-} 
+  );
+}

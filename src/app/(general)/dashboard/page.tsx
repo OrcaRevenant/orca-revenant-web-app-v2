@@ -1,12 +1,13 @@
 import Button from "@/app/components/button";
 import Container from "@/app/components/container";
 import IconSelector from "@/app/components/icon-selector";
-import StatCard from "@/app/components/stat-card/stat-card";
+import StatCard from "@/app/(general)/dashboard/components/stat-card/stat-card";
 import Typography from "@/app/components/typography";
+import AssetsTable from "@/app/(general)/dashboard/components/assets-table/assets-table";
 
 export default function DashboardPage() {
   return (
-    <Container className="py-16 w-full" maxWidth="2xl">
+    <Container className="py-16 w-full flex-1" maxWidth="2xl">
       <div className="space-y-5">
         <div className="flex flex-row w-full">
           <div className="space-y-2 flex-1">
@@ -38,6 +39,32 @@ export default function DashboardPage() {
             icon="BankNote01"
           />
         </div>
+
+        <AssetsTable
+          assets={[
+            {
+              name: "Bitcoin",
+              price: 10000,
+              change: 10,
+              marketCap: 1000000,
+              volume: 1000000,
+            },
+            {
+              name: "Ethereum",
+              price: 10000,
+              change: 10,
+              marketCap: 1000000,
+              volume: 1000000,
+            },
+            {
+              name: "Tether",
+              price: 10000,
+              change: 10,
+              marketCap: 1000000,
+              volume: 1000000,
+            },
+          ]}
+        />
       </div>
     </Container>
   );

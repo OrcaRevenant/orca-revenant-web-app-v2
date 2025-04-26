@@ -1,6 +1,6 @@
-import IconSelector from "../icon-selector";
-import Paper from "../paper";
-import Typography from "../typography";
+import IconSelector from "../../../../components/icon-selector";
+import Paper from "../../../../components/paper";
+import Typography from "../../../../components/typography";
 import { SupportedIcons } from "@/icons/icons";
 export type StatCardProps = {
   title: string;
