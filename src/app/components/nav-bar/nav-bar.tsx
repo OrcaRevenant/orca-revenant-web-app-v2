@@ -1,11 +1,11 @@
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import Logo from "@/app/components/logo";
 import AppBar from "@/app/components/app-bar";
 import Button from "@/app/components/button";
 import Container from "@/app/components/container";
 import IconSelector from "@/app/components/icon-selector";
+import Logo from "@/app/components/logo";
 import Navigation from "@/app/components/nav-bar/navigation";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export const NAVBAR_HEIGHT = 72;
 
@@ -31,12 +31,12 @@ export default function NavBar({ className }: NavBarProps) {
           </div>
           <div className="flex flex-row items-center gap-4">
             <Button variant="secondaryGray" size="md">
-              <IconSelector icon="Announcement01" />
+              <IconSelector icon="Announcement01" className="size-5" />
               Feedback
             </Button>
             <Link href="/auth/signin">
               <Button variant="primary" size="md">
-                <IconSelector icon="LogIn03" />
+                <IconSelector icon="LogIn03" className="size-5" />
                 Login
               </Button>
             </Link>

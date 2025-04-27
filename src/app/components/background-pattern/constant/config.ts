@@ -3,10 +3,14 @@ import dotsDesktopSm from "./assets/dots-desktop-sm.svg";
 import dotsMobileMd from "./assets/dots-mobile-md.svg";
 import dotsMobileSm from "./assets/dots-mobile-sm.svg";
 
-type breakpoint = "sm" | "md";
+export type BackgroundSize = "sm" | "md";
 
-type breakpointConfig = {
-  [key in breakpoint]: {
+export type BackgroundBreakpoint = "desktop" | "mobile";
+
+export type BackgroundPatternVariant = "dots";
+
+export type BackgroundBreakpointConfig = {
+  [key in BackgroundSize]: {
     alt: string;
     src: string;
     width: number;
@@ -15,9 +19,8 @@ type breakpointConfig = {
 };
 
 type BackgroundPatternConfig = {
-  dots: {
-    desktop: breakpointConfig;
-    mobile: breakpointConfig;
+  [key in BackgroundPatternVariant]: {
+    [key in BackgroundBreakpoint]: BackgroundBreakpointConfig;
   };
 };
 
@@ -60,7 +63,7 @@ export const backgroundPatternConfig: BackgroundPatternConfig = {
   },
 };
 
-type mask =
+export type BackgroundMask =
   | "redialCenter"
   | "redialDown"
   | "redialUp"
@@ -68,7 +71,7 @@ type mask =
   | "linearDown";
 
 type BackgroundMaskConfig = {
-  [key in mask]: string;
+  [key in BackgroundMask]: string;
 };
 
 export const backgroundMaskConfig: BackgroundMaskConfig = {
