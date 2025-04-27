@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Button from "@/app/components/button";
 import IconSelector from "@/app/components/icon-selector";
 import NavigationMenu, {
@@ -8,6 +7,7 @@ import NavigationMenu, {
   NavigationMenuTrigger,
 } from "@/app/components/navigation-menu";
 import Typography from "@/app/components/typography";
+import Link from "next/link";
 import { navigation } from "../constant/config";
 
 export default function Navigation() {
@@ -35,7 +35,10 @@ export default function Navigation() {
                         >
                           <div className="flex flex-row items-center gap-1.5">
                             {link.icon && (
-                              <IconSelector icon={link.icon} size={18} />
+                              <IconSelector
+                                icon={link.icon}
+                                className="size-4.5"
+                              />
                             )}
                             {link.name}
                           </div>
