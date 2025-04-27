@@ -31,11 +31,10 @@ export default function StatCard({
         <div className="flex flex-row space-x-2">
           <div className="flex flex-row items-center">
             <IconSelector
-              size={16}
-              className="text-fg-success-secondary"
+              className="text-fg-success-secondary size-4"
               icon="ArrowUp"
             />
-            <Typography color={"success"}>100%</Typography>
+            <Typography variant={"small"} color={"success"}>100%</Typography>
           </div>
 
           <Typography variant={"small"} color={"tertiary"}>

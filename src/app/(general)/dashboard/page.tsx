@@ -4,6 +4,7 @@ import IconSelector from "@/app/components/icon-selector";
 import StatCard from "@/app/(general)/dashboard/components/stat-card/stat-card";
 import Typography from "@/app/components/typography";
 import AssetsTable from "@/app/(general)/dashboard/components/assets-table/assets-table";
+import OverallPortfolioValue from "./components/overall-portfolio-value/overall-portfolio-value";
 
 export default function DashboardPage() {
   return (
@@ -65,6 +66,8 @@ export default function DashboardPage() {
             },
           ]}
         />
+
+        <OverallPortfolioValue />
       </div>
     </Container>
   );

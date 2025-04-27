@@ -1,8 +1,8 @@
 import Avatar, { AvatarFallback, AvatarImage } from "@/app/components/avatar";
 import Badge from "@/app/components/badge";
 import Button from "@/app/components/button";
+import Card from "@/app/components/card";
 import IconSelector from "@/app/components/icon-selector";
-import Paper from "@/app/components/paper";
 import Table from "@/app/components/table";
 import TableBody from "@/app/components/table/table-body";
 import TableCell from "@/app/components/table/table-cell";
@@ -22,18 +22,16 @@ export type AssetsTableProps = {
 };
 export default function AssetsTable({ assets }: AssetsTableProps) {
   return (
-    <Paper className="space-y-5" disablePadding>
-      <div className="p-5 pb-3">
-        <div className="flex flex-row items-center justify-between">
-          <Typography weight={"semibold"} variant={"large"}>
-            Assets
-          </Typography>
-          <Button variant={"primary"}>
-            See More
-            <IconSelector icon="ArrowRight" />
-          </Button>
-        </div>
-      </div>
+    <Card
+      title="Assets"
+      disablePadding
+      action={
+        <Button variant={"primary"}>
+          See More
+          <IconSelector icon="ArrowRight" />
+        </Button>
+      }
+    >
       <Table>
         <TableHeader>
           <TableRow>
@@ -82,13 +80,15 @@ export default function AssetsTable({ assets }: AssetsTableProps) {
               <TableCell align="right">
                 <Badge size={"sm"} color="success">
                   <IconSelector icon="TrendUp01" />
-                  <Typography variant={"inherit"} color={"success"}>+ 12%</Typography>
+                  <Typography variant={"inherit"} color={"success"}>
+                    + 12%
+                  </Typography>
                 </Badge>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-    </Paper>
+    </Card>
   );
 }
