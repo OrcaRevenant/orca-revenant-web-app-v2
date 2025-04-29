@@ -9,7 +9,9 @@ export default function ResetPasswordPage() {
         mask="redialDown"
         pattern="dots"
         size="md"
-        imageClassName="top-0 translate-y-0"
+        imageProps={{
+          className: "top-0 translate-y-0",
+        }}
       />
       <ResetDone />
     </main>
