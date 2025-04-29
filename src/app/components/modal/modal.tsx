@@ -10,6 +10,7 @@ export type ModalProps = {
   actionProps?: ModalActionProps;
   contentProps?: HtmlHTMLAttributes<HTMLDivElement>;
   trigger?: ReactElement;
+  disableAction?: boolean;
 };
 
 export default function Modal({
@@ -18,6 +19,7 @@ export default function Modal({
   actionProps,
   contentProps,
   trigger,
+  disableAction = false,
 }: ModalProps) {
   return (
     <Dialog>
@@ -25,7 +27,7 @@ export default function Modal({
       <DialogContent className="sm:max-w-[400px] overflow-hidden">
         <ModalHeader {...headerProps} />
         <ModalContent {...contentProps}>{children}</ModalContent>
-        <ModalAction {...actionProps} />
+        {!disableAction && <ModalAction {...actionProps} />}
       </DialogContent>
     </Dialog>
   );
