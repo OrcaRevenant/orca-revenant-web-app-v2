@@ -1,5 +1,5 @@
 import PaperWithTitle from "@/app/components/paper-with-title";
-import LineChart from "@/app/components/line-chart";
+import TradingLineChart from "@/app/components/trading-line-chart";
 import Select, {
   SelectContent,
   SelectGroup,
@@ -32,7 +32,7 @@ export default function OverallPortfolioValue() {
       }
     >
       <div className="h-[240px]">
-        <LineChart
+        <TradingLineChart
           data={[
             { time: "2023-12-31", value: Math.floor(Math.random() * 1000) },
             { time: "2024-01-01", value: Math.floor(Math.random() * 1000) },

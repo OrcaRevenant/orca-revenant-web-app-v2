@@ -1,6 +1,7 @@
 import PaperWithTitle from "@/app/components/paper-with-title";
-import PieChart, { PieChartLegendGrid } from "@/app/components/doughnut-chart";
+import PieChart from "@/app/components/doughnut-chart";
 import { generatePieColor } from "@/app/components/doughnut-chart/utils";
+import ChartLegendList from "@/app/components/chart/chart-legend-list";
 
 export default function PortfolioHoldings() {
   const data = [
@@ -8,13 +9,16 @@ export default function PortfolioHoldings() {
     { key: "Tether", value: 200, color: `var(${generatePieColor(1)})` },
     { key: "Bitcoin", value: 300, color: `var(${generatePieColor(2)})` },
     { key: "Solana", value: 400, color: `var(${generatePieColor(3)})` },
+    { key: "Avalanche", value: 500, color: `var(${generatePieColor(4)})` },
+    { key: "Polygon", value: 600, color: `var(${generatePieColor(5)})` },
+    { key: "Binance", value: 700, color: `var(${generatePieColor(6)})` },
   ];
 
   return (
     <PaperWithTitle title="Portfolio Holdings">
       <div className="space-y-12 py-12 flex flex-col justify-center items-center">
         <PieChart data={data} />
-        <PieChartLegendGrid data={data} />
+        <ChartLegendList data={data} />
       </div>
     </PaperWithTitle>
   );

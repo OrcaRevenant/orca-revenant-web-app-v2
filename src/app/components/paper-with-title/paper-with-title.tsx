@@ -17,7 +17,7 @@ export default function PaperWithTitle({
 }: PaperWithTitleProps) {
   return (
     <Paper
-      className={cn("space-y-8", className)}
+      className={cn("space-y-8 flex flex-col", className)}
       disablePadding={disablePadding}
       {...props}
     >
@@ -29,7 +29,8 @@ export default function PaperWithTitle({
           {action}
         </div>
       </div>
-      {children}
+
+      <div className="flex-1 flex flex-col">{children}</div>
     </Paper>
   );
 }

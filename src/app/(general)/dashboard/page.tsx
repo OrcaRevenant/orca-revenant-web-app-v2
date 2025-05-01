@@ -6,6 +6,7 @@ import Typography from "@/app/components/typography";
 import AssetsTable from "@/app/(general)/dashboard/components/assets-table/assets-table";
 import OverallPortfolioValue from "./components/overall-portfolio-value/overall-portfolio-value";
 import PortfolioHoldings from "./components/portfolio-holdings";
+import AssetAllocation from "@/app/components/asset-allocation";
 
 export default function DashboardPage() {
   return (
@@ -74,6 +75,9 @@ export default function DashboardPage() {
         <div className="flex flex-row gap-5">
           <OverallPortfolioValue />
           <PortfolioHoldings />
+        </div>
+        <div className="flex flex-row gap-5">
+          <AssetAllocation />
         </div>
       </div>
     </Container>

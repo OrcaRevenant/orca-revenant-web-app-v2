@@ -18,7 +18,7 @@ type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
 };
 
-export type LineChartProps = {
+export type TradingLineChartProps = {
   data: LineData[];
   options?: {
     line?: DeepPartial<LineSeriesOptions>;
@@ -26,7 +26,7 @@ export type LineChartProps = {
   };
 };
 
-export default function LineChart({ data, options }: LineChartProps) {
+export default function TradingLineChart({ data, options }: TradingLineChartProps) {
   const chartContainerRef = useRef<HTMLElement>(null);
 
   const isEmpty = !data.length;

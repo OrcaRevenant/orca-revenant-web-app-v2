@@ -1,20 +1,20 @@
 import { HTMLAttributes } from "react";
-import PieChartLegendIcon from "../pie-chart-legend-icon";
 import Typography from "../../typography";
+import ChartLegendIcon from "../chart-legend-icon";
 
-export type PieChartLegendItemProps = {
+export type ChartLegendItemProps = {
   label: string;
   color: string;
 } & HTMLAttributes<HTMLDivElement>;
 
-export default function PieChartLegendItem({
+export default function ChartLegendItem({
   label,
   color,
   ...rest
-}: PieChartLegendItemProps) {
+}: ChartLegendItemProps) {
   return (
     <div className="flex items-center gap-2" {...rest}>
-      <PieChartLegendIcon
+      <ChartLegendIcon
         style={{
           background: color,
         }}
