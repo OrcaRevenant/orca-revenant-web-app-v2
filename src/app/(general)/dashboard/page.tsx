@@ -5,10 +5,14 @@ import StatCard from "@/app/(general)/dashboard/components/stat-card/stat-card";
 import Typography from "@/app/components/typography";
 import AssetsTable from "@/app/(general)/dashboard/components/assets-table/assets-table";
 import OverallPortfolioValue from "./components/overall-portfolio-value/overall-portfolio-value";
+import PortfolioHoldings from "./components/portfolio-holdings";
 
 export default function DashboardPage() {
   return (
-    <Container className="py-16 w-full flex-1" maxWidth="2xl">
+    <Container
+      className="py-16 w-full min-h-[calc(100vh-var(--navbar-height))]"
+      maxWidth="2xl"
+    >
       <div className="space-y-5">
         <div className="flex flex-row w-full">
           <div className="space-y-2 flex-1">
@@ -67,7 +71,10 @@ export default function DashboardPage() {
           ]}
         />
 
-        <OverallPortfolioValue />
+        <div className="flex flex-row gap-5">
+          <OverallPortfolioValue />
+          <PortfolioHoldings />
+        </div>
       </div>
     </Container>
   );

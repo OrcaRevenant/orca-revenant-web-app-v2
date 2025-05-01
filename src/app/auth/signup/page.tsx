@@ -59,20 +59,19 @@ export default function SignupPage() {
             <Button variant="linkColor">Sign in</Button>
           </Link>
         </div>
-
-        <div className="flex absolute bottom-0 flex-row justify-between w-full p-8">
-          <Typography variant="small" color="tertiary">
-            © Orca 2077
-          </Typography>
-          <Typography
-            variant="small"
-            color="tertiary"
-            className="flex flex-row items-center gap-2"
-          >
-            <IconSelector icon="Mail01" size={16} />
-            info@orca.com
-          </Typography>
-        </div>
+      </div>
+      <div className="flex absolute bottom-0 left-0 flex-row justify-between w-full p-8">
+        <Typography variant="small" color="tertiary">
+          © Orca 2077
+        </Typography>
+        <Typography
+          variant="small"
+          color="tertiary"
+          className="flex flex-row items-center gap-2"
+        >
+          <IconSelector icon="Mail01" size={16} />
+          info@orca.com
+        </Typography>
       </div>
     </AuthLayout>
   );

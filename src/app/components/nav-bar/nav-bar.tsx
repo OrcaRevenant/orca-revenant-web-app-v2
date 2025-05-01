@@ -7,8 +7,6 @@ import Container from "@/app/components/container";
 import IconSelector from "@/app/components/icon-selector";
 import Navigation from "@/app/components/nav-bar/navigation";
 
-export const NAVBAR_HEIGHT = 72;
-
 export type NavBarProps = {
   className?: string;
 };
@@ -16,9 +14,8 @@ export type NavBarProps = {
 export default function NavBar({ className }: NavBarProps) {
   return (
     <AppBar
-      style={{ height: `${NAVBAR_HEIGHT}px` }}
       className={cn(
-        "bg-bg-primary border-border-secondary border-b-1",
+        "bg-bg-primary border-border-secondary border-b-1 h-[var(--navbar-height)]",
         className
       )}
       position="sticky"

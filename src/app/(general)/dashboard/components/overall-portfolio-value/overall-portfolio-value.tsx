@@ -1,4 +1,4 @@
-import Card from "@/app/components/card";
+import PaperWithTitle from "@/app/components/paper-with-title";
 import LineChart from "@/app/components/line-chart";
 import Select, {
   SelectContent,
@@ -12,7 +12,7 @@ import Typography from "@/app/components/typography";
 
 export default function OverallPortfolioValue() {
   return (
-    <Card
+    <PaperWithTitle
       title="Overall Portfolio Value"
       action={
         <Select>
@@ -103,10 +103,10 @@ export default function OverallPortfolioValue() {
             $100,000
           </Typography>
         </div>
-        
+
         <div className="flex flex-col gap-2 p-5">
           <Typography variant={"small"} weight={"semibold"} color={"tertiary"}>
-            Average
+            All Time Low
           </Typography>
           <Typography
             variant={"displaySmall"}
@@ -117,6 +117,6 @@ export default function OverallPortfolioValue() {
           </Typography>
         </div>
       </div>
-    </Card>
+    </PaperWithTitle>
   );
 }

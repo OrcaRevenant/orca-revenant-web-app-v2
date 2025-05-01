@@ -461,6 +461,11 @@
 }
 
 :root {
+  --navbar-height: 72px;
+
+  --chart-1: 271 100% 53%;
+  --chart-2: 195 100% 69%;
+
   /* Font Variables */
   --font-sans: var(--font-montserrat);
   /* Radius Variables */

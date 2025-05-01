@@ -1,8 +1,8 @@
 import Avatar, { AvatarFallback, AvatarImage } from "@/app/components/avatar";
 import Badge from "@/app/components/badge";
 import Button from "@/app/components/button";
-import Card from "@/app/components/card";
 import IconSelector from "@/app/components/icon-selector";
+import PaperWithTitle from "@/app/components/paper-with-title";
 import Table from "@/app/components/table";
 import TableBody from "@/app/components/table/table-body";
 import TableCell from "@/app/components/table/table-cell";
@@ -22,7 +22,7 @@ export type AssetsTableProps = {
 };
 export default function AssetsTable({ assets }: AssetsTableProps) {
   return (
-    <Card
+    <PaperWithTitle
       title="Assets"
       disablePadding
       action={
@@ -89,6 +89,6 @@ export default function AssetsTable({ assets }: AssetsTableProps) {
           ))}
         </TableBody>
       </Table>
-    </Card>
+    </PaperWithTitle>
   );
 }

@@ -19,7 +19,7 @@ export default function BackgroundPattern({
   const patternConfig = backgroundPatternConfig[pattern];
 
   return (
-    <div className={cn("absolute w-full h-full z-0", className)}>
+    <div className={cn("absolute w-full h-full z-0 pointer-events-none", className)}>
       <Image
         className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2"
         style={{
