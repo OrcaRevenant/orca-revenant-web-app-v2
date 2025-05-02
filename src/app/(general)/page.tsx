@@ -41,11 +41,11 @@ export default function LandingPage() {
             </div>
             <div className="flex flex-row space-x-2 w-full justify-center">
               <Button variant="secondaryGray" size="md">
-                <IconSelector icon="Telescope" />
+                <IconSelector icon="Telescope" className="size-5" />
                 Learn More
               </Button>
               <Button variant="primary" size="md">
-                <IconSelector icon="Rocket02" />
+                <IconSelector icon="Rocket02" className="size-5" />
                 Get Started
               </Button>
             </div>

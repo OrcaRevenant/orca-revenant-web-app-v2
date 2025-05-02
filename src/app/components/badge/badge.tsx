@@ -1,8 +1,9 @@
-import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import Typography, { TypographyProps } from "../typography";
 
 export const badgeVariants = cva(
   "inline-flex items-center justify-center w-fit whitespace-nowrap shrink-0 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
@@ -22,9 +23,9 @@ export const badgeVariants = cva(
           "border-success-200 bg-utility-success-50 text-utility-success-700",
       },
       size: {
-        sm: "px-2 py-0.5 [&>svg]:size-3 xs",
-        md: "px-2.5 py-0.5 [&>svg]:size-4 sm",
-        lg: "px-3 py-1 [&>svg]:size-5 md",
+        sm: "px-2 py-0.5 [&>svg]:size-3",
+        md: "px-2.5 py-0.5 [&>svg]:size-4",
+        lg: "px-3 py-1 [&>svg]:size-5",
       },
       pill: {
         true: "rounded-full",
@@ -54,12 +55,21 @@ export const badgeVariants = cva(
 
 export type BadgeProps = React.ComponentProps<"span"> &
   VariantProps<typeof badgeVariants> & { asChild?: boolean };
+  
+const typographySize: Record<
+  NonNullable<VariantProps<typeof badgeVariants>["size"]>,
+  TypographyProps["variant"]
+> = {
+  sm: "small",
+  md: "medium",
+  lg: "large",
+};
 
 export default function Badge({
   className,
   variant,
   color,
-  size,
+  size = "md",
   pill,
   asChild = false,
   ...props
@@ -67,7 +77,9 @@ export default function Badge({
   const Comp = asChild ? Slot : "span";
 
   return (
-    <Comp
+    <Typography
+      as={Comp}
+      variant={typographySize[size!]}
       data-slot="badge"
       className={cn(badgeVariants({ variant, color, size, pill }), className)}
       {...props}
