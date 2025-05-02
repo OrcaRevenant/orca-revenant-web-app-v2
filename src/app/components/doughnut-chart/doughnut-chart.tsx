@@ -17,7 +17,7 @@ export default function DoughnutChart({
 }: DoughnutChartProps) {
   return (
     <ChartContainer
-      className={cn("h-[200px] w-[280px]", className)}
+      className={cn("min-h-[200px] max-w-[200px]", className)}
       config={{}}
     >
       <RechartsPieChart>

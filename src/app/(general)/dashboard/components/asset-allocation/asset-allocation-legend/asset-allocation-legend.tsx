@@ -1,9 +1,9 @@
 import { DoughnutChartData } from "@/app/components/doughnut-chart";
-import Typography from "../../typography";
 import { useMemo } from "react";
 import { destructure } from "@/app/utils/destructure";
-import AssetAvatarGroup from "../../asset-avatar-group";
 import AssetAllocationLegendProgress from "./asset-allocation-legend-progress";
+import Typography from "@/app/components/typography";
+import AssetAvatarGroup from "@/app/components/asset-avatar-group";
 
 type AssetAllocationLegendProps = {
   data: DoughnutChartData[];
@@ -12,7 +12,7 @@ type AssetAllocationLegendProps = {
 
 export default function AssetAllocationLegend({
   data,
-  max = 4,
+  max = 3,
 }: AssetAllocationLegendProps) {
   const allocation = useMemo(() => {
     if (!data) return null;

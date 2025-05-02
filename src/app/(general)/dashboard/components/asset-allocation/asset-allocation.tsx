@@ -1,10 +1,11 @@
-import Button from "../button";
-import { generatePieColor } from "../doughnut-chart/utils";
-import IconSelector from "../icon-selector";
-import PaperWithTitle from "../paper-with-title";
-import Typography from "../typography";
 import AssetAllocationLegend from "./asset-allocation-legend";
-import DoughnutChart from "../doughnut-chart";
+import DoughnutChart from "@/app/components/doughnut-chart";
+import PaperWithTitle from "@/app/components/paper-with-title";
+import Button from "@/app/components/button";
+import IconSelector from "@/app/components/icon-selector";
+import Typography from "@/app/components/typography";
+import { generatePieColor } from "@/app/components/doughnut-chart/utils";
+
 export default function AssetAllocation() {
   const data = [
     { key: "Ethereum", value: 100, color: `var(${generatePieColor(0)})` },
@@ -39,7 +40,7 @@ export default function AssetAllocation() {
 
           <AssetAllocationLegend data={data} />
         </div>
-        <div className="flex-1 flex justify-center items-center">
+        <div className="flex p-5 justify-center items-center">
           <DoughnutChart data={data} />
         </div>
       </div>

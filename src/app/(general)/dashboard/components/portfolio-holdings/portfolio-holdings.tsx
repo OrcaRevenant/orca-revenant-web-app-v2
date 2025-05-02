@@ -8,10 +8,6 @@ export default function PortfolioHoldings() {
     { key: "Ethereum", value: 100, color: `var(${generatePieColor(0)})` },
     { key: "Tether", value: 200, color: `var(${generatePieColor(1)})` },
     { key: "Bitcoin", value: 300, color: `var(${generatePieColor(2)})` },
-    { key: "Solana", value: 400, color: `var(${generatePieColor(3)})` },
-    { key: "Avalanche", value: 500, color: `var(${generatePieColor(4)})` },
-    { key: "Polygon", value: 600, color: `var(${generatePieColor(5)})` },
-    { key: "Binance", value: 700, color: `var(${generatePieColor(6)})` },
   ];
 
   return (

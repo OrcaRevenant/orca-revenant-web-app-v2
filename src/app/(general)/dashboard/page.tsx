@@ -6,7 +6,9 @@ import Typography from "@/app/components/typography";
 import AssetsTable from "@/app/(general)/dashboard/components/assets-table/assets-table";
 import OverallPortfolioValue from "./components/overall-portfolio-value/overall-portfolio-value";
 import PortfolioHoldings from "./components/portfolio-holdings";
-import AssetAllocation from "@/app/components/asset-allocation";
+import AssetPerformance from "./components/asset-performance";
+import AssetAllocation from "./components/asset-allocation";
+import PieceOfInfo from "./components/piece-of-info";
 
 export default function DashboardPage() {
   return (
@@ -30,54 +32,81 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="flex flex-row items-center space-x-5">
-          <StatCard
-            title="Estimated Total Balance"
-            value="$72,531.42"
-            icon="CoinsStacked03"
-          />
+        <div className="grid grid-cols-12 gap-5">
+          <div className="col-span-4">
+            <StatCard
+              title="Estimated Total Balance"
+              value="$72,531.42"
+              icon="CoinsStacked03"
+            />
+          </div>
+          <div className="col-span-4">
+            <StatCard
+              title="Total Earning"
+              value="$3,124.15"
+              icon="CoinsHand"
+            />
+          </div>
+          <div className="col-span-4">
+            <StatCard
+              title="Portfolio Volatility"
+              value="24.8%"
+              icon="BankNote01"
+            />
+          </div>
 
-          <StatCard title="Total Earning" value="$3,124.15" icon="CoinsHand" />
+          <div className="col-span-12">
+            <AssetsTable
+              assets={[
+                {
+                  name: "Bitcoin",
+                  price: 10000,
+                  change: 10,
+                  marketCap: 1000000,
+                  volume: 1000000,
+                },
+                {
+                  name: "Ethereum",
+                  price: 10000,
+                  change: 10,
+                  marketCap: 1000000,
+                  volume: 1000000,
+                },
+                {
+                  name: "Tether",
+                  price: 10000,
+                  change: 10,
+                  marketCap: 1000000,
+                  volume: 1000000,
+                },
+              ]}
+            />
+          </div>
 
-          <StatCard
-            title="Portfolio Volatility"
-            value="24.8%"
-            icon="BankNote01"
-          />
-        </div>
+          <div className="col-span-12 lg:col-span-8">
+            <OverallPortfolioValue />
+          </div>
 
-        <AssetsTable
-          assets={[
-            {
-              name: "Bitcoin",
-              price: 10000,
-              change: 10,
-              marketCap: 1000000,
-              volume: 1000000,
-            },
-            {
-              name: "Ethereum",
-              price: 10000,
-              change: 10,
-              marketCap: 1000000,
-              volume: 1000000,
-            },
-            {
-              name: "Tether",
-              price: 10000,
-              change: 10,
-              marketCap: 1000000,
-              volume: 1000000,
-            },
-          ]}
-        />
+          <div className="col-span-12 lg:col-start-9 lg:col-span-4">
+            <PortfolioHoldings />
+          </div>
 
-        <div className="flex flex-row gap-5">
-          <OverallPortfolioValue />
-          <PortfolioHoldings />
-        </div>
-        <div className="flex flex-row gap-5">
-          <AssetAllocation />
+          <div className="col-span-12 lg:col-span-8">
+            <div className="space-y-5">
+              <AssetAllocation />
+              <div className="flex flex-row gap-5">
+                <PieceOfInfo />
+                <PieceOfInfo />
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-12 lg:col-start-9 lg:col-span-4">
+            <div className="space-y-5">
+              <AssetPerformance />
+              <AssetPerformance />
+            </div>
+          </div>
         </div>
       </div>
     </Container>
