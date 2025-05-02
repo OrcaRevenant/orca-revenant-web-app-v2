@@ -9,6 +9,7 @@ import PortfolioHoldings from "./components/portfolio-holdings";
 import AssetPerformance from "./components/asset-performance";
 import AssetAllocation from "./components/asset-allocation";
 import PieceOfInfo from "./components/piece-of-info";
+import TransactionsTable from "./components/transactions-table/transactions-table";
 
 export default function DashboardPage() {
   return (
@@ -102,10 +103,45 @@ export default function DashboardPage() {
           </div>
 
           <div className="col-span-12 lg:col-start-9 lg:col-span-4">
-            <div className="space-y-5">
-              <AssetPerformance />
-              <AssetPerformance />
+            <div className="h-full flex flex-col gap-5">
+              <AssetPerformance className="flex-1" />
+              <AssetPerformance className="flex-1" />
             </div>
+          </div>
+
+          <div className="col-span-12 ">
+            <TransactionsTable
+              transactions={[
+                {
+                  id: "1",
+                  type: "Buy",
+                  date: "2021-01-01",
+                  asset: "BTC",
+                  connection: "Binance",
+                },
+                {
+                  id: "2",
+                  type: "Sell",
+                  date: "2021-01-01",
+                  asset: "BTC",
+                  connection: "Binance",
+                },
+                {
+                  id: "3",
+                  type: "Sell",
+                  date: "2021-01-01",
+                  asset: "BTC",
+                  connection: "Binance",
+                },
+                {
+                  id: "4",
+                  type: "Sell",
+                  date: "2021-01-01",
+                  asset: "BTC",
+                  connection: "Binance",
+                },
+              ]}
+            />
           </div>
         </div>
       </div>
