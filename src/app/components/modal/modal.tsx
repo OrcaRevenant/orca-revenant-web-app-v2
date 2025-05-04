@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+import { DialogContentProps } from "@radix-ui/react-dialog";
 import { HtmlHTMLAttributes, ReactElement } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "../dialog";
 import ModalAction, { ModalActionProps } from "./modal-action";
@@ -11,6 +13,7 @@ export type ModalProps = {
   contentProps?: HtmlHTMLAttributes<HTMLDivElement>;
   trigger?: ReactElement;
   disableAction?: boolean;
+  DialogContentProps?: DialogContentProps;
 };
 
 export default function Modal({
@@ -20,11 +23,14 @@ export default function Modal({
   contentProps,
   trigger,
   disableAction = false,
+  DialogContentProps,
 }: ModalProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="sm:max-w-[400px] overflow-hidden">
+      <DialogContent
+        className={cn("overflow-hidden", DialogContentProps?.className)}
+      >
         <ModalHeader {...headerProps} />
         <ModalContent {...contentProps}>{children}</ModalContent>
         {!disableAction && <ModalAction {...actionProps} />}
