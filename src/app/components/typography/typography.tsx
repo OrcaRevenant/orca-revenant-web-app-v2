@@ -1,6 +1,6 @@
+import safeForwardRef from "@/app/utils/safe-forward-ref";
 import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
-import safeForwardRef from "@/app/utils/safe-forward-ref";
 import { PropsWithoutRef } from "react";
 
 export const typographyVariants = cva("", {
@@ -83,7 +83,7 @@ const Typography: TypographyComponent = safeForwardRef(
     {
       as,
       variant,
-      color,
+      color = "primary",
       weight,
       truncate,
       className,
