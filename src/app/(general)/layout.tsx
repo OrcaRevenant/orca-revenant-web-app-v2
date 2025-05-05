@@ -1,6 +1,6 @@
-import { Metadata } from "next";
 import Footer from "@/app/components/footer";
 import NavBar from "@/app/components/nav-bar";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Orca | Home",

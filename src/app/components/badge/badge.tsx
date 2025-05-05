@@ -14,13 +14,15 @@ export const badgeVariants = cva(
         outline: "bg-transparent! border-2 [a&]:hover:bg-secondary/90",
       },
       color: {
-        gray: "border-gray-200 bg-utility-gray-50 text-utility-gray-700",
-        brand: "border-brand-200 bg-utility-brand-50 text-utility-brand-700",
-        error: "border-error-200 bg-utility-error-50 text-utility-error-700",
+        gray: "border border-utility-gray-200 bg-utility-gray-50 text-utility-gray-700",
+        brand:
+          "border-utility-brand-200 bg-utility-brand-50 text-utility-brand-700",
+        error:
+          "border-utility-error-200 bg-utility-error-50 text-utility-error-700",
         warning:
-          "border-warning-200 bg-utility-warning-50 text-utility-warning-700",
+          "border-utility-warning-200 bg-utility-warning-50 text-utility-warning-700",
         success:
-          "border-success-200 bg-utility-success-50 text-utility-success-700",
+          "border-utility-success-200 bg-utility-success-50 text-utility-success-700",
       },
       size: {
         sm: "px-2 py-0.5 [&>svg]:size-3",
