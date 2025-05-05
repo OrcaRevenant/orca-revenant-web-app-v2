@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export function DialogFooter({
+export default function DialogFooter({
   className,
   ...props
 }: React.ComponentProps<"div">) {

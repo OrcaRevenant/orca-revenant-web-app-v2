@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import Typography from "../../typography";
 
-export function DialogTitle({
+export default function DialogTitle({
   className,
   ...props
 }: Omit<React.ComponentProps<typeof DialogPrimitive.Title>, "color">) {

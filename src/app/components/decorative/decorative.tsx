@@ -10,9 +10,9 @@ import {
 } from "./constant";
 
 export type DecorativeProps = {
-  size: DecorativeSize;
-  variant: DecorativeVariant;
-  mask: DecorativeMask;
+  size?: DecorativeSize;
+  variant?: DecorativeVariant;
+  mask?: DecorativeMask;
   imageProps?: HTMLAttributes<HTMLImageElement>;
 } & HTMLAttributes<HTMLDivElement>;
 

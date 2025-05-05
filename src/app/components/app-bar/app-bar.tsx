@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { ComponentProps, PropsWithChildren } from "react";
 
-export const appBarVariants = cva("flex flex-row z-100", {
+export const appBarVariants = cva("flex flex-row z-40", {
   variants: {
     position: {
       fixed: "fixed top-0 left-0 right-0",

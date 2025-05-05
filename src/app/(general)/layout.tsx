@@ -13,10 +13,15 @@ export default function LandingLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="w-full h-full">
+    <>
+      <style scoped>{`html {
+        scrollbar-width: none;
+        scrollbar-color: var(--fg-tertiary) var(--bg-secondary);
+      }`}</style>
+
       <NavBar />
       {children}
       <Footer />
-    </div>
+    </>
   );
 }

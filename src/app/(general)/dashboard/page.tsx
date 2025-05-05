@@ -10,6 +10,7 @@ import AssetPerformance from "./components/asset-performance";
 import AssetAllocation from "./components/asset-allocation";
 import PieceOfInfo from "./components/piece-of-info";
 import TransactionsTable from "./components/transactions-table/transactions-table";
+import PortfolioPanel from "./components/portfolio-panel";
 
 export default function DashboardPage() {
   return (
@@ -25,11 +26,11 @@ export default function DashboardPage() {
               Manage your team members and their account permissions here.
             </Typography>
           </div>
-          <div className="flex flex-row space-x-3">
+          <div className="flex items-center flex-row space-x-3">
             <Button variant="tertiaryGray">
               <IconSelector icon="RefreshCcw01" />
             </Button>
-            <Button variant="secondaryGray">Portfolio Tracker</Button>
+            <PortfolioPanel />
           </div>
         </div>
 

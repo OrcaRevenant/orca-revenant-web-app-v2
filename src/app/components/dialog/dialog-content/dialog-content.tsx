@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { DialogClose } from "../dialog-close";
-import { DialogOverlay } from "../dialog-overlay";
-import { DialogPortal } from "../dialog-portal";
+import DialogClose from "../dialog-close";
+import DialogOverlay from "../dialog-overlay";
+import DialogPortal from "../dialog-portal";
 
-export function DialogContent({
+export default function DialogContent({
   className,
   children,
   ...props

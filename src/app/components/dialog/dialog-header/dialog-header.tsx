@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export function DialogHeader({
+export default function DialogHeader({
   className,
   ...props
 }: React.ComponentProps<"div">) {
