@@ -1,9 +1,9 @@
+import AssetsTable from "@/app/(general)/dashboard/components/assets-table/assets-table";
+import StatCard from "@/app/(general)/dashboard/components/stat-card/stat-card";
 import Button from "@/app/components/button";
 import Container from "@/app/components/container";
 import IconSelector from "@/app/components/icon-selector";
-import StatCard from "@/app/(general)/dashboard/components/stat-card/stat-card";
 import Typography from "@/app/components/typography";
-import AssetsTable from "@/app/(general)/dashboard/components/assets-table/assets-table";
 
 export default function DashboardPage() {
   return (

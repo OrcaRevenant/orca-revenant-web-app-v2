@@ -1,11 +1,14 @@
 "use client";
 import * as React from "react";
 
+import Typography from "@/app/components/typography";
+import { SupportedIcons } from "@/icons";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
-import Typography from "@/app/components/typography";
+import IconSelector from "../icon-selector";
+import Label from "../label";
 
-interface InputProps extends React.ComponentProps<"input"> {
+export interface InputProps extends React.ComponentProps<"input"> {
   label?: string;
   helperText?: string;
   endAdornment?: React.ReactNode;
@@ -14,6 +17,8 @@ interface InputProps extends React.ComponentProps<"input"> {
   inputSize?: "sm" | "md";
   required?: boolean;
   fullWidth?: boolean;
+  icon?: SupportedIcons;
+  inputClassName?: string;
 }
 
 const inputVariants = cva(
@@ -26,7 +31,7 @@ const inputVariants = cva(
       },
       inputSize: {
         sm: "max-h-10 px-3 py-2",
-        md: "max-h-[44px] px-[14px] py-2.5",
+        md: "max-h-11 px-3.5 py-2.5",
       },
     },
   }
@@ -43,6 +48,8 @@ export default function Input({
   variant = "default",
   required = false,
   fullWidth = false,
+  inputClassName,
+  icon,
   ...props
 }: InputProps) {
   const [isFocused, setIsFocused] = React.useState(false);
@@ -56,14 +63,15 @@ export default function Input({
       )}
     >
       {label && (
-        <label htmlFor={props.id} className="text-text-secondary font-medium">
+        <Label htmlFor={props.id} className="text-text-secondary">
           {label}{" "}
           {required && <span className="text-text-brand-tertiary">*</span>}
-        </label>
+        </Label>
       )}
       <div
         className={cn(
           inputVariants({ variant, inputSize }),
+          inputClassName,
           isFocused && "border-border-brand"
         )}
       >
@@ -72,16 +80,21 @@ export default function Input({
             {startAdornment}
           </div>
         )}
-        <input
-          type={type}
-          data-slot="input"
-          className={cn(
-            "md file:text-text-primary placeholder:text-text-placeholder focus:outline-0 w-full"
+        <div className="flex items-center gap-2 w-full">
+          {icon && (
+            <IconSelector icon={icon} className="size-5 text-fg-quaternary" />
           )}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          {...props}
-        />
+          <input
+            type={type}
+            data-slot="input"
+            className={cn(
+              "md file:text-text-primary placeholder:text-text-placeholder focus:outline-0 w-full"
+            )}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            {...props}
+          />
+        </div>
         {endAdornment && (
           <div
             className={cn(
