@@ -10,7 +10,7 @@ const dialogContentVariants = cva(
   {
     variants: {
       maxWidth: {
-        sm: "max-w-sm",
+        sm: "max-w-[400px]",
         md: "max-w-[640px]",
         lg: "max-w-lg",
         xl: "max-w-xl",

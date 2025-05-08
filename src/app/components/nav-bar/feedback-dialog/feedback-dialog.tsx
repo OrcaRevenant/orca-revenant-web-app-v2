@@ -19,7 +19,7 @@ export default function FeedbackDialog() {
           Feedback
         </Button>
       </DialogTrigger>
-      <DialogContent title="Feedback">
+      <DialogContent maxWidth={"sm"} title="Feedback">
         <DialogHeader icon="Announcement01">
           <DialogTitle>Feedback</DialogTitle>
           <DialogDescription>
