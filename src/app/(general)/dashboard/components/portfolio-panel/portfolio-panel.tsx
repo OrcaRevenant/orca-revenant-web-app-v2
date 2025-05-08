@@ -10,7 +10,6 @@ import Sheet, {
 import PortfolioAllGroupCard from "../portfolio-all-group-card";
 import PortfolioCard from "../portfolio-card";
 import ScrollArea, { ScrollBar } from "@/app/components/scroll-area";
-import Typography from "@/app/components/typography";
 
 export default function PortfolioPanel() {
   return (
@@ -30,16 +29,11 @@ export default function PortfolioPanel() {
               Add Portfolio
             </Button>
             <PortfolioAllGroupCard />
-            <ScrollArea type="auto" className="flex-auto w-full overflow-y-auto h-0">
+            <ScrollArea
+              type="auto"
+              className="flex-auto w-full overflow-y-auto h-0"
+            >
               <div className="space-y-3">
-                <PortfolioCard />
-                <PortfolioCard />
-                <PortfolioCard />
-                <PortfolioCard />
-                <PortfolioCard />
-                <PortfolioCard />
-                <PortfolioCard />
-                <PortfolioCard />
                 <PortfolioCard />
               </div>
               <ScrollBar />

@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 
 export type IconSelectorProps = {
   icon: SupportedIcons;
-  size?: number | string;
   dir?: `rtl` | `ltr`;
   className?: string;
 } & React.ComponentProps<"svg">;

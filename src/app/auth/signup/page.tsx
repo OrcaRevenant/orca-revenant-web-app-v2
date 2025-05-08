@@ -6,6 +6,9 @@ import SocialButton from "@/app/components/social-button";
 import Typography from "@/app/components/typography";
 import Link from "next/link";
 import AuthLayout from "../components/auth-layout";
+import FormLabel from "@/app/components/form-label";
+import Label from "@/app/components/label";
+import HelperText from "@/app/components/helper-text";
 
 export default function SignupPage() {
   return (
@@ -15,7 +18,7 @@ export default function SignupPage() {
       </div>
       <div className="flex flex-col justify-center items-center gap-8 w-full h-full">
         <div className="flex flex-col items-center gap-6 w-full">
-          <div className="flex flex-col  gap-3 w-full">
+          <div className="flex flex-col gap-3 w-full">
             <Typography variant="displayMedium" weight="semibold">
               Sign up
             </Typography>
@@ -26,25 +29,28 @@ export default function SignupPage() {
         </div>
         <div className="flex flex-col gap-6 w-full">
           <div className="flex flex-col gap-5 w-full">
-            <Input
-              type="text"
-              label="Name"
-              placeholder="Enter your name"
-              fullWidth
-            />
-            <Input
-              type="email"
-              label="Email"
-              placeholder="Enter your email"
-              fullWidth
-            />
-            <Input
-              type="password"
-              label="Password"
-              placeholder="Create a password"
-              helperText="Must be at least 8 characters."
-              fullWidth
-            />
+            <FormLabel>
+              <Label>Name</Label>
+              <Input
+                type="text"
+                placeholder="Enter your name"
+                className="w-full"
+              />
+            </FormLabel>
+            <FormLabel>
+              <Label>Email</Label>
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full"
+              />
+              <HelperText>Please enter a valid email address.</HelperText>
+            </FormLabel>
+            <FormLabel>
+              <Label>Password</Label>
+              <Input type="password" placeholder="Create a password" />
+              <HelperText>Must be at least 8 characters.</HelperText>
+            </FormLabel>
           </div>
           <div className="flex flex-col gap-4 w-full">
             <Button variant="primary">Get started</Button>
@@ -69,7 +75,7 @@ export default function SignupPage() {
           color="tertiary"
           className="flex flex-row items-center gap-2"
         >
-          <IconSelector icon="Mail01" size={16} />
+          <IconSelector icon="Mail01" className="size-4" />
           info@orca.com
         </Typography>
       </div>

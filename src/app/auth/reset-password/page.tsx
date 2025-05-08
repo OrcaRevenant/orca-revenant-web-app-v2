@@ -1,19 +1,21 @@
-import BackgroundPattern from "@/app/components/background-pattern";
-import ResetDone from "./components/ResetDone";
+import Decorative from "@/app/components/decorative";
+import ForgetPassword from "./components/forget-password";
 
 export default function ResetPasswordPage() {
   return (
-    <main className="relative w-screen h-[100dvh] bg-bg-primary">
-      <BackgroundPattern
-        breakpoint="desktop"
-        mask="redialDown"
-        pattern="dots"
-        size="md"
-        imageProps={{
-          className: "top-0 translate-y-0",
-        }}
-      />
-      <ResetDone />
-    </main>
+    <>
+      <style scoped>{`
+        body {
+          background-color: var(--bg-primary)!important;
+        }
+      `}</style>
+      <main className="w-full justify-center items-center flex relative">
+        <Decorative
+          className="absolute top-0 left-1/2 -translate-y-1/2 -translate-x-1/2"
+          size="lg"
+        />
+        <ForgetPassword />
+      </main>
+    </>
   );
 }

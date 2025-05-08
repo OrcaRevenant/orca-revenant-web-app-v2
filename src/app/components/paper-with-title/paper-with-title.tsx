@@ -23,7 +23,7 @@ const paperWithTitleVariants = cva("flex flex-col", {
 export type PaperWithTitleProps = {
   title: string;
   action?: React.ReactNode;
-} & PaperProps &
+} & Omit<PaperProps, "color"> &
   VariantProps<typeof paperWithTitleVariants>;
 
 export default function PaperWithTitle({

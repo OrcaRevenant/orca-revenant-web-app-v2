@@ -1,15 +1,14 @@
 import Container from "@/app/components/container";
 import Typography from "@/app/components/typography";
-import { CexLogo } from "react-cex-logo";
 import HintBox from "../../../components/hint-box";
-import AddPortfolioForm from "./components/AddPortfolioForm";
+import AddPortfolioForm from "./components/add-portolio-from";
 
 export default function page() {
   return (
     <Container maxWidth="2xl" className="h-fit py-16 px-4 sm:px-0">
       <div className="flex flex-col justify-center items-center gap-10 w-full h-full">
         <div className="flex flex-col sm:flex-row gap-3 items-center w-full">
-          <CexLogo exchange="binance" className="size-[72px] rounded-xl" />
+          <div className="size-[72px] rounded-xl bg-bg-secondary" />
           <div className="flex flex-col gap-1">
             <Typography variant="displayMedium" weight="semibold">
               Add Binance Portfolio

@@ -12,7 +12,7 @@ export default function AssetAllocationLegendProgress({
   return (
     <div className="flex-row flex-1 flex items-center justify-end gap-3">
       <Progress className="max-w-[194px] w-full" value={data.value} />
-      <Typography weight={"medium"} color={"secondary"} variant={"small"}>
+      <Typography weight={"medium"} className="w-10 text-end" color={"secondary"} variant={"small"}>
         {data.value}%
       </Typography>
     </div>

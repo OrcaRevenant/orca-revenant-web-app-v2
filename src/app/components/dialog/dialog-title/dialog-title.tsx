@@ -10,8 +10,8 @@ export default function DialogTitle({
     <Typography
       as={DialogPrimitive.Title}
       color="primary"
-      weight="semibold"
       variant="large"
+      weight={"semibold"}
       data-slot="dialog-title"
       className={cn(className)}
       {...props}

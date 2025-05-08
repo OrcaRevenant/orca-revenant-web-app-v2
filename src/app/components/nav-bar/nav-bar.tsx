@@ -6,7 +6,7 @@ import Logo from "@/app/components/logo";
 import Navigation from "@/app/components/nav-bar/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import Feedback from "./feedback";
+import Feedback from "./feedback-dialog";
 
 export type NavBarProps = {
   className?: string;

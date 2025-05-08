@@ -6,7 +6,9 @@ import SocialButton from "@/app/components/social-button";
 import Typography from "@/app/components/typography";
 import Link from "next/link";
 import AuthLayout from "../components/auth-layout";
-import BackgroundPattern from "@/app/components/background-pattern";
+import Decorative from "@/app/components/decorative";
+import FormLabel from "@/app/components/form-label";
+import Label from "@/app/components/label";
 
 export default function SigninPage() {
   return (
@@ -25,12 +27,24 @@ export default function SigninPage() {
         </div>
         <div className="flex flex-col gap-6 w-full">
           <div className="flex flex-col gap-5 w-full">
-            <Input label="Email" placeholder="Enter your email" fullWidth />
-            <Input label="Password" placeholder="········" fullWidth />
+            <FormLabel>
+              <Label>Email</Label>
+              <Input placeholder="Enter your email" className="w-full" />
+            </FormLabel>
+
+            <FormLabel>
+              <Label>Password</Label>
+              <Input placeholder="········" className="w-full" />
+            </FormLabel>
           </div>
           <div className="flex flex-row items-center justify-between w-full">
-            <Checkbox label="Remember for 30 days" />
-            <Button variant="linkColor">Forgot password</Button>
+            <FormLabel orientation="horizontal">
+              <Checkbox />
+              <Label>Remember for 30 days</Label>
+            </FormLabel>
+            <Link passHref href="/auth/reset-password">
+              <Button variant="linkColor">Forgot password</Button>
+            </Link>
           </div>
           <div className="flex flex-col gap-4 w-full">
             <Button variant="primary">Sign in</Button>
@@ -53,13 +67,8 @@ export default function SigninPage() {
         </Typography>
       </div>
 
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <BackgroundPattern
-          breakpoint="desktop"
-          pattern="dots"
-          size="md"
-          mask="redialDown"
-        />
+      <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 overflow-hidden pointer-events-none">
+        <Decorative type="dots" mask="radialDown" size="lg" />
       </div>
     </AuthLayout>
   );
