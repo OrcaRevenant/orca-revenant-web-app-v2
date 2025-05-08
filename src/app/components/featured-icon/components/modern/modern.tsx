@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { HTMLAttributes } from "react";
 import { FeaturedIconColor, FeaturedIconSize } from "../../types";
-import { sizeVariants } from "../constant";
 
 type ModernProps = HTMLAttributes<HTMLDivElement> & {
   color: FeaturedIconColor;
@@ -29,7 +28,7 @@ const modernVariants = cva(
 export default function Modern({ size, icon, ...rest }: ModernProps) {
   return (
     <div className={cn(modernVariants({ size }), rest.className)} {...rest}>
-      <IconSelector icon={icon} size={sizeVariants[size]} />
+      <IconSelector icon={icon} />
     </div>
   );
 }

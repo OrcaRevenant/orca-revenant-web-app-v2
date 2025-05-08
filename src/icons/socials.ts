@@ -1,7 +1,7 @@
-import Google from "./assets/Google";
+import Google from "./assets/google.svg";
 
 export const SocialsMap = {
-  Google,
+  Google: Google,
 } as const;
 
 export type SupportedSocials = keyof typeof SocialsMap;

@@ -1,3 +1,4 @@
+import { NextFontWithVariable } from "next/dist/compiled/@next/font";
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
@@ -6,57 +7,100 @@ const montserrat = Montserrat({
   weight: ["400", "500", "600", "700"],
 });
 
-export const appConfig = {
-  version: "2.0.0",
-  license: "UNLICENSED",
-  private: true,
-  name: "Orca",
-  description: "Orca crypto tracking platform",
-  language: "en",
-  auther: {
-    name: ["Ali Ahmadi", "Mohammad Hossien Alipour"],
-    email: ["ali.ahmadi.1377@gmail.com", "mmdalipour7@gmail.com"],
-  },
-  releaseDate: "2025-04-23",
-  releaseNotes: "Initial release",
-  website: "https://orca.com",
-  github: "https://github.com/orca-com",
-  twitter: "https://twitter.com/orca_com",
-  telegram: "https://t.me/orca_com",
-  discord: "https://discord.com/orca_com",
-  linkedin: "https://linkedin.com/orca_com",
-  theme: {
-    default: "dark",
+export type BaseCurrency = {
+  key: string;
+  currency: string;
+  symbol: string;
+  percision: number;
+  options?: {
+    align?: `left` | `right`;
+    space?: boolean;
+  };
+};
+
+export type SupportedLocales = `en` | `fa`;
+export type ThemePalette = `light` | `dark`;
+
+type LocaleAppConfig = {
+  defaultLocale: SupportedLocales;
+  locales: SupportedLocales[];
+};
+
+type ThemeAppConfig = {
+  default: ThemePalette;
+};
+
+export type AppConfig = {
+  locale: LocaleAppConfig;
+  theme: ThemeAppConfig;
+  title: string;
+  description: string;
+  name: string;
+  typography: {
+    fontFamily: NextFontWithVariable;
+  };
+  quote: {
+    default: BaseCurrency;
+    currencies: BaseCurrency[];
+  };
+  navigations: Record<string, string>;
+};
+
+export const appConfig: AppConfig = {
+  name: `orca`,
+  locale: {
+    defaultLocale: `en`,
+    locales: [`en`, `fa`],
   },
   typography: {
     fontFamily: montserrat,
   },
-  paths: {
-    landing: {
-      home: {
-        path: "/",
-        title: "Home",
-        description: "Home page",
-      },
+  quote: {
+    default: {
+      key: `usdt`,
+      currency: `USDT`,
+      symbol: `$`,
+      percision: 2,
     },
-    auth: {
-      login: {
-        path: "/auth/login",
-        title: "Login",
-        description: "Login page",
+    currencies: [
+      {
+        key: `usdt`,
+        currency: `USDT`,
+        symbol: `$`,
+        percision: 2,
       },
-      signup: {
-        path: "/auth/signup",
-        title: "Signup",
-        description: "Signup page",
+      {
+        key: `btc`,
+        currency: `Bitcoin`,
+        symbol: `BTC`,
+        percision: 8,
+        options: {
+          align: `right`,
+          space: true,
+        },
       },
-    },
-    panel: {
-      dashboard: {
-        path: "/dashboard",
-        title: "Dashboard",
-        description: "Dashboard page",
+      {
+        key: `irt`,
+        currency: `Iranian Toman`,
+        symbol: `IRT`,
+        percision: 0,
+        options: {
+          align: `right`,
+          space: true,
+        },
       },
-    },
+    ],
+  },
+  theme: {
+    default: `dark`,
+  },
+  title: `Orca`,
+  description: `Description`,
+  navigations: {
+    dashboard: `/dashboard`,
+    tracking: `/tracking`,
+    settings: `/settings`,
+    connectPortfolio: `/connect/[portfolio]`,
+    login: `/`,
   },
 };

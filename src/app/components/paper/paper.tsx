@@ -10,7 +10,7 @@ const paperVariants = cva(
         secondary: "bg-bg-secondary",
       },
       disablePadding: {
-        true: "p-0",
+        true: "p-0!",
       },
     },
     defaultVariants: {

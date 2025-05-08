@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { HTMLAttributes } from "react";
 import { FeaturedIconColor, FeaturedIconSize } from "../../types";
-import { sizeVariants } from "../constant";
 
 type LightProps = HTMLAttributes<HTMLDivElement> & {
   color: FeaturedIconColor;
@@ -46,11 +45,7 @@ export default function Light({ size, color, icon, ...rest }: LightProps) {
       )}
       {...rest}
     >
-      <IconSelector
-        icon={icon}
-        className={"text-inherit"}
-        size={sizeVariants[size]}
-      />
+      <IconSelector icon={icon} className={"text-inherit"} />
     </div>
   );
 }
