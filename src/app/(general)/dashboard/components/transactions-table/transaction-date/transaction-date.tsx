@@ -1,13 +1,18 @@
 import Typography from "@/app/components/typography";
+import dayjs from "dayjs";
 
-export default function TransactionDate() {
+export type TransactionDateProps = {
+  date: string;
+};
+
+export default function TransactionDate({ date }: TransactionDateProps) {
   return (
     <div>
       <Typography variant="small" color="primary">
-        24.Apr.2024
+        {dayjs(date).format("DD.MM.YYYY")}
       </Typography>
       <Typography variant="small" color="tertiary">
-        20:15
+        {dayjs(date).format("HH:mm")}
       </Typography>
     </div>
   );

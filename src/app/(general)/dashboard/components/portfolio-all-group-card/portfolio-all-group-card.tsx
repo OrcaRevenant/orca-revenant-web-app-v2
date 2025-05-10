@@ -1,7 +1,7 @@
 import { GetPortfoliosResponse } from "@/api";
-import Amount from "@/app/components/amount";
 import AssetAvatarGroup from "@/app/components/asset-avatar-group";
 import Paper, { PaperProps } from "@/app/components/paper";
+import QuotedAmount from "@/app/components/quoted-amount";
 import Typography from "@/app/components/typography";
 import { cva, VariantProps } from "class-variance-authority";
 
@@ -42,11 +42,13 @@ export default function PortfolioAllGroupCard({
       </Typography>
 
       <div className="flex flex-row items-center justify-between">
-        <Amount weight={"semibold"} variant={"displaySmall"}>
-          {stats.totalValue}
-        </Amount>
+        <QuotedAmount
+          amount={stats.totalValue}
+          weight={"semibold"}
+          variant={"displaySmall"}
+        />
 
-        <AssetAvatarGroup />
+        <AssetAvatarGroup assets={stats.assets} />
       </div>
     </Paper>
   );

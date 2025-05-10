@@ -19,7 +19,7 @@ type DeepPartial<T> = {
 };
 
 export type TradingLineChartProps = {
-  data: LineData[];
+  data: { time: number; value: number }[];
   options?: {
     line?: DeepPartial<LineSeriesOptions>;
     chart?: DeepPartial<TimeChartOptions>;
@@ -96,7 +96,7 @@ export default function TradingLineChart({ data, options }: TradingLineChartProp
       ...options?.line,
     });
 
-    series.setData(data);
+    series.setData(data as LineData[]);
 
     window.addEventListener("resize", handleResize);
 

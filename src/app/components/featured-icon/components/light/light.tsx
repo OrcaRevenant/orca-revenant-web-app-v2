@@ -36,13 +36,15 @@ const lightVariants = cva("flex items-center justify-center rounded-full", {
   },
 });
 
-export default function Light({ size, color, icon, ...rest }: LightProps) {
+export default function Light({ size, color, icon, className,...rest }: LightProps) {
   return (
     <div
-      className={cn(
-        lightVariants({ backgroundColor: color, iconColor: color, size }),
-        rest.className
-      )}
+      className={lightVariants({
+        backgroundColor: color,
+        iconColor: color,
+        size,
+        className,
+      })}
       {...rest}
     >
       <IconSelector icon={icon} className={"text-inherit"} />

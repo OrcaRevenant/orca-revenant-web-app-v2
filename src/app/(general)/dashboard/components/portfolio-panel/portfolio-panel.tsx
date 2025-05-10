@@ -45,7 +45,7 @@ export default function PortfolioPanel() {
                 onClick={() => {
                   setSelectedPortfolio({
                     id: ALL_PORTFOLIO_ID,
-                    assetsCount: data?.stats.totalAssets || 0,
+                    uniqueAssets: data?.stats.assets || [],
                     name: `All Portfolios`,
                     order: 0,
                     type: `group`,

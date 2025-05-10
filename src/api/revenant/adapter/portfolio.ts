@@ -24,7 +24,7 @@ function serializePortfolio(
 ): Types.ConnectedPortfolio {
   return {
     id: `${portfolio.id}`,
-    assetsCount: portfolio.asset_count,
+    assets: portfolio.assets,
     connection: {
       name: portfolio.connection.name,
       logo: portfolio.connection.logo,
@@ -41,7 +41,7 @@ function serializeGroup(group: service.PortfolioGroup): Types.Group {
   return {
     id: `${group.id}`,
     name: group.title,
-    assetsCount: group.children.length,
+    uniqueAssets: group.unique_assets,
     value: group.total_value,
     color: group.color,
     type: "group",
@@ -208,7 +208,7 @@ export default class PortfolioService extends Portfolio {
     return {
       portfolios: response.data.groups.map(serializePortfolioOrGroup),
       stats: {
-        totalAssets: response.data.stats.unique_assets.length,
+        assets: response.data.stats.unique_assets,
         totalValue: response.data.stats.total_value,
       },
     };

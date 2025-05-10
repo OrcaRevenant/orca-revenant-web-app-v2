@@ -6,9 +6,11 @@ import { cn } from "@/lib/utils";
 
 export type AreaChartProps = {
   className?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any[];
 };
 
-export default function AreaChart({ className }: AreaChartProps) {
+export default function AreaChart({ className, data }: AreaChartProps) {
   return (
     <ChartContainer className={cn("h-[72px] w-full", className)} config={{}}>
       <RechartsAreaChart>
@@ -28,13 +30,7 @@ export default function AreaChart({ className }: AreaChartProps) {
           strokeWidth={2}
           dot={false}
           fill="url(#area-chart-gradient)"
-          data={[
-            { time: "2023-12-31", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-01", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-02", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-03", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-04", value: Math.floor(Math.random() * 1000) },
-          ]}
+          data={data}
           dataKey="value"
         />
         <ChartTooltip content={<ChartTooltipContent />} />

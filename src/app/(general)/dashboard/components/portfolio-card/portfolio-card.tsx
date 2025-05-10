@@ -1,5 +1,6 @@
 import { ConnectedPortfolio } from "@/api";
 import AssetAvatarGroup from "@/app/components/asset-avatar-group";
+import ConnectionLogo from "@/app/components/connection-logo";
 import IconSelector from "@/app/components/icon-selector";
 import Paper, { PaperProps } from "@/app/components/paper";
 import QuotedAmount from "@/app/components/quoted-amount";
@@ -40,7 +41,7 @@ export default function PortfolioCard({
     >
       <div className="space-y-5">
         <div className="flex flex-row justify-between">
-          <div className="size-12 bg-bg-success-solid rounded-md"></div>
+          <ConnectionLogo size={"lg"} connectionName={portfolio.connection.name} />
           <IconSelector className="size-5" icon="DotsVertical" />
         </div>
         <div className="space-y-2">
@@ -55,7 +56,7 @@ export default function PortfolioCard({
               variant={"displaySmall"}
             />
 
-            <AssetAvatarGroup />
+            <AssetAvatarGroup assets={portfolio.assets} />
           </div>
         </div>
       </div>

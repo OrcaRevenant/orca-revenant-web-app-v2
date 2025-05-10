@@ -1,13 +1,15 @@
-import { DoughnutChartData } from "@/app/components/doughnut-chart";
 import { useMemo } from "react";
 import { destructure } from "@/app/utils/destructure";
 import AssetAllocationLegendProgress from "./asset-allocation-legend-progress";
 import Typography from "@/app/components/typography";
 import AssetAvatarGroup from "@/app/components/asset-avatar-group";
+import AssetLogo from "@/app/components/asset-logo";
 
 type AssetAllocationLegendProps = {
-  data: DoughnutChartData[];
+  data: { key: string; label: string; value: number }[];
   max?: number;
+  nameKey?: string;
+  dataKey?: string;
 };
 
 export default function AssetAllocationLegend({
@@ -25,9 +27,6 @@ export default function AssetAllocationLegend({
     };
   }, [data]);
 
-
-  
-
   return (
     <div className="space-y-6 w-full">
       {allocation?.assets.map((v) => {
@@ -37,12 +36,9 @@ export default function AssetAllocationLegend({
             key={v.key}
           >
             <div className="flex-row flex items-center gap-1">
-              <div
-                className="size-6 rounded-full"
-                style={{ backgroundColor: v.color }}
-              />
+              <AssetLogo shortName={v.key} size="sm" />{" "}
               <Typography weight={"medium"} variant={"small"}>
-                {v.key}
+                {v.label}
               </Typography>
             </div>
 
@@ -51,13 +47,13 @@ export default function AssetAllocationLegend({
         );
       })}
 
-
       {!!allocation?.others.length && (
         <div className="flex flex-roww-full items-center justify-between">
           <AssetAvatarGroup max={3} />
           <AssetAllocationLegendProgress
             data={{
-              key: "Others",
+              key: "others",
+              label: "Others",
               value: allocation.others.reduce(
                 (acc, curr) => acc + curr.value,
                 0

@@ -12,8 +12,9 @@ import PieceOfInfo from "./components/piece-of-info";
 import TransactionsTable from "./components/transactions-table/transactions-table";
 import PortfolioPanel from "./components/portfolio-panel";
 import TotalBalanceCard from "./components/total-balance-card";
-
+import Empty from "@/app/components/empty";
 export default function DashboardPage() {
+  const isSyncing = false;
   return (
     <Container
       className="py-16 w-full min-h-[calc(100vh-var(--navbar-height))]"
@@ -35,109 +36,71 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-5">
-          <div className="col-span-4">
-            <TotalBalanceCard />
-          </div>
-          <div className="col-span-4">
-            <StatCard title="Total Earning" value="3,124.15" icon="CoinsHand" />
-          </div>
-          <div className="col-span-4">
-            <StatCard
-              title="Portfolio Volatility"
-              value="24.8%"
-              icon="BankNote01"
+        {isSyncing && (
+          <div className="flex items-center justify-center min-h-[calc(100vh-var(--navbar-height)-380px)]">
+            <Empty
+              decorativeSize={"lg"}
+              className="**:data-[slot=empty-decorative]:animate-pulse **:data-[slot=empty-featured-icon]:[&_svg]:animate-spin"
+              icon="RefreshCcw02"
+              title="Syncing, It just take a few seconds..."
+              description="Are you ready?"
             />
           </div>
+        )}
 
-          <div className="col-span-12">
-            <AssetsTable
-              assets={[
-                {
-                  name: "Bitcoin",
-                  price: 10000,
-                  change: 10,
-                  marketCap: 1000000,
-                  volume: 1000000,
-                },
-                {
-                  name: "Ethereum",
-                  price: 10000,
-                  change: 10,
-                  marketCap: 1000000,
-                  volume: 1000000,
-                },
-                {
-                  name: "Tether",
-                  price: 10000,
-                  change: 10,
-                  marketCap: 1000000,
-                  volume: 1000000,
-                },
-              ]}
-            />
-          </div>
+        {!isSyncing && (
+          <div className="grid grid-cols-12 gap-5">
+            <div className="col-span-4">
+              <TotalBalanceCard />
+            </div>
+            <div className="col-span-4">
+              <StatCard
+                title="Total Earning"
+                value="3,124.15"
+                icon="CoinsHand"
+              />
+            </div>
+            <div className="col-span-4">
+              <StatCard
+                title="Portfolio Volatility"
+                value="24.8%"
+                icon="BankNote01"
+              />
+            </div>
+            <div className="col-span-12">
+              <AssetsTable />
+            </div>
 
-          <div className="col-span-12 lg:col-span-8">
-            <OverallPortfolioValue />
-          </div>
+            <div className="col-span-12 lg:col-span-8">
+              <OverallPortfolioValue />
+            </div>
 
-          <div className="col-span-12 lg:col-start-9 lg:col-span-4">
-            <PortfolioHoldings />
-          </div>
+            <div className="col-span-12 lg:col-start-9 lg:col-span-4">
+              <PortfolioHoldings />
+            </div>
 
-          <div className="col-span-12 lg:col-span-8">
-            <div className="space-y-5">
-              <AssetAllocation />
-              <div className="flex flex-row gap-5">
-                <PieceOfInfo />
-                <PieceOfInfo />
+            <div className="col-span-12 lg:col-span-8">
+              <div className="space-y-5">
+                <AssetAllocation />
+                <div className="flex flex-row gap-5">
+                  <PieceOfInfo />
+                  <PieceOfInfo />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="col-span-12 lg:col-start-9 lg:col-span-4">
-            <div className="h-full flex flex-col gap-5">
-              <AssetPerformance className="flex-1" />
-              <AssetPerformance className="flex-1" />
+            <div className="col-span-12 lg:col-start-9 lg:col-span-4">
+              <div className="h-full flex flex-col gap-5">
+                <AssetPerformance className="flex-1" />
+                <AssetPerformance className="flex-1" />
+              </div>
+            </div>
+
+            <div className="col-span-12 ">
+              <TransactionsTable />
             </div>
           </div>
-
-          <div className="col-span-12 ">
-            <TransactionsTable
-              transactions={[
-                {
-                  id: "1",
-                  type: "Buy",
-                  date: "2021-01-01",
-                  asset: "BTC",
-                  connection: "Binance",
-                },
-                {
-                  id: "2",
-                  type: "Sell",
-                  date: "2021-01-01",
-                  asset: "BTC",
-                  connection: "Binance",
-                },
-                {
-                  id: "3",
-                  type: "Sell",
-                  date: "2021-01-01",
-                  asset: "BTC",
-                  connection: "Binance",
-                },
-                {
-                  id: "4",
-                  type: "Sell",
-                  date: "2021-01-01",
-                  asset: "BTC",
-                  connection: "Binance",
-                },
-              ]}
-            />
-          </div>
-        </div>
+        )}
       </div>
     </Container>
   );

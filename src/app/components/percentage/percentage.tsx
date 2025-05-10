@@ -18,6 +18,7 @@ export default function Percentage({
     <Amount
       amount={percentage}
       suffix="%"
+      maxPrecision={2}
       className={cn(!disableColorEffect ? colorEffect : `unset`)}
       {...rest}
     />

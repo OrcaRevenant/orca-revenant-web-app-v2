@@ -1,11 +1,19 @@
+import ConnectionLogo from "@/app/components/connection-logo";
 import Typography from "@/app/components/typography";
+import toPascalCase from "@/app/utils/to-pascal-case";
 
-export default function TransactionConnection() {
+export type TransactionConnectionProps = {
+  connectionName: string;
+};
+
+export default function TransactionConnection({
+  connectionName,
+}: TransactionConnectionProps) {
   return (
     <div className="flex flex-row w-fit items-center gap-3">
-      <div className="size-10 bg-bg-success-solid rounded-md"></div>
+      <ConnectionLogo connectionName={connectionName} />
       <Typography variant="small" weight="medium">
-        Binance
+        {toPascalCase(connectionName)}
       </Typography>
     </div>
   );

@@ -69,7 +69,7 @@ export type PortfolioStatus =
 export type ConnectedPortfolio = {
   id: string;
   name: string;
-  assetsCount: number;
+  assets: string[];
   value: CurrencyAmount;
   connection: {
     name: string;
@@ -89,7 +89,7 @@ export type ConnectedGroupPortfolio = Omit<ConnectedPortfolio, `parentId`> & {
 
 export type Timeframe = `daily` | `weekly` | `monthly` | `yearly`;
 
-export type PayloadWithChart<T = {}> = {
+export type PayloadWithChart<T = object> = {
   timeframe: Timeframe;
 } & T;
 
@@ -117,21 +117,21 @@ export type ChartData = {
   value: number;
 };
 
-export type PayloadWithPortfolio<T = {}> = {
+export type PayloadWithPortfolio<T = object> = {
   id: string;
   type: `group` | `portfolio`;
 } & T;
 
-export type PayloadWithQuote<T = {}> = {
+export type PayloadWithQuote<T = object> = {
   quote?: string;
 } & T;
 
-export type PayloadWithPagination<T = {}> = {
+export type PayloadWithPagination<T = object> = {
   limit: number;
   page: number;
 } & T;
 
-export type ResponseWithPagination<T = {}> = {
+export type ResponseWithPagination<T = object> = {
   data: T[];
   pagination: {
     limit: number;
@@ -181,7 +181,7 @@ export type GetStatisticsResponse = {
 export type Group = {
   id: string;
   name: string;
-  assetsCount: number;
+  uniqueAssets: string[];
   value: CurrencyAmount;
   order: number;
   type: `group`;
@@ -194,7 +194,7 @@ export type GetPortfoliosResponse = {
   portfolios: (ConnectedPortfolio | Group)[];
   stats: {
     totalValue: number;
-    totalAssets: number;
+    assets: ConnectedPortfolio["assets"];
   };
 };
 

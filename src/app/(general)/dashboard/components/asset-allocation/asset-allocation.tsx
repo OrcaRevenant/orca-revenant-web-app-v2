@@ -6,18 +6,22 @@ import PaperWithTitle from "@/app/components/paper-with-title";
 import Button from "@/app/components/button";
 import IconSelector from "@/app/components/icon-selector";
 import Typography from "@/app/components/typography";
-import { generatePieColor } from "@/app/components/doughnut-chart/utils";
 import { useAssetAllocation } from "@/api";
+import { useMemo } from "react";
 
 export default function AssetAllocation() {
   const { data: assetAllocation } = useAssetAllocation();
-  const data =
-    assetAllocation?.map((item, index) => ({
-      key: item.label,
-      value: item.value,
-      color: `var(${generatePieColor(index)})`,
-    })) ?? [];
-
+  
+  const data = useMemo(() => {
+    return (
+      assetAllocation?.map((item) => ({
+        key: item.id,
+        label: item.label,
+        value: item.value,
+      })) ?? []
+    );
+  }, [assetAllocation]);
+  
   return (
     <PaperWithTitle
       action={
@@ -42,7 +46,7 @@ export default function AssetAllocation() {
           <AssetAllocationLegend data={data} />
         </div>
         <div className="flex p-5 justify-center items-center">
-          <DoughnutChart data={data} />
+          <DoughnutChart nameKey="label" dataKey="value" data={data} />
         </div>
       </div>
     </PaperWithTitle>

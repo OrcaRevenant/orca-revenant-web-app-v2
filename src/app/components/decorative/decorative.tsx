@@ -31,7 +31,7 @@ const decorativeVariant = cva("relative -z-10", {
   },
 });
 
-type DecorativeProps = HTMLAttributes<HTMLDivElement> &
+export type DecorativeProps = HTMLAttributes<HTMLDivElement> &
   VariantProps<typeof decorativeVariant>;
 
 export default function Decorative({

@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useMemo } from "react";
 import {
   ColumnDef,
   flexRender,
@@ -16,8 +16,9 @@ import TableHead from "@/app/components/table/table-head";
 import TableHeader from "@/app/components/table/table-header";
 import TableRow from "@/app/components/table/table-row";
 import { cn } from "@/lib/utils";
+import Empty from "../empty";
 
-export const dataTableVariants = cva("w-full", {
+export const dataTableVariants = cva("w-full overflow-hidden", {
   variants: {
     variant: {
       default: "",
@@ -71,12 +72,14 @@ export type DataTableProps<TData extends object> = {
   isLoading?: boolean;
   loadingRows?: number;
   onRowClick?: (row: TData) => void;
+  emptyTitle?: string;
+  emptyDescription?: string;
   className?: string;
 } & VariantProps<typeof dataTableVariants> &
   VariantProps<typeof dataTableHeaderVariants> &
   VariantProps<typeof dataTableRowVariants>;
 
-export function DataTable<TData extends object>({
+export default function DataTable<TData extends object>({
   columns,
   data,
   isLoading = false,
@@ -86,11 +89,19 @@ export function DataTable<TData extends object>({
   size,
   sticky,
   className,
+  emptyTitle,
+  emptyDescription,
 }: DataTableProps<TData>) {
-  const loadingData = Array.from({ length: loadingRows }).map((_, i) => ({
-    id: i,
-  })) as TData[];
+  // Memoize the loading data to prevent recreation on every render
+  const loadingData = useMemo(
+    () =>
+      Array.from({ length: loadingRows }).map((_, i) => ({
+        id: i,
+      })) as TData[],
+    [loadingRows]
+  );
 
+  // Create the table instance with current data
   const table = useReactTable({
     data: isLoading ? loadingData : data,
     columns,
@@ -141,22 +152,23 @@ export function DataTable<TData extends object>({
                   <TableCell
                     key={cell.id}
                     className={cn(
-                      meta?.align === "right" && "text-right",
-                      meta?.align === "center" && "text-center"
+                      meta?.align === "right" && "text-right justify-end",
+                      meta?.align === "center" && "text-center justify-center"
                     )}
                   >
-                    {isLoading ? (
-                      <div
-                        className={cn(
-                          meta?.align === "right" && "justify-self-end",
-                          meta?.align === "center" && "justify-self-center"
-                        )}
-                      >
-                        {meta?.skeleton || <Skeleton className="h-4 w-5" />}
-                      </div>
-                    ) : (
-                      flexRender(cell.column.columnDef.cell, cell.getContext())
-                    )}
+                    <div
+                      className={cn(
+                        meta?.align === "right" && "justify-self-end",
+                        meta?.align === "center" && "justify-self-center"
+                      )}
+                    >
+                      {isLoading
+                        ? meta?.skeleton || <Skeleton className="h-4 w-5" />
+                        : flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                    </div>
                   </TableCell>
                 );
               })}
@@ -164,7 +176,14 @@ export function DataTable<TData extends object>({
           ))}
         </TableBody>
       </Table>
-      {!isLoading && data.length === 0 && null}
+      {!isLoading && data.length === 0 && (
+        <Empty
+          className="h-[382px] overflow-hidden z-10"
+          title={emptyTitle}
+          description={emptyDescription}
+          icon="SearchLg"
+        />
+      )}
     </div>
   );
 }

@@ -39,13 +39,21 @@ const darkVariants = cva(
   }
 );
 
-export default function Dark({ color, size, icon, ...rest }: DarkProps) {
+export default function Dark({
+  color,
+  size,
+  icon,
+  className,
+  ...rest
+}: DarkProps) {
   return (
     <div
-      className={cn(
-        darkVariants({ backgroundColor: color, iconColor: color, size }),
-        rest.className
-      )}
+      className={darkVariants({
+        backgroundColor: color,
+        iconColor: color,
+        size,
+        className,
+      })}
       {...rest}
     >
       <IconSelector icon={icon} className={"text-inherit"} />

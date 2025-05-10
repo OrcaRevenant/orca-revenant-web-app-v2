@@ -1,3 +1,5 @@
+"use client";
+
 import PaperWithTitle from "@/app/components/paper-with-title";
 import TradingLineChart from "@/app/components/trading-line-chart";
 import Select, {
@@ -9,23 +11,61 @@ import Select, {
   SelectValue,
 } from "@/app/components/select";
 import Typography from "@/app/components/typography";
+import { Timeframe, usePortfolioValueOverTime } from "@/api";
+import { useMemo, useState } from "react";
+import QuotedAmount from "@/app/components/quoted-amount";
 
 export default function OverallPortfolioValue() {
+  const [timeframe, setTimeframe] = useState<Timeframe>("daily");
+
+  const { data: portfolioValueOverTime } = usePortfolioValueOverTime({
+    timeframe,
+  });
+
+  const overview = useMemo(() => {
+    if (!portfolioValueOverTime) {
+      return { min: null, max: null, avg: null };
+    }
+
+    let minValue = portfolioValueOverTime[0].value;
+    let maxValue = portfolioValueOverTime[0].value;
+    let total = 0;
+
+    for (const obj of portfolioValueOverTime) {
+      const value = obj.value;
+      if (value < minValue) {
+        minValue = value;
+      }
+      if (value > maxValue) {
+        maxValue = value;
+      }
+      total += value;
+    }
+
+    const avgValue = total / portfolioValueOverTime.length;
+
+    return { min: minValue, max: maxValue, avg: avgValue };
+  }, [portfolioValueOverTime]);
+
   return (
     <PaperWithTitle
       title="Overall Portfolio Value"
       action={
-        <Select>
+        <Select
+          onValueChange={(value) => {
+            setTimeframe(value as Timeframe);
+          }}
+        >
           <SelectTrigger>
             <SelectValue placeholder="Time" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Time Periods</SelectLabel>
-              <SelectItem value="1d">Daily</SelectItem>
-              <SelectItem value="1w">Weekly</SelectItem>
-              <SelectItem value="1m">Monthly</SelectItem>
-              <SelectItem value="1y">Yearly</SelectItem>
+              <SelectItem value="daily">Daily</SelectItem>
+              <SelectItem value="weekly">Weekly</SelectItem>
+              <SelectItem value="monthly">Monthly</SelectItem>
+              <SelectItem value="yearly">Yearly</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -33,47 +73,12 @@ export default function OverallPortfolioValue() {
     >
       <div className="h-[240px]">
         <TradingLineChart
-          data={[
-            { time: "2023-12-31", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-01", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-02", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-03", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-04", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-05", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-06", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-07", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-08", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-09", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-10", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-11", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-12", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-13", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-14", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-15", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-16", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-17", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-18", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-19", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-20", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-21", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-22", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-23", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-24", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-25", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-26", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-27", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-28", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-29", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-30", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-01-31", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-02-01", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-02-02", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-02-03", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-02-04", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-02-05", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-02-06", value: Math.floor(Math.random() * 1000) },
-            { time: "2024-02-07", value: Math.floor(Math.random() * 1000) },
-          ]}
+          data={
+            portfolioValueOverTime?.map((item) => ({
+              time: item.time,
+              value: +item.value,
+            })) || []
+          }
         />
       </div>
 
@@ -82,39 +87,36 @@ export default function OverallPortfolioValue() {
           <Typography variant={"small"} weight={"semibold"} color={"tertiary"}>
             All Time High
           </Typography>
-          <Typography
+          <QuotedAmount
             variant={"displaySmall"}
             weight={"semibold"}
             color={"primary"}
-          >
-            $100,000
-          </Typography>
+            amount={overview.max as number}
+          />
         </div>
 
         <div className="flex flex-col gap-2 p-5">
           <Typography variant={"small"} weight={"semibold"} color={"tertiary"}>
             Average
           </Typography>
-          <Typography
+          <QuotedAmount
             variant={"displaySmall"}
             weight={"semibold"}
             color={"primary"}
-          >
-            $100,000
-          </Typography>
+            amount={overview.avg as number}
+          />
         </div>
 
         <div className="flex flex-col gap-2 p-5">
           <Typography variant={"small"} weight={"semibold"} color={"tertiary"}>
             All Time Low
           </Typography>
-          <Typography
+          <QuotedAmount
             variant={"displaySmall"}
             weight={"semibold"}
             color={"primary"}
-          >
-            $100,000
-          </Typography>
+            amount={overview.min as number}
+          />
         </div>
       </div>
     </PaperWithTitle>

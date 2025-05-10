@@ -1,18 +1,27 @@
+import AssetLogo from "@/app/components/asset-logo";
 import AssetPairAvatar from "@/app/components/asset-pair-avatar";
+import QuotedAmount from "@/app/components/quoted-amount";
 import Typography from "@/app/components/typography";
 
-export default function TransactionAsset() {
+type TransactionAssetProps = {
+  assetShortName: string;
+  assetName: string;
+  amount: number;
+};
+
+export default function TransactionAsset({
+  assetShortName,
+  assetName,
+  amount,
+}: TransactionAssetProps) {
   return (
     <div className="flex items-center space-x-3">
-      <AssetPairAvatar />
-
+      <AssetLogo shortName={assetShortName} size="md" />
       <div>
         <Typography variant="small" weight="medium">
-          Bitcoin
+          {assetName}
         </Typography>
-        <Typography variant="small" color="tertiary">
-          $100
-        </Typography>
+        <QuotedAmount amount={amount} variant="small" color="tertiary" />
       </div>
     </div>
   );

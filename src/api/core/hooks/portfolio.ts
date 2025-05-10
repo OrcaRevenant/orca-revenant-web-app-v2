@@ -279,7 +279,7 @@ export function useAssetPerformanceOverTime(
   >
 ) {
   const selectedPortfolio = useSelectedPortfolio();
-  const enabled = !!selectedPortfolio?.isAvailable;
+  const enabled = !!selectedPortfolio?.isAvailable && !!payload.assetName;
   const {
     config: { baseCurrency },
   } = useControlPanel();

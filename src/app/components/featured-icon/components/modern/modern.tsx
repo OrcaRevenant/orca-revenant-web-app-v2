@@ -1,6 +1,5 @@
 import IconSelector from "@/app/components/icon-selector";
 import { SupportedIcons } from "@/icons";
-import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { HTMLAttributes } from "react";
 import { FeaturedIconColor, FeaturedIconSize } from "../../types";
@@ -25,9 +24,14 @@ const modernVariants = cva(
   }
 );
 
-export default function Modern({ size, icon, ...rest }: ModernProps) {
+export default function Modern({
+  size,
+  icon,
+  className,
+  ...rest
+}: ModernProps) {
   return (
-    <div className={cn(modernVariants({ size }), rest.className)} {...rest}>
+    <div className={modernVariants({ size, className })} {...rest}>
       <IconSelector icon={icon} />
     </div>
   );

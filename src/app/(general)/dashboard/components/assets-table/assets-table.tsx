@@ -1,17 +1,17 @@
 "use client";
 
-import Avatar, { AvatarFallback, AvatarImage } from "@/app/components/avatar";
 import Button from "@/app/components/button";
 import Fluctuation from "@/app/components/fluctuation";
 import IconSelector from "@/app/components/icon-selector";
 import PaperWithTitle from "@/app/components/paper-with-title";
 import Typography from "@/app/components/typography";
-import { DataTable } from "@/app/components/data-table/data-table";
+import DataTable from "@/app/components/data-table/data-table";
 import { ColumnDef } from "@tanstack/react-table";
 import { Asset, useAssets } from "@/api";
 import Skeleton from "@/app/components/skeleton";
 import Amount from "@/app/components/amount";
 import QuotedAmount from "@/app/components/quoted-amount";
+import AssetLogo from "@/app/components/asset-logo";
 
 export default function AssetsTable() {
   const { data: assets, isPending } = useAssets();
@@ -36,17 +36,14 @@ export default function AssetsTable() {
       header: "Name",
       cell: ({ row }) => (
         <div className="flex items-center space-x-3">
-          <Avatar className="size-10">
-            <AvatarImage src={row.original.logo} alt={row.original.name} />
-            <AvatarFallback>{row.original.shortName}</AvatarFallback>
-          </Avatar>
+          <AssetLogo shortName={row.original.shortName} />
 
           <div>
             <Typography variant="small" weight="medium">
               {row.original.name}
             </Typography>
             <Typography variant="small" color="tertiary">
-              {row.original.shortName}
+              {row.original.shortName.toUpperCase()}
             </Typography>
           </div>
         </div>
@@ -97,10 +94,9 @@ export default function AssetsTable() {
         columns={columns}
         isLoading={isPending}
         data={assets || []}
-        variant="bordered"
-        size="default"
+        emptyTitle="It’s like a desert"
+        emptyDescription="We couldn't find any asset in your portfolio"
         loadingRows={3}
-        sticky
       />
     </PaperWithTitle>
   );
