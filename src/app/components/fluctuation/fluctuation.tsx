@@ -1,16 +1,20 @@
 import Badge, { BadgeProps } from "../badge";
 import IconSelector from "../icon-selector";
-import Typography from "../typography";
+import Percentage from "../percentage";
 
-export type FluctuationProps = BadgeProps;
+export type FluctuationProps = {
+  fluctuation?: number | string;
+} & BadgeProps;
 
-export default function Fluctuation({ ...rest }: FluctuationProps) {
+export default function Fluctuation({
+  fluctuation = 0,
+  ...rest
+}: FluctuationProps) {
+  const isPositive = +fluctuation > 0;
   return (
-    <Badge size={"sm"} color="success" {...rest}>
-      <IconSelector icon="TrendUp01" />
-      <Typography variant={"inherit"} color={"success"}>
-        + 12%
-      </Typography>
+    <Badge size={"sm"} color={isPositive ? "success" : "error"} {...rest}>
+      <IconSelector icon={isPositive ? "TrendUp01" : "TrendDown01"} />
+      <Percentage variant={"inherit"} percentage={fluctuation} />
     </Badge>
   );
 }

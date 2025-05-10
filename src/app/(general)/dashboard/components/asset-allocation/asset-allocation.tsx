@@ -1,3 +1,5 @@
+"use client";
+
 import AssetAllocationLegend from "./asset-allocation-legend";
 import DoughnutChart from "@/app/components/doughnut-chart";
 import PaperWithTitle from "@/app/components/paper-with-title";
@@ -5,17 +7,16 @@ import Button from "@/app/components/button";
 import IconSelector from "@/app/components/icon-selector";
 import Typography from "@/app/components/typography";
 import { generatePieColor } from "@/app/components/doughnut-chart/utils";
+import { useAssetAllocation } from "@/api";
 
 export default function AssetAllocation() {
-  const data = [
-    { key: "Ethereum", value: 100, color: `var(${generatePieColor(0)})` },
-    { key: "Tether", value: 200, color: `var(${generatePieColor(1)})` },
-    { key: "Bitcoin", value: 300, color: `var(${generatePieColor(2)})` },
-    { key: "Solana", value: 400, color: `var(${generatePieColor(3)})` },
-    { key: "Avalanche", value: 500, color: `var(${generatePieColor(4)})` },
-    { key: "Polygon", value: 600, color: `var(${generatePieColor(5)})` },
-    { key: "Binance", value: 700, color: `var(${generatePieColor(6)})` },
-  ];
+  const { data: assetAllocation } = useAssetAllocation();
+  const data =
+    assetAllocation?.map((item, index) => ({
+      key: item.label,
+      value: item.value,
+      color: `var(${generatePieColor(index)})`,
+    })) ?? [];
 
   return (
     <PaperWithTitle

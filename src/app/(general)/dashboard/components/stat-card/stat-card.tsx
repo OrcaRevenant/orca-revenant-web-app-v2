@@ -1,10 +1,11 @@
-import Amount from "@/app/components/amount";
 import IconSelector from "../../../../components/icon-selector";
 import Paper from "../../../../components/paper";
 import Typography from "../../../../components/typography";
 import { SupportedIcons } from "@/icons/icons";
 import Percentage from "@/app/components/percentage";
 import { cn } from "@/lib/utils";
+import QuotedAmount from "@/app/components/quoted-amount";
+
 export type StatCardProps = {
   title: string;
   value?: number | string;
@@ -32,7 +33,11 @@ export default function StatCard({
       </div>
 
       <div className="space-y-3">
-        <Amount variant={"displaySmall"} weight={"semibold"} amount={value} />
+        <QuotedAmount
+          variant={"displaySmall"}
+          weight={"semibold"}
+          amount={value}
+        />
 
         <div className="flex flex-row space-x-2">
           <div className="flex flex-row items-center">

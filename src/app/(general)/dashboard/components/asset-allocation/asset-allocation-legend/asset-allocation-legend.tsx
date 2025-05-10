@@ -25,6 +25,9 @@ export default function AssetAllocationLegend({
     };
   }, [data]);
 
+
+  
+
   return (
     <div className="space-y-6 w-full">
       {allocation?.assets.map((v) => {
@@ -48,12 +51,22 @@ export default function AssetAllocationLegend({
         );
       })}
 
-      <div className="flex flex-roww-full items-center justify-between">
-        <AssetAvatarGroup max={3} />
-        <AssetAllocationLegendProgress
-          data={{ key: "Others", value: 10, color: "#000" }}
-        />
-      </div>
+
+      {!!allocation?.others.length && (
+        <div className="flex flex-roww-full items-center justify-between">
+          <AssetAvatarGroup max={3} />
+          <AssetAllocationLegendProgress
+            data={{
+              key: "Others",
+              value: allocation.others.reduce(
+                (acc, curr) => acc + curr.value,
+                0
+              ),
+              color: "#000",
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }

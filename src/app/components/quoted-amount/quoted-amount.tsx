@@ -1,3 +1,5 @@
+"use client";
+
 import { AmountProps } from "../amount";
 import { useControlPanel } from "@/providers/useControlPanel";
 import Amount from "../amount";
