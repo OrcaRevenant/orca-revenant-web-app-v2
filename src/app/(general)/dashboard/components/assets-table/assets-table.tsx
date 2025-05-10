@@ -15,8 +15,6 @@ import QuotedAmount from "@/app/components/quoted-amount";
 
 export default function AssetsTable() {
   const { data: assets, isPending } = useAssets();
-  
-  console.log(assets);
 
   const columns: ColumnDef<Asset>[] = [
     {

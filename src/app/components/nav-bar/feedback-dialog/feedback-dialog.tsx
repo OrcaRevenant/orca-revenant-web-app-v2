@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "../../button";
 import IconSelector from "../../icon-selector";
 import Dialog, {
@@ -8,11 +10,20 @@ import Dialog, {
   DialogTitle,
   DialogTrigger,
 } from "../../dialog";
-import { Textarea } from "../../textarea";
+import FeedbackForm from "./feedback-form";
+import { useCreateFeedback } from "@/api/core/hooks/feedback";
+import { useState } from "react";
 
 export default function FeedbackDialog() {
+  const { mutate: createFeedback, isPending } = useCreateFeedback({
+    onSuccess() {
+      setIsOpen(false);
+    },
+  });
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button variant="secondaryGray" size="md">
           <IconSelector icon="Announcement01" className="size-5" />
@@ -27,14 +38,25 @@ export default function FeedbackDialog() {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="px-6">
-          <Textarea placeholder="e.g. Website design"/>
-        </div>
+        <FeedbackForm
+          id="feedback-form"
+          onSubmit={(data) => {
+            createFeedback({
+              payload: { title: "Feedback", content: data.feedback },
+            });
+          }}
+        />
         <DialogFooter>
           <Button className="flex-1" variant="secondaryGray" size="md">
             Cancel
           </Button>
-          <Button className="flex-1" variant="primary" size="md">
+          <Button
+            form="feedback-form"
+            disabled={isPending}
+            className="flex-1"
+            variant="primary"
+            size="md"
+          >
             Send
           </Button>
         </DialogFooter>

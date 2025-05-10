@@ -31,7 +31,6 @@ export default function AssetPerformance({
               size={"md"}
               className="border-none! px-0!"
               variant={"outline"}
-              color={"success"}
             />
             <Typography
               variant={"small"}
