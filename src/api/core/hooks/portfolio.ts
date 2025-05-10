@@ -73,7 +73,7 @@ export function useAssets(
     quote: baseCurrency.key,
   };
 
-  const enabled = selectedPortfolio?.isAvailable;
+  const enabled = !!selectedPortfolio?.isAvailable;
 
   return useQuery({
     queryKey: useAssets.queryKey(modifiedPayload),
@@ -107,7 +107,7 @@ export function useAssetAllocation(
     quote: baseCurrency.key,
   };
 
-  const enabled = selectedPortfolio?.isAvailable;
+  const enabled = !!selectedPortfolio?.isAvailable;
 
   return useQuery({
     queryKey: useAssetAllocation.queryKey(modifiedPayload),
@@ -143,7 +143,7 @@ export function usePortfolioAllocation(
     quote: baseCurrency.key,
   };
 
-  const enabled = selectedPortfolio?.isAvailable;
+  const enabled = !!selectedPortfolio?.isAvailable;
 
   return useQuery({
     queryKey: usePortfolioAllocation.queryKey(modifiedPayload),
@@ -176,7 +176,7 @@ export function useStatistics(
     quote: baseCurrency.key,
   };
 
-  const enabled = selectedPortfolio?.isAvailable;
+  const enabled = !!selectedPortfolio?.isAvailable;
 
   return useQuery({
     queryKey: useStatistics.queryKey(modifiedPayload),
@@ -215,7 +215,7 @@ export function usePortfolioValueOverTime(
     timeframe: payload.timeframe,
   };
 
-  const enabled = selectedPortfolio?.isAvailable;
+  const enabled = !!selectedPortfolio?.isAvailable;
 
   return useQuery({
     queryKey: usePortfolioValueOverTime.queryKey(modifiedPayload),
@@ -251,7 +251,7 @@ export function useAssetPerformance(
     quote: baseCurrency.key,
   };
 
-  const enabled = selectedPortfolio?.isAvailable;
+  const enabled = !!selectedPortfolio?.isAvailable;
 
   return useQuery({
     queryKey: useAssetPerformance.queryKey(modifiedPayload),
@@ -279,7 +279,7 @@ export function useAssetPerformanceOverTime(
   >
 ) {
   const selectedPortfolio = useSelectedPortfolio();
-  const enabled = selectedPortfolio?.isAvailable;
+  const enabled = !!selectedPortfolio?.isAvailable;
   const {
     config: { baseCurrency },
   } = useControlPanel();
@@ -408,7 +408,7 @@ export function useTransactions(
     quote: baseCurrency.key,
   };
 
-  const enabled = selectedPortfolio?.isAvailable;
+  const enabled = !!selectedPortfolio?.isAvailable;
 
   return useQuery({
     queryKey: useTransactions.queryKey(modifiedPayload),

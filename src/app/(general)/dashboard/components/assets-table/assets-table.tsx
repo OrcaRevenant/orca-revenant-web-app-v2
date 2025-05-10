@@ -1,5 +1,4 @@
 import Avatar, { AvatarFallback, AvatarImage } from "@/app/components/avatar";
-import Badge from "@/app/components/badge";
 import Button from "@/app/components/button";
 import Fluctuation from "@/app/components/fluctuation";
 import IconSelector from "@/app/components/icon-selector";

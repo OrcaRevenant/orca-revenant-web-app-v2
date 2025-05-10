@@ -10,11 +10,11 @@ export type AssetAvatarGroupProps = {
 
 export default function AssetAvatarGroup({ max = 4 }: AssetAvatarGroupProps) {
   const users = [
-    { name: "Sophie Martin", image: "/avatars/avatar-15.jpg" },
-    { name: "Leo Anderson", image: "/avatars/avatar-16.jpg" },
-    { name: "Chloe Thompson", image: "/avatars/avatar-17.jpg" },
-    { name: "Max Rodriguez", image: "/avatars/avatar-18.jpg" },
-    { name: "Zoe Garcia", image: "/avatars/avatar-19.jpg" },
+    { name: "Sophie Martin", image: "" },
+    { name: "Leo Anderson", image: "" },
+    { name: "Chloe Thompson", image: "" },
+    { name: "Max Rodriguez", image: "" },
+    { name: "Zoe Garcia", image: "" },
     { name: "Additional Users", count: 3 },
   ];
 

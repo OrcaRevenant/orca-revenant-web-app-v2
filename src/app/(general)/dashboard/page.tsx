@@ -11,6 +11,7 @@ import AssetAllocation from "./components/asset-allocation";
 import PieceOfInfo from "./components/piece-of-info";
 import TransactionsTable from "./components/transactions-table/transactions-table";
 import PortfolioPanel from "./components/portfolio-panel";
+import TotalBalanceCard from "./components/total-balance-card";
 
 export default function DashboardPage() {
   return (
@@ -36,18 +37,10 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-12 gap-5">
           <div className="col-span-4">
-            <StatCard
-              title="Estimated Total Balance"
-              value="$72,531.42"
-              icon="CoinsStacked03"
-            />
+            <TotalBalanceCard />
           </div>
           <div className="col-span-4">
-            <StatCard
-              title="Total Earning"
-              value="$3,124.15"
-              icon="CoinsHand"
-            />
+            <StatCard title="Total Earning" value="3,124.15" icon="CoinsHand" />
           </div>
           <div className="col-span-4">
             <StatCard

@@ -8,12 +8,12 @@ import Logo from "@/app/components/logo";
 import SocialButton from "@/app/components/social-button";
 import Typography from "@/app/components/typography";
 import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from "@/services/storage/storage";
-import { Checkbox } from "@radix-ui/react-checkbox";
-import { Label } from "@radix-ui/react-label";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import Label from "@/app/components/label";
+import Checkbox from "@/app/components/checkbox";
 
 type SigninFormData = {
   email: string;

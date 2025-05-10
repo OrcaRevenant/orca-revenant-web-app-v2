@@ -8,6 +8,7 @@ import Dialog, {
   DialogTrigger,
 } from "../dialog";
 import DialogBody from "../dialog/dialog-body";
+import IconSelector from "../icon-selector";
 import Typography from "../typography";
 import ConnectionCard from "./connection-card";
 
@@ -15,7 +16,10 @@ export default function ConnectionDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="primary">Open Modal</Button>
+        <Button className="w-full" variant="secondaryGray">
+          <IconSelector icon="PlusSquare" />
+          Add Portfolio
+        </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[640px]">
         <DialogHeader>

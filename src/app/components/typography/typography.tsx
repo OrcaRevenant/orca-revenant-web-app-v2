@@ -17,7 +17,7 @@ export const typographyVariants = cva("", {
       medium: "md",
       small: "sm",
       xSmall: "xs",
-      inherit: "inherit",
+      inherit: "text-inherit",
     },
     color: {
       primary: "text-text-primary",
