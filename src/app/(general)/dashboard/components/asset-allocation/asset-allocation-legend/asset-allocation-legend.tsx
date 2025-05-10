@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { destructure } from "@/app/utils/destructure";
+import { destructure } from "@/utils/destructure";
 import AssetAllocationLegendProgress from "./asset-allocation-legend-progress";
 import Typography from "@/app/components/typography";
 import AssetAvatarGroup from "@/app/components/asset-avatar-group";

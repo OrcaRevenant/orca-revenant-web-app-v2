@@ -1,4 +1,4 @@
-import safeForwardRef from "@/app/utils/safe-forward-ref";
+import safeForwardRef from "@/utils/safe-forward-ref";
 import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { PropsWithoutRef } from "react";

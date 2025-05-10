@@ -1,7 +1,7 @@
 import { TransactionType as TransactionTypeEnum } from "@/api";
 import FeaturedIcon from "@/app/components/featured-icon";
 import Typography from "@/app/components/typography";
-import toPascalCase from "@/app/utils/to-pascal-case";
+import toPascalCase from "@/utils/to-pascal-case";
 
 type TransactionTypeProps = {
   type: TransactionTypeEnum;

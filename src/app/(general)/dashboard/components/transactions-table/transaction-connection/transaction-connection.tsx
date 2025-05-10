@@ -1,6 +1,6 @@
 import ConnectionLogo from "@/app/components/connection-logo";
 import Typography from "@/app/components/typography";
-import toPascalCase from "@/app/utils/to-pascal-case";
+import toPascalCase from "@/utils/to-pascal-case";
 
 export type TransactionConnectionProps = {
   connectionName: string;
