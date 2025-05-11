@@ -11,7 +11,7 @@ import { useMemo } from "react";
 
 export default function AssetAllocation() {
   const { data: assetAllocation } = useAssetAllocation();
-  
+
   const data = useMemo(() => {
     return (
       assetAllocation?.map((item) => ({
@@ -21,7 +21,7 @@ export default function AssetAllocation() {
       })) ?? []
     );
   }, [assetAllocation]);
-  
+
   return (
     <PaperWithTitle
       action={
@@ -36,7 +36,7 @@ export default function AssetAllocation() {
         <div className="space-y-8 pb-3 flex-1">
           <div className="flex items-end flex-row gap-2">
             <Typography variant={"displaySmall"} weight={"semibold"}>
-              27
+              {assetAllocation?.length}
             </Typography>
             <Typography variant={"xSmall"} color={"tertiary"}>
               Tokens

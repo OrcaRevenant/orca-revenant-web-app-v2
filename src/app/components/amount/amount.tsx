@@ -14,7 +14,7 @@ export type AmountProps = {
 } & TypographyProps<"p">;
 
 export default function Amount({
-  amount = 0,
+  amount,
   maxPrecision = 8,
   minPrecision = 2,
   disabledSuffix = false,
@@ -28,26 +28,40 @@ export default function Amount({
 
   return (
     <Typography className={cn("whitespace-nowrap", className)} {...rest}>
-      {!invalidAmount && prefix && !disabledPrefix && (
-        <Typography variant="inherit" color="inherit" as={`span`}>
-          {prefix}
-        </Typography>
-      )}
+      {!invalidAmount && (
+        <>
+          {prefix && !disabledPrefix && (
+            <Typography
+              weight={"inherit"}
+              variant="inherit"
+              color="inherit"
+              as={`span`}
+            >
+              {prefix}
+            </Typography>
+          )}
 
-      {invalidAmount
-        ? `-`
-        : numberFormat(amount, {
+          {numberFormat(amount, {
             maximumFractionDigits: maxPrecision,
             roundingMode: `trunc`,
             minimumFractionDigits:
               minPrecision > maxPrecision ? maxPrecision : minPrecision,
           })}
 
-      {!invalidAmount && suffix && !disabledSuffix && (
-        <Typography variant="inherit" color="inherit" as={`span`}>
-          {suffix}
-        </Typography>
+          {suffix && !disabledSuffix && (
+            <Typography
+              weight={"inherit"}
+              variant="inherit"
+              color="inherit"
+              as={`span`}
+            >
+              {suffix}
+            </Typography>
+          )}
+        </>
       )}
+
+      {invalidAmount && `-`}
     </Typography>
   );
 }

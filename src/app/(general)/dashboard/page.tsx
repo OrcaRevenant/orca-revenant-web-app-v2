@@ -58,14 +58,14 @@ export default function DashboardPage() {
             <div className="col-span-4">
               <StatCard
                 title="Total Earning"
-                value="3,124.15"
+                value={undefined}
                 icon="CoinsHand"
               />
             </div>
             <div className="col-span-4">
               <StatCard
                 title="Portfolio Volatility"
-                value="24.8%"
+                value={undefined}
                 icon="BankNote01"
               />
             </div>

@@ -75,7 +75,9 @@ export default function AssetsTable() {
         width: "75%",
         skeleton: <Skeleton className="h-4 w-15" />,
       },
-      cell: () => <Fluctuation />,
+      cell: ({ row }) => (
+        <Fluctuation fluctuation={row.original.change.percentage} />
+      ),
     },
   ];
 

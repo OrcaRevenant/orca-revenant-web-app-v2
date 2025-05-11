@@ -12,6 +12,7 @@ export default function ProfileMenu() {
       onClick={() => {
         Cookies.remove(ACCESS_TOKEN_NAME);
         Cookies.remove(REFRESH_TOKEN_NAME);
+
         // Force a hard refresh to update the server-side rendered content
         window.location.reload();
       }}

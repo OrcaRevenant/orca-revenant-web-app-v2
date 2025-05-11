@@ -30,7 +30,7 @@ export default function DoughnutChart({
           width={200}
           height={200}
           outerRadius={100}
-          innerRadius={45}
+          innerRadius={50}
           cx={"50%"}
           cy={"50%"}
           data={data.map((v, index) => ({

@@ -53,6 +53,7 @@ export default function OverallPortfolioValue() {
       title="Overall Portfolio Value"
       action={
         <Select
+          value={timeframe}
           onValueChange={(value) => {
             setTimeframe(value as Timeframe);
           }}

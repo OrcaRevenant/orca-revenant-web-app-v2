@@ -10,11 +10,11 @@ import Sheet, {
 } from "@/app/components/sheet";
 import { useState } from "react";
 import PortfolioAllGroupCard from "../portfolio-all-group-card";
-import ConnectionDialog from "@/app/components/connection-dialog";
 import ScrollArea, { ScrollBar } from "@/app/components/scroll-area";
 import PortfolioCard from "../portfolio-card";
 import { usePortfolios } from "@/api";
 import { ALL_PORTFOLIO_ID, usePortfolio } from "@/providers/usePortfolio";
+import ConnectionDialog from "@/app/components/connection-dialog";
 
 export default function PortfolioPanel() {
   const [open, setOpen] = useState(false);
