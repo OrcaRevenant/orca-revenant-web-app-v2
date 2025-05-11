@@ -1,26 +1,45 @@
+"use client";
+
 import Container from "@/app/components/container";
 import Typography from "@/app/components/typography";
 import HintBox from "../../../components/hint-box";
 import AddPortfolioForm from "./components/add-portolio-from";
+import ConnectionLogo from "@/app/components/connection-logo";
+import { useParams } from "next/navigation";
+import toPascalCase from "@/utils/to-pascal-case";
+import { useConnectionById } from "@/api";
 
-export default function page() {
+export default function ConnectPage() {
+  const { connection } = useParams();
+
+  const { data: connectionData } = useConnectionById({
+    id: connection as string,
+  });
+
+  if (!connectionData) {
+    return <div>Connection not found</div>;
+  }
+
   return (
-    <Container maxWidth="2xl" className="h-fit py-16 px-4 sm:px-0">
+    <Container
+      maxWidth="2xl"
+      className="h-fit py-16 px-4 sm:px-0 min-h-[calc(100vh-var(--navbar-height))]"
+    >
       <div className="flex flex-col justify-center items-center gap-10 w-full h-full">
         <div className="flex flex-col sm:flex-row gap-3 items-center w-full">
-          <div className="size-[72px] rounded-xl bg-bg-secondary" />
+          <ConnectionLogo size="xl" connectionName={connection as string} />
           <div className="flex flex-col gap-1">
             <Typography variant="displayMedium" weight="semibold">
-              Add Binance Portfolio
+              Add {toPascalCase(connection as string)} Portfolio
             </Typography>
             <Typography variant="medium" weight="normal" color="tertiary">
-              With that connection you can add your binance exchange as a
+              With that connection you can add your {connection} exchange as a
               portfolio.
             </Typography>
           </div>
         </div>
-        <div className="flex flex-col-reverse sm:flex-row gap-5 w-full">
-          <div className="flex flex-col gap-5 w-full">
+        <div className="grid grid-cols-12 gap-5 w-full">
+          <div className="col-span-12 sm:col-span-6 flex flex-col gap-5 w-full">
             <HintBox
               title="Read Before Connect!"
               icon="InfoHexagon"
@@ -91,7 +110,10 @@ export default function page() {
               </div>
             </HintBox>
           </div>
-          <AddPortfolioForm />
+          <AddPortfolioForm
+            className="col-span-12 sm:col-span-6 flex-1 h-full"
+            connection={connectionData}
+          />
         </div>
       </div>
     </Container>

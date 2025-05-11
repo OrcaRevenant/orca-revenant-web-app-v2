@@ -17,6 +17,7 @@ import MainTokenValueCard from "./components/main-token-value-card";
 
 export default function DashboardPage() {
   const isSyncing = false;
+
   return (
     <Container
       className="py-16 w-full min-h-[calc(100vh-var(--navbar-height))]"

@@ -8,6 +8,7 @@ const assetVariants = cva("size-10 rounded-md", {
       sm: "size-6",
       md: "size-10",
       lg: "size-12",
+      xl: "size-16",
     },
   },
   defaultVariants: {
@@ -34,7 +35,9 @@ export default function ConnectionLogo({
         src={`http://127.0.0.1:54321/storage/v1/object/public/logos/connections/${mappedConnectionName?.toLowerCase()}.svg`}
         alt={connectionName}
       />
-      <AvatarFallback>{connectionName}</AvatarFallback>
+      <AvatarFallback>
+        {connectionName?.slice(0, 1).toUpperCase()}
+      </AvatarFallback>
     </Avatar>
   );
 }
