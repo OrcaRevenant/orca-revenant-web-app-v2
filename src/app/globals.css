@@ -3,6 +3,25 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@keyframes glow {
+  0% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
 @theme inline {
   --color-brand: #ff00000;
   /* Typography */
@@ -1233,7 +1252,7 @@
   --social-icon-fg-apple: var(--base-black);
   --social-icon-fg-github: var(--base-black);
   --social-icon-fg-angellist: var(--base-black);
-  --social-icon-fg-tumblr: #001935;
+  --social-icon-fg-tumblr: var(--base-black);
   /* Mockups Colors */
   --screen-mockup-border: var(--gray-light-900);
   /* Slider Colors */

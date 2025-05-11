@@ -37,6 +37,7 @@ export const typographyVariants = cva("", {
       medium: "font-medium",
       semibold: "font-semibold",
       bold: "font-bold",
+      inherit: "font-inherit",
     },
     truncate: {
       true: "truncate",

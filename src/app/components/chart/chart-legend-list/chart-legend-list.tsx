@@ -11,7 +11,7 @@ export default function ChartLegendList({ data }: ChartLegendListProps) {
       {data.map(({ color, key }, index) => {
         return (
           <div key={index}>
-            <ChartLegendItem color={color} label={key} />
+            <ChartLegendItem color={color as string} label={key as string} />
           </div>
         );
       })}

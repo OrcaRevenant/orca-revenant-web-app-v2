@@ -22,6 +22,8 @@ export default function StatCard({
   const iconColor =
     +percentage > 0 ? `text-fg-success-secondary` : `text-fg-error-secondary`;
 
+  const isZero = +percentage === 0;
+
   return (
     <Paper className="space-y-5">
       <div className="flex flex-row items-center space-x-3">
@@ -41,10 +43,12 @@ export default function StatCard({
 
         <div className="flex flex-row space-x-2">
           <div className="flex flex-row items-center">
-            <IconSelector
-              className={cn("size-4", iconColor)}
-              icon={+percentage > 0 ? "ArrowUp" : "ArrowDown"}
-            />
+            {!isZero && (
+              <IconSelector
+                className={cn("size-4", iconColor)}
+                icon={+percentage > 0 ? "ArrowUp" : "ArrowDown"}
+              />
+            )}
             <Percentage
               variant={"small"}
               color={"success"}

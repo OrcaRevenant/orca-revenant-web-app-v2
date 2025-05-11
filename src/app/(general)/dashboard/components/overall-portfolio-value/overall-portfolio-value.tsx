@@ -49,6 +49,7 @@ export default function OverallPortfolioValue() {
 
   return (
     <PaperWithTitle
+      className="h-full"
       title="Overall Portfolio Value"
       action={
         <Select
@@ -82,7 +83,7 @@ export default function OverallPortfolioValue() {
         />
       </div>
 
-      <div className="flex flex-row gap-4 justify-evenly">
+      <div className="flex flex-1 items-center flex-row gap-4 justify-evenly">
         <div className="flex flex-col gap-2 p-5">
           <Typography variant={"small"} weight={"semibold"} color={"tertiary"}>
             All Time High

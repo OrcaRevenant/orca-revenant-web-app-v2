@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Footer from "@/app/components/footer";
 import NavBar from "@/app/components/nav-bar";
+import StellaActionButton from "../components/stella-action-button";
 
 export const metadata: Metadata = {
   title: "Orca | Home",
@@ -22,6 +23,7 @@ export default function LandingLayout({
       <NavBar />
       {children}
       <Footer />
+      <StellaActionButton />
     </>
   );
 }

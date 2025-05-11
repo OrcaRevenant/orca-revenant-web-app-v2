@@ -8,11 +8,13 @@ import OverallPortfolioValue from "./components/overall-portfolio-value/overall-
 import PortfolioHoldings from "./components/portfolio-holdings";
 import AssetPerformance from "./components/asset-performance";
 import AssetAllocation from "./components/asset-allocation";
-import PieceOfInfo from "./components/piece-of-info";
 import TransactionsTable from "./components/transactions-table/transactions-table";
 import PortfolioPanel from "./components/portfolio-panel";
 import TotalBalanceCard from "./components/total-balance-card";
 import Empty from "@/app/components/empty";
+import MainTokenCard from "./components/main-token-card";
+import MainTokenValueCard from "./components/main-token-value-card";
+
 export default function DashboardPage() {
   const isSyncing = false;
   return (
@@ -83,8 +85,8 @@ export default function DashboardPage() {
               <div className="space-y-5">
                 <AssetAllocation />
                 <div className="flex flex-row gap-5">
-                  <PieceOfInfo />
-                  <PieceOfInfo />
+                  <MainTokenCard />
+                  <MainTokenValueCard />
                 </div>
               </div>
             </div>

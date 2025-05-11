@@ -7,12 +7,19 @@ import Navigation from "@/app/components/nav-bar/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Feedback from "./feedback-dialog";
+import { cookies } from "next/headers";
+import { ACCESS_TOKEN_NAME } from "@/services/storage/storage";
+import ProfileMenu from "./profile-menu/profile-menu";
 
 export type NavBarProps = {
   className?: string;
 };
 
-export default function NavBar({ className }: NavBarProps) {
+export default async function NavBar({ className }: NavBarProps) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(ACCESS_TOKEN_NAME);
+  const isLoggedIn = !!token;
+
   return (
     <AppBar
       className={cn(
@@ -28,13 +35,17 @@ export default function NavBar({ className }: NavBarProps) {
             <Navigation />
           </div>
           <div className="flex flex-row items-center gap-4">
-            <Feedback />
-            <Link href="/auth/signin">
-              <Button variant="primary" size="md">
-                <IconSelector icon="LogIn03" className="size-5" />
-                Login
-              </Button>
-            </Link>
+            {isLoggedIn && <Feedback />}
+            {isLoggedIn ? (
+              <ProfileMenu />
+            ) : (
+              <Link href="/auth/signin">
+                <Button variant="primary" size="md">
+                  <IconSelector icon="LogIn03" className="size-5" />
+                  Login
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </Container>

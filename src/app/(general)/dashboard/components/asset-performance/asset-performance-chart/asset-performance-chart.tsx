@@ -17,6 +17,7 @@ export default function AssetPerformanceChart({
 
   return (
     <AreaChart
+      dataKey="value"
       data={
         assetPerformance?.map((item) => ({
           time: item.time,
