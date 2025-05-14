@@ -45,6 +45,7 @@ export default function AreaChart({
           fill="url(#area-chart-gradient)"
           data={data}
           dataKey={dataKey}
+          
         />
         <ChartTooltip content={<ChartTooltipContent />} />
       </RechartsAreaChart>

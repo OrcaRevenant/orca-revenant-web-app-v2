@@ -47,7 +47,11 @@ export default function FeedbackDialog() {
           }}
         />
         <DialogFooter>
-          <Button className="flex-1" variant="secondaryGray" size="md">
+          <Button
+            onClick={() => setIsOpen(false)}
+            className="flex-1"
+            variant="secondaryGray"
+          >
             Cancel
           </Button>
           <Button

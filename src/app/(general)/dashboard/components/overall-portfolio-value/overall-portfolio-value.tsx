@@ -23,7 +23,8 @@ export default function OverallPortfolioValue() {
   });
 
   const overview = useMemo(() => {
-    if (!portfolioValueOverTime) {
+
+    if (!portfolioValueOverTime?.length) {
       return { min: null, max: null, avg: null };
     }
 

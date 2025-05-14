@@ -18,8 +18,9 @@ export default function ConnectionTypeSelectContent({
           onClick={() => onSelect("exchange")}
         />
         <ConnectionTypeCard
-          title="Exchange Connections"
-          description="With exchange connections you can track any centralized exchanges."
+          disabled
+          title="Web3 Connections"
+          description="With web3 connections you can track any decentralized exchanges."
           onClick={() => onSelect("wallet")}
         />
       </div>

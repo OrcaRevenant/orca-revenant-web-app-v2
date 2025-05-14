@@ -2,14 +2,15 @@ import { SupportedIcons } from "@/icons";
 import FeaturedIcon from "../featured-icon";
 import Typography from "../typography";
 import Decorative, { DecorativeProps } from "../decorative";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
+
 export type EmptyProps = {
   icon: SupportedIcons;
-  title?: string;
+  title?: ReactNode;
   description?: string;
   decorativeSize?: DecorativeProps["size"];
-} & HTMLAttributes<HTMLDivElement>;
+} & Omit<HTMLAttributes<HTMLDivElement>, "title">;
 
 export default function Empty({
   icon,
@@ -20,7 +21,13 @@ export default function Empty({
   ...rest
 }: EmptyProps) {
   return (
-    <div className={cn("gap-5 flex flex-col items-center justify-center relative", className)} {...rest}>
+    <div
+      className={cn(
+        "gap-5 flex flex-col items-center justify-center relative **:data-[slot=empty-decorative]:animate-pulse",
+        className
+      )}
+      {...rest}
+    >
       <Decorative
         data-slot="empty-decorative"
         size={decorativeSize}
@@ -34,7 +41,12 @@ export default function Empty({
         size="lg"
       />
       <div className="space-y-2">
-        <Typography variant="xLarge" className="text-center" weight="semibold">
+        <Typography
+          as="div"
+          variant="xLarge"
+          className="text-center"
+          weight="semibold"
+        >
           {title}
         </Typography>
         <Typography variant="medium" color="tertiary" className="text-center">

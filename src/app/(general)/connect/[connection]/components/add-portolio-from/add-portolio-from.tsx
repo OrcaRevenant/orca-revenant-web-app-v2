@@ -2,7 +2,12 @@
 
 "use client";
 
-import { SourceConnection, useCreatePortfolio } from "@/api";
+import {
+  ConnectedPortfolio,
+  SourceConnection,
+  useCreatePortfolio,
+  usePortfolios,
+} from "@/api";
 import Button from "@/app/components/button";
 import FormLabel from "@/app/components/form-label";
 import HelperText from "@/app/components/helper-text";
@@ -10,11 +15,14 @@ import IconSelector from "@/app/components/icon-selector";
 import Input from "@/app/components/input";
 import Label from "@/app/components/label/label";
 import { cn } from "@/lib/utils";
+import { useQueryClient } from "@tanstack/react-query";
 import { HTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export type AddPortfolioFormProps = {
   connection: SourceConnection;
+  onDone?: (portfolio: ConnectedPortfolio) => void;
 } & Omit<HTMLAttributes<HTMLFormElement>, "onSubmit">;
 
 type AddPortfolioFormData = {
@@ -25,6 +33,7 @@ type AddPortfolioFormData = {
 export default function AddPortfolioForm({
   className,
   connection,
+  onDone,
   ...props
 }: AddPortfolioFormProps) {
   const form = useForm<AddPortfolioFormData>({
@@ -34,16 +43,26 @@ export default function AddPortfolioForm({
     },
   });
 
-  const { mutate: createPortfolio, isPending } = useCreatePortfolio();
+  const { mutateAsync: createPortfolio, isPending } = useCreatePortfolio();
 
-  const onSubmit = (data: AddPortfolioFormData) => {
-    createPortfolio({
+  const qc = useQueryClient();
+
+  const onSubmit = async (data: AddPortfolioFormData) => {
+    const portfolio = await createPortfolio({
       payload: {
         meta: data.meta,
         name: data.name,
         connectionId: connection.id,
       },
     });
+
+    await qc.invalidateQueries({
+      queryKey: usePortfolios.queryKey,
+      exact: true,
+    });
+
+    onDone?.(portfolio);
+    toast.success("Portfolio created successfully");
   };
 
   return (
@@ -79,7 +98,7 @@ export default function AddPortfolioForm({
       </div>
       <Button disabled={isPending} type="submit" size="lg">
         <IconSelector icon="Rocket02" />
-        Start Tracking
+        Connect Portfolio
       </Button>
     </form>
   );

@@ -7,11 +7,11 @@ import {
 } from "@tanstack/react-query";
 import * as Types from "@/api/core/interface";
 import service from "@/api/service";
-import { useControlPanel } from "@/providers/useControlPanel";
+import { useControlPanel } from "@/providers/control-provider";
 import {
   useSelectedPortfolio,
   useSyncSelectedPortfolio,
-} from "@/providers/usePortfolio";
+} from "@/providers/portfolio-provider";
 
 usePortfolios.queryKey = [`portfolios`];
 export function usePortfolios(

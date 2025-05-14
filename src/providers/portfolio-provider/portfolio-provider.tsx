@@ -88,9 +88,9 @@ export function useSelectedPortfolio() {
   return {
     ...selectedPortfolio,
     isAvailable:
-      selectedPortfolio.type === "group" || 
+      selectedPortfolio.type === "group" ||
       (selectedPortfolio.type === "portfolio" &&
-       selectedPortfolio.status !== "syncing" &&
-       selectedPortfolio.status !== "unknown"),
+        selectedPortfolio.status !== "syncing" &&
+        selectedPortfolio.status !== "unknown"),
   };
 }

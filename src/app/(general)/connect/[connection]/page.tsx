@@ -8,9 +8,15 @@ import ConnectionLogo from "@/app/components/connection-logo";
 import { useParams } from "next/navigation";
 import toPascalCase from "@/utils/to-pascal-case";
 import { useConnectionById } from "@/api";
+import { useState } from "react";
+import { ConnectedPortfolio } from "@/api/core/interface/portfolio";
+import AddPortfolioComplete from "./components/add-portfolio-complete";
 
 export default function ConnectPage() {
   const { connection } = useParams();
+
+  const [connectedPortfolio, setConnectedPortfolio] =
+    useState<ConnectedPortfolio | null>(null);
 
   const { data: connectionData } = useConnectionById({
     id: connection as string,
@@ -110,10 +116,20 @@ export default function ConnectPage() {
               </div>
             </HintBox>
           </div>
-          <AddPortfolioForm
-            className="col-span-12 sm:col-span-6 flex-1 h-full"
-            connection={connectionData}
-          />
+          {!connectedPortfolio && (
+            <AddPortfolioForm
+              className="col-span-12 sm:col-span-6 flex-1 h-full"
+              connection={connectionData}
+              onDone={setConnectedPortfolio}
+            />
+          )}
+
+          {connectedPortfolio && (
+            <AddPortfolioComplete
+              portfolio={connectedPortfolio}
+              className="col-span-12 sm:col-span-6 flex-1 h-full"
+            />
+          )}
         </div>
       </div>
     </Container>

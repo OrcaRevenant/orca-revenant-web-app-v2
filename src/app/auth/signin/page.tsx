@@ -5,7 +5,7 @@ import SigninForm from "./components/signin-form";
 
 export default function SigninPage() {
   return (
-    <AuthLayout image={"/assets/images/signin.jpg"}>
+    <AuthLayout image={"/assets/images/signin.webp"}>
       <SigninForm />
       <div className="flex absolute bottom-0 left-0 flex-row w-full p-8">
         <Typography variant="small" color="tertiary">

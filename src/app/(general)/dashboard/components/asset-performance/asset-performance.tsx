@@ -10,20 +10,24 @@ import { useAssetPerformance } from "@/api";
 import AssetPerformanceChart from "./asset-performance-chart";
 import QuotedAmount from "@/app/components/quoted-amount";
 
-export type AssetPerformanceProps = Omit<PaperWithTitleProps, "title">;
+export type AssetPerformanceProps = {
+  performance: "best" | "worst";
+} & Omit<PaperWithTitleProps, "title">;
 
 export default function AssetPerformance({
   className,
+  performance = "best",
   ...rest
 }: AssetPerformanceProps) {
   const { data: assetPerformance } = useAssetPerformance({
     timeframe: "yearly",
+    performance,
   });
 
   return (
     <PaperWithTitle
       color="tertiary"
-      title="Top Performance"
+      title={`${performance === "best" ? "Top" : "Lowest"} Performance`}
       compact
       className={cn(className)}
       {...rest}

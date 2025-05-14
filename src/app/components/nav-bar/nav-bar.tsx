@@ -18,7 +18,8 @@ export type NavBarProps = {
 export default async function NavBar({ className }: NavBarProps) {
   const cookieStore = await cookies();
   const token = cookieStore.get(ACCESS_TOKEN_NAME);
-  const isLoggedIn = !!token;
+
+  const isLoggedIn = !!token?.value;
 
   return (
     <AppBar

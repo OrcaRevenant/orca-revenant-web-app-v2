@@ -5,12 +5,13 @@ import { Command as CommandPrimitive } from "cmdk";
 import { cn } from "@/lib/utils";
 import IconSelector from "../../icon-selector";
 
-export type CommandInputProps = React.ComponentProps<
-  typeof CommandPrimitive.Input
->;
+export type CommandInputProps = {
+  disableChevronIcon?: boolean;
+} & React.ComponentProps<typeof CommandPrimitive.Input>;
 
 export default function CommandInput({
   className,
+  disableChevronIcon,
   ...props
 }: CommandInputProps) {
   return (
@@ -27,7 +28,12 @@ export default function CommandInput({
         )}
         {...props}
       />
-      <IconSelector icon="ChevronDown" className="size-5 shrink-0 opacity-50" />
+      {!disableChevronIcon && (
+        <IconSelector
+          icon="ChevronDown"
+          className="size-5 shrink-0 opacity-50"
+        />
+      )}
     </div>
   );
 }

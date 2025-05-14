@@ -344,6 +344,7 @@ export type GetAssetPerformanceParam = {
 export type GetAssetPerformanceQuery = AggregationQuery<
   QuoteQuery<{
     timeframe: Timeframe;
+    performanceType: "best" | "worst";
   }>
 >;
 

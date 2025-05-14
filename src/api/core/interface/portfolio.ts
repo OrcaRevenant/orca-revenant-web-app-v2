@@ -270,6 +270,7 @@ export type GetAssetPerformance = {
 export type GetAssetPerformancePayload = PayloadWithPortfolio<
   PayloadWithQuote<{
     timeframe: Timeframe;
+    performance: "best" | "worst";
   }>
 >;
 

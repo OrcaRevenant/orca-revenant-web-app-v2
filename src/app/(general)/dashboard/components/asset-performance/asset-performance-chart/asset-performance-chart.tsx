@@ -15,6 +15,8 @@ export default function AssetPerformanceChart({
     assetName: assetName!,
   });
 
+  if (!assetPerformance) return null;
+
   return (
     <AreaChart
       dataKey="value"

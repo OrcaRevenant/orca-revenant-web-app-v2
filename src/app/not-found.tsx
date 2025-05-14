@@ -18,7 +18,7 @@ export default function NotFound() {
               Page not found
             </Typography>
             <Typography variant="xLarge" color={"tertiary"}>
-              Sorry, the page you are looking for doesn't exist or has been
+              Sorry, the page you are looking for doesn&apos;t exist or has been
               moved. Here are some helpful links:
             </Typography>
           </div>
@@ -43,7 +43,7 @@ export default function NotFound() {
       </div>
       <Image
         className="w-full hidden lg:block"
-        src="/assets/images/not-found.jpg"
+        src="/assets/images/not-found.webp"
         alt="Not Found"
         width={720}
         height={960}

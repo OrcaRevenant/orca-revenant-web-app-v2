@@ -5,14 +5,20 @@ import CommandInput from "../../command/command-input";
 import Command from "../../command";
 import Typography from "../../typography";
 import { useConnections } from "@/api";
-
+import { useState } from "react";
 export default function ConnectionSelectContent() {
+  const [search, setSearch] = useState("");
   const { data: connections } = useConnections();
 
   return (
     <>
       <Command className="rounded-lg border shadow-md md:min-w-[450px]">
-        <CommandInput placeholder="Binance, KuCoin, etc." />
+        <CommandInput
+          disableChevronIcon
+          placeholder="Binance, KuCoin, etc."
+          value={search}
+          onValueChange={setSearch}
+        />
       </Command>
 
       <div className="flex flex-col gap-4">
@@ -20,10 +26,16 @@ export default function ConnectionSelectContent() {
           <Typography variant={"small"} weight={"semibold"}>
             Connections
           </Typography>
-          <div className="flex flex-row gap-3">
-            {connections?.map((connection) => (
-              <ConnectionCard key={connection.id} connection={connection} />
-            ))}
+          <div className="grid grid-cols-3 w-full gap-3">
+            {connections
+              ?.filter((connection) =>
+                connection.name.toLowerCase().includes(search.toLowerCase())
+              )
+              .map((connection) => (
+                <div className="col-span-1" key={connection.id}>
+                  <ConnectionCard connection={connection} />
+                </div>
+              ))}
           </div>
         </div>
       </div>

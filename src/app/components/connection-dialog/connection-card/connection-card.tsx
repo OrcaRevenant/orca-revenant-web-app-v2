@@ -13,7 +13,7 @@ export default function ConnectionCard({ connection }: ConnectionCardProps) {
     <Link href={`/connect/${connection.id}`} passHref className="w-full">
       <div
         data-slot="connection-card"
-        className="flex hover:cursor-pointer hover:**:data-[slot=connection-card-arrow-right]:text-bg-primary transition-colors hover:bg-bg-active flex-col bg-bg-secondary border border-border-secondary rounded-xl p-3 w-full h-[100px] justify-between"
+        className="flex hover:cursor-pointer hover:**:data-[slot=connection-card-arrow-right]:text-bg-quaternary transition-colors hover:bg-bg-active flex-col bg-bg-secondary border border-border-secondary rounded-xl p-3 w-full h-[100px] justify-between"
       >
         <div className="flex flex-row gap-1 items-center">
           <ConnectionLogo

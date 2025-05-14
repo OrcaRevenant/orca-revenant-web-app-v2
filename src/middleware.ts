@@ -93,11 +93,22 @@ export async function middleware(request: NextRequest) {
       pathname === "/" ||
       publicPaths.some((path) => pathname.startsWith(path))
     ) {
+      response.cookies.delete(ACCESS_TOKEN_NAME);
+      response.cookies.delete(REFRESH_TOKEN_NAME);
       return response;
     }
 
     const homeUrl = `/`;
-    return NextResponse.redirect(new URL(homeUrl, request.url), 307);
+
+    const redirectResponse = NextResponse.redirect(
+      new URL(homeUrl, request.url),
+      307
+      
+    );
+    redirectResponse.cookies.delete(ACCESS_TOKEN_NAME);
+    redirectResponse.cookies.delete(REFRESH_TOKEN_NAME);
+
+    return redirectResponse;
   }
 }
 

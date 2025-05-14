@@ -12,7 +12,7 @@ import HelperText from "@/app/components/helper-text";
 
 export default function SignupPage() {
   return (
-    <AuthLayout image={"/assets/images/signup.jpg"}>
+    <AuthLayout image={"/assets/images/signup.webp"}>
       <div className="absolute top-0 left-0 p-8">
         <Logo />
       </div>

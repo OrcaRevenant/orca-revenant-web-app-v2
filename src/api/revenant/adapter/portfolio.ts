@@ -361,6 +361,7 @@ export default class PortfolioService extends Portfolio {
         type: params.payload.type,
         timeframe: params.payload.timeframe,
         quote: params.payload.quote,
+        performanceType: params.payload.performance,
       },
     });
 

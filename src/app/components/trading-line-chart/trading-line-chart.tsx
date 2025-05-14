@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useControlPanel } from "@/providers/control-provider";
 import {
   AreaSeries,
   ColorType,
@@ -13,6 +14,7 @@ import {
   TimeChartOptions,
 } from "lightweight-charts";
 import { useEffect, useRef } from "react";
+import { numberFormat } from "../amount/utils";
 
 type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
@@ -26,8 +28,12 @@ export type TradingLineChartProps = {
   };
 };
 
-export default function TradingLineChart({ data, options }: TradingLineChartProps) {
+export default function TradingLineChart({
+  data,
+  options,
+}: TradingLineChartProps) {
   const chartContainerRef = useRef<HTMLElement>(null);
+  const { config } = useControlPanel();
 
   const isEmpty = !data.length;
 
@@ -58,7 +64,7 @@ export default function TradingLineChart({ data, options }: TradingLineChartProp
         horzLine: {
           visible: false,
         },
-        vertLine: { visible: false },
+        vertLine: { visible: false, labelVisible: false },
       },
       grid: {
         horzLines: {
@@ -91,20 +97,76 @@ export default function TradingLineChart({ data, options }: TradingLineChartProp
       topColor: getComputedColor("--utility-brand-500"),
       lineType: LineType.Curved,
       lineColor: getComputedColor("--utility-brand-600"),
-      crosshairMarkerRadius: 8,
+      crosshairMarkerBackgroundColor: getComputedColor("--utility-brand-900"),
+      crosshairMarkerRadius: 4,
       lineWidth: 2,
       ...options?.line,
     });
 
     series.setData(data as LineData[]);
 
+    const tooltip = document.createElement("div");
+    tooltip.className =
+      "absolute z-50 hidden bg-bg-secondary border border-border-secondary rounded-lg px-2.5 py-1.5 text-xs shadow-xl";
+
+    tooltip.style.pointerEvents = "none";
+    chartContainerRef.current?.appendChild(tooltip);
+
+    chart.subscribeCrosshairMove((param) => {
+      if (
+        param.point === undefined ||
+        !param.time ||
+        param.point.x < 0 ||
+        param.point.x > chartContainerRef.current!.clientWidth ||
+        param.point.y < 0 ||
+        param.point.y > chartContainerRef.current!.clientHeight
+      ) {
+        tooltip.style.display = "none";
+      } else {
+        const data = param.seriesData.get(series);
+        if (data) {
+          const timestamp = Number(param.time) * 1000;
+          const date = new Date(timestamp);
+          const formattedDate = date.toLocaleDateString();
+          const formattedTime = date.toLocaleTimeString();
+          const value = (data as any).value;
+
+          const formattedValue = numberFormat(value, {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: config.baseCurrency.percision,
+          });
+
+          const prefix = config.baseCurrency.options?.align === "right" 
+            ? "" 
+            : config.baseCurrency.symbol + (config.baseCurrency.options?.space ? " " : "");
+          
+          const suffix = config.baseCurrency.options?.align === "right"
+            ? (config.baseCurrency.options?.space ? " " : "") + config.baseCurrency.symbol
+            : "";
+
+          tooltip.style.display = "block";
+          tooltip.style.left = param.point.x + "px";
+          tooltip.style.top = param.point.y + "px";
+          tooltip.style.transform = "translate(8px, 8px)";
+
+          tooltip.innerHTML = `
+            <div class="grid gap-1.5 text-nowrap">
+              <div class="">${prefix}${formattedValue}${suffix}</div>
+              <div class="text-text-tertiary">${formattedDate} ${formattedTime}</div>
+            </div>
+          `;
+        }
+      }
+    });
+
     window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("resize", handleResize);
       chart.remove();
+      tooltip.remove();
     };
-  }, [data]);
+  }, [data, config]);
 
   return (
     <div className="w-full h-full relative" ref={chartContainerRef as any} />
