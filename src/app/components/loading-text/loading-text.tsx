@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import Typography, { TypographyProps } from "../typography";
 
-type LoadingTextProps = TypographyProps;
+type LoadingTextProps = TypographyProps<"div">;
 
 export default function LoadingText({
   children = "Loading",

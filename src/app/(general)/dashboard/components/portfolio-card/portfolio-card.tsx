@@ -14,6 +14,7 @@ import {
 import { cva } from "class-variance-authority";
 import Button from "@/app/components/button";
 import { useConfirmDialog } from "@/app/components/confirm-dialog/providers/confirm-dialog-provider";
+import { useRouter } from "next/navigation";
 
 type PortfolioCardProps = {
   portfolio: ConnectedPortfolio;
@@ -42,6 +43,7 @@ export default function PortfolioCard({
   ...rest
 }: PortfolioCardProps) {
   const { confirm } = useConfirmDialog();
+  const router = useRouter();
 
   const { mutate: removePortfolio, isPending } = useRemovePortfolio();
 
@@ -65,7 +67,10 @@ export default function PortfolioCard({
                 className="hover:bg-bg-quaternary/30 rounded-full p-1 transition-colors group-hover:bg-transparent"
               >
                 {isPending ? (
-                  <IconSelector icon="Loading02" className="size-5 animate-spin" />
+                  <IconSelector
+                    icon="Loading02"
+                    className="size-5 animate-spin"
+                  />
                 ) : (
                   <IconSelector className="size-5" icon="DotsVertical" />
                 )}
@@ -75,7 +80,7 @@ export default function PortfolioCard({
               <DropdownMenuItem
                 onClick={(e) => {
                   e.stopPropagation();
-                  alert("edit");
+                  router.push(`/dashboard/portfolio/${portfolio.id}`);
                 }}
               >
                 <IconSelector icon="Pencil01" className="size-4" />

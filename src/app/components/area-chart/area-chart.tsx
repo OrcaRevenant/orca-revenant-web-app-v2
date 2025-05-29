@@ -3,6 +3,7 @@
 import { AreaChart as RechartsAreaChart, Area } from "recharts";
 import ChartContainer, { ChartTooltip, ChartTooltipContent } from "../chart";
 import { cn } from "@/lib/utils";
+import { useId } from "react";
 
 export type AreaChartProps = {
   className?: string;
@@ -15,6 +16,8 @@ export default function AreaChart({
   data,
   dataKey = "value",
 }: AreaChartProps) {
+  const id = useId();
+
   const getChartColor = () => {
     if (!data || data.length < 2) return "var(--fg-quaternary)";
 
@@ -32,7 +35,13 @@ export default function AreaChart({
     <ChartContainer className={cn("h-[72px] w-full", className)} config={{}}>
       <RechartsAreaChart>
         <defs>
-          <linearGradient id="area-chart-gradient" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient
+            id={`area-chart-gradient-${id}`}
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="1"
+          >
             <stop offset="5%" stopColor={chartColor} stopOpacity={0.25} />
             <stop offset="100%" stopColor="transparent" stopOpacity={0.25} />
           </linearGradient>
@@ -42,10 +51,9 @@ export default function AreaChart({
           stroke={chartColor}
           strokeWidth={2}
           dot={false}
-          fill="url(#area-chart-gradient)"
+          fill={`url(#area-chart-gradient-${id})`}
           data={data}
           dataKey={dataKey}
-          
         />
         <ChartTooltip content={<ChartTooltipContent />} />
       </RechartsAreaChart>

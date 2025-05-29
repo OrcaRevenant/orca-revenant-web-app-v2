@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Footer from "@/app/components/footer";
 import NavBar from "@/app/components/nav-bar";
-import StellaActionButton from "../components/stella-action-button";
 import Toaster from "../components/sonner";
 
 export const metadata: Metadata = {
@@ -24,7 +23,6 @@ export default function LandingLayout({
       <NavBar />
       {children}
       <Footer />
-      <StellaActionButton />
       <Toaster />
     </>
   );
