@@ -1,11 +1,11 @@
 "use client";
 
-import ConnectionCard from "../connection-card";
-import CommandInput from "../../command/command-input";
-import Command from "../../command";
-import Typography from "../../typography";
 import { useConnections } from "@/api";
 import { useState } from "react";
+import Command from "../../command";
+import CommandInput from "../../command/command-input";
+import Typography from "../../typography";
+import ConnectionCard from "../connection-card";
 export default function ConnectionSelectContent() {
   const [search, setSearch] = useState("");
   const { data: connections } = useConnections();

@@ -20,12 +20,20 @@ export default function LandingPage() {
         </div>
         <Container maxWidth="xl" className="relative z-10">
           <div className="flex flex-col items-center gap-5">
-            <div className="flex flex-col">
+            <div className="flex flex-col px-1.5 md:px-0">
               <Typography
                 variant="display2XLarge"
                 weight="semibold"
                 color="primary"
-                className="text-center"
+                className="text-center hidden md:block"
+              >
+                Connect, Track, and Maximize Your Profits Effortlessly.
+              </Typography>
+              <Typography
+                variant="displayLarge"
+                weight="semibold"
+                color="primary"
+                className="text-center block md:hidden"
               >
                 Connect, Track, and Maximize Your Profits Effortlessly.
               </Typography>

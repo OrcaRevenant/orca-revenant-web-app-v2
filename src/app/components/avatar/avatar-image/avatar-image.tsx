@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as AvatarPrimitive from "@radix-ui/react-avatar"
+import * as AvatarPrimitive from "@radix-ui/react-avatar";
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 export default function AvatarImage({
   className,
@@ -15,5 +15,5 @@ export default function AvatarImage({
       className={cn("aspect-square size-full", className)}
       {...props}
     />
-  )
-} 
+  );
+}

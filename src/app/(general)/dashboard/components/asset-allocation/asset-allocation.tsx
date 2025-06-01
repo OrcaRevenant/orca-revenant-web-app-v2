@@ -1,13 +1,13 @@
 "use client";
 
-import AssetAllocationLegend from "./asset-allocation-legend";
-import DoughnutChart from "@/app/components/doughnut-chart";
-import PaperWithTitle from "@/app/components/paper-with-title";
-import Button from "@/app/components/button";
-import IconSelector from "@/app/components/icon-selector";
-import Typography from "@/app/components/typography";
 import { useAssetAllocation } from "@/api";
+import Button from "@/app/components/button";
+import DoughnutChart from "@/app/components/doughnut-chart";
+import IconSelector from "@/app/components/icon-selector";
+import PaperWithTitle from "@/app/components/paper-with-title";
+import Typography from "@/app/components/typography";
 import { useMemo } from "react";
+import AssetAllocationLegend from "./asset-allocation-legend";
 
 export default function AssetAllocation() {
   const { data: assetAllocation } = useAssetAllocation();
@@ -32,7 +32,7 @@ export default function AssetAllocation() {
       }
       title="Asset Allocation"
     >
-      <div className="flex flex-row">
+      <div className="flex flex-col md:flex-row">
         <div className="space-y-8 pb-3 flex-1">
           <div className="flex items-end flex-row gap-2">
             <Typography variant={"displaySmall"} weight={"semibold"}>
@@ -45,7 +45,7 @@ export default function AssetAllocation() {
 
           <AssetAllocationLegend data={data} />
         </div>
-        <div className="flex p-5 justify-center items-center">
+        <div className="hidden p-5 justify-center items-center md:flex">
           <DoughnutChart nameKey="label" dataKey="value" data={data} />
         </div>
       </div>

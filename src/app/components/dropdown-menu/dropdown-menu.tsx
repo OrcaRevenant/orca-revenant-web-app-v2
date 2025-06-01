@@ -2,7 +2,6 @@
 
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import * as React from "react";
-import DropdownMenuRadioItem from "./dropdow-menu-radio-item";
 import DropdownMenuCheckboxItem from "./dropdown-menu-checkbox-item";
 import DropdownMenuContent from "./dropdown-menu-content";
 import DropdownMenuGroup from "./dropdown-menu-group";
@@ -10,6 +9,7 @@ import DropdownMenuItem from "./dropdown-menu-item";
 import DropdownMenuLabel from "./dropdown-menu-label";
 import DropdownMenuPortal from "./dropdown-menu-portal";
 import DropdownMenuRadioGroup from "./dropdown-menu-radio-group";
+import DropdownMenuRadioItem from "./dropdown-menu-radio-item";
 import DropdownMenuSeparator from "./dropdown-menu-separator/dropdown-menu-separator";
 import DropdownMenuShortcut from "./dropdown-menu-shortcut/dropdown-menu-shortcut";
 import DropdownMenuSubContent from "./dropdown-menu-sub-content/dropdown-menu-sub-content";

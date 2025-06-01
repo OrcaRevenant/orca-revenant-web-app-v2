@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
+import { cva, VariantProps } from "class-variance-authority";
 import Paper, { PaperProps } from "../paper";
 import Typography from "../typography";
-import { cva, VariantProps } from "class-variance-authority";
 
 const paperWithTitleVariants = cva("flex flex-col", {
   variants: {

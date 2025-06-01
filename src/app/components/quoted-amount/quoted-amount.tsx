@@ -1,8 +1,7 @@
 "use client";
 
-import { AmountProps } from "../amount";
 import { useControlPanel } from "@/providers/control-provider";
-import Amount from "../amount";
+import Amount, { AmountProps } from "../amount";
 
 export type QuotedAmountProps = AmountProps;
 

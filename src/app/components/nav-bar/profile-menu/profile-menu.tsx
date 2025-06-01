@@ -1,10 +1,12 @@
 "use client";
 
-import { REFRESH_TOKEN_NAME } from "@/services/storage/storage";
-import { ACCESS_TOKEN_NAME } from "@/services/storage/storage";
+import {
+  ACCESS_TOKEN_NAME,
+  REFRESH_TOKEN_NAME,
+} from "@/services/storage/storage";
+import Cookies from "js-cookie";
 import Button from "../../button/button";
 import IconSelector from "../../icon-selector/icon-selector";
-import Cookies from "js-cookie";
 
 export default function ProfileMenu() {
   return (

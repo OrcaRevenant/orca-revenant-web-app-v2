@@ -1,6 +1,6 @@
+import { cva, VariantProps } from "class-variance-authority";
 import { HTMLAttributes } from "react";
 import IconSelector from "../icon-selector";
-import { cva, VariantProps } from "class-variance-authority";
 
 export const aiAvatarVariants = cva(
   "relative flex items-center justify-center rounded-full bg-black border border-utility-gray-blue-600 p-2 overflow-hidden",

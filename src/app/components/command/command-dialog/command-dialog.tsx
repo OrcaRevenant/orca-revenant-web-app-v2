@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import Command from "../command"
-import Dialog from "@/app/components/dialog"
-import {
+import Dialog, {
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/app/components/dialog"
+} from "@/app/components/dialog";
+import * as React from "react";
+import Command from "../command";
 
-export interface CommandDialogProps extends React.ComponentProps<typeof Dialog> {
-  title?: string
-  description?: string
-  children?: React.ReactNode
+export interface CommandDialogProps
+  extends React.ComponentProps<typeof Dialog> {
+  title?: string;
+  description?: string;
+  children?: React.ReactNode;
 }
 
 export default function CommandDialog({
@@ -34,5 +34,5 @@ export default function CommandDialog({
         </Command>
       </DialogContent>
     </Dialog>
-  )
-} 
+  );
+}

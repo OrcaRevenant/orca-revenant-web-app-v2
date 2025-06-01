@@ -1,7 +1,8 @@
 "use client";
 
+import { Timeframe, usePortfolioValueOverTime } from "@/api";
 import PaperWithTitle from "@/app/components/paper-with-title";
-import TradingLineChart from "@/app/components/trading-line-chart";
+import QuotedAmount from "@/app/components/quoted-amount";
 import Select, {
   SelectContent,
   SelectGroup,
@@ -10,10 +11,9 @@ import Select, {
   SelectTrigger,
   SelectValue,
 } from "@/app/components/select";
+import TradingLineChart from "@/app/components/trading-line-chart";
 import Typography from "@/app/components/typography";
-import { Timeframe, usePortfolioValueOverTime } from "@/api";
 import { useMemo, useState } from "react";
-import QuotedAmount from "@/app/components/quoted-amount";
 
 export default function OverallPortfolioValue() {
   const [timeframe, setTimeframe] = useState<Timeframe>("daily");
@@ -23,7 +23,6 @@ export default function OverallPortfolioValue() {
   });
 
   const overview = useMemo(() => {
-
     if (!portfolioValueOverTime?.length) {
       return { min: null, max: null, avg: null };
     }
@@ -85,13 +84,13 @@ export default function OverallPortfolioValue() {
         />
       </div>
 
-      <div className="flex flex-1 items-center flex-row gap-4 justify-evenly">
+      <div className="flex flex-1 items-center gap-4 justify-evenly overflow-auto">
         <div className="flex flex-col gap-2 p-5">
-          <Typography variant={"small"} weight={"semibold"} color={"tertiary"}>
+          <Typography variant={"xSmall"} weight={"semibold"} color={"tertiary"}>
             All Time High
           </Typography>
           <QuotedAmount
-            variant={"displaySmall"}
+            variant={"xLarge"}
             weight={"semibold"}
             color={"primary"}
             amount={overview.max as number}
@@ -99,11 +98,11 @@ export default function OverallPortfolioValue() {
         </div>
 
         <div className="flex flex-col gap-2 p-5">
-          <Typography variant={"small"} weight={"semibold"} color={"tertiary"}>
+          <Typography variant={"xSmall"} weight={"semibold"} color={"tertiary"}>
             Average
           </Typography>
           <QuotedAmount
-            variant={"displaySmall"}
+            variant={"xLarge"}
             weight={"semibold"}
             color={"primary"}
             amount={overview.avg as number}
@@ -111,11 +110,11 @@ export default function OverallPortfolioValue() {
         </div>
 
         <div className="flex flex-col gap-2 p-5">
-          <Typography variant={"small"} weight={"semibold"} color={"tertiary"}>
+          <Typography variant={"xSmall"} weight={"semibold"} color={"tertiary"}>
             All Time Low
           </Typography>
           <QuotedAmount
-            variant={"displaySmall"}
+            variant={"xLarge"}
             weight={"semibold"}
             color={"primary"}
             amount={overview.min as number}

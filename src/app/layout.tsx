@@ -1,7 +1,7 @@
 import { appConfig } from "@/config";
+import GeneralProviders from "@/providers/general-provider/general-provider";
 import type { Metadata } from "next";
 import "./globals.css";
-import GeneralProviders from "@/providers/general-provider/general-provider";
 
 export const metadata: Metadata = {
   title: appConfig.name,

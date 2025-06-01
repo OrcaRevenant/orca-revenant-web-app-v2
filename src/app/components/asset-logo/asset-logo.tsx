@@ -1,6 +1,6 @@
 import { AvatarProps } from "@radix-ui/react-avatar";
-import Avatar, { AvatarFallback, AvatarImage } from "../avatar";
 import { cva, VariantProps } from "class-variance-authority";
+import Avatar, { AvatarFallback, AvatarImage } from "../avatar";
 
 const assetVariants = cva("size-10", {
   variants: {

@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
-import { TypographyProps } from "../typography";
-import Typography from "../typography";
+import Typography, { TypographyProps } from "../typography";
 import { numberFormat } from "./utils";
 
 export type AmountProps = {

@@ -1,17 +1,17 @@
 "use client";
 
+import { Asset, useAssets } from "@/api";
+import Amount from "@/app/components/amount";
+import AssetLogo from "@/app/components/asset-logo";
 import Button from "@/app/components/button";
+import DataTable from "@/app/components/data-table/data-table";
 import Fluctuation from "@/app/components/fluctuation";
 import IconSelector from "@/app/components/icon-selector";
 import PaperWithTitle from "@/app/components/paper-with-title";
-import Typography from "@/app/components/typography";
-import DataTable from "@/app/components/data-table/data-table";
-import { ColumnDef } from "@tanstack/react-table";
-import { Asset, useAssets } from "@/api";
-import Skeleton from "@/app/components/skeleton";
-import Amount from "@/app/components/amount";
 import QuotedAmount from "@/app/components/quoted-amount";
-import AssetLogo from "@/app/components/asset-logo";
+import Skeleton from "@/app/components/skeleton";
+import Typography from "@/app/components/typography";
+import { ColumnDef } from "@tanstack/react-table";
 
 export default function AssetsTable() {
   const { data: assets, isPending } = useAssets();
@@ -37,7 +37,6 @@ export default function AssetsTable() {
       cell: ({ row }) => (
         <div className="flex items-center space-x-3">
           <AssetLogo shortName={row.original.shortName} />
-
           <div>
             <Typography variant="small" weight="medium">
               {row.original.name}

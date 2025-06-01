@@ -1,6 +1,6 @@
-import { Metadata } from "next";
-import Footer from "@/app/components/footer";
 import NavBar from "@/app/components/nav-bar";
+import { Metadata } from "next";
+import FooterWrapper from "../components/footer-wrapper/footer-wrapper";
 import Toaster from "../components/sonner";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function LandingLayout({
 
       <NavBar />
       {children}
-      <Footer />
+      <FooterWrapper />
       <Toaster />
     </>
   );

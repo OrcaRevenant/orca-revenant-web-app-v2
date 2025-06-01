@@ -1,12 +1,15 @@
-import { cn } from "@/lib/utils"
-import * as React from "react"
+import { cn } from "@/lib/utils";
+import * as React from "react";
 
-export default function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
+export default function Skeleton({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="skeleton"
       className={cn("bg-border-secondary animate-pulse rounded-xs", className)}
       {...props}
     />
-  )
-} 
+  );
+}
