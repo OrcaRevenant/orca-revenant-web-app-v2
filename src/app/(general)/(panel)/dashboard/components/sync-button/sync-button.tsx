@@ -1,3 +1,5 @@
+"use client";
+
 import IconButton from "@/app/components/icon-button";
 import IconSelector from "@/app/components/icon-selector";
 import Typography from "@/app/components/typography";
@@ -27,7 +29,10 @@ export default function SyncButton() {
       <Typography
         data-slot="last-sync-time"
         variant={"xSmall"}
-        className={cn("opacity-0 transition-opacity select-none duration-500", isSyncing && "!opacity-0")}
+        className={cn(
+          "opacity-0 transition-opacity select-none duration-500",
+          isSyncing && "!opacity-0"
+        )}
         color={"tertiary"}
       >
         Last sync: 4min ago

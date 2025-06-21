@@ -1,9 +1,7 @@
 "use client";
 
 import { useAssetAllocation } from "@/api";
-import Button from "@/app/components/button";
 import DoughnutChart from "@/app/components/doughnut-chart";
-import IconSelector from "@/app/components/icon-selector";
 import PaperWithTitle from "@/app/components/paper-with-title";
 import Typography from "@/app/components/typography";
 import { useMemo } from "react";
@@ -24,12 +22,12 @@ export default function AssetAllocation() {
 
   return (
     <PaperWithTitle
-      action={
-        <Button size="sm">
-          View Details
-          <IconSelector icon="ChevronRight" />
-        </Button>
-      }
+      // action={
+      //   <Button size="sm">
+      //     View Details
+      //     <IconSelector icon="ChevronRight" />
+      //   </Button>
+      // }
       title="Asset Allocation"
     >
       <div className="flex flex-col md:flex-row">

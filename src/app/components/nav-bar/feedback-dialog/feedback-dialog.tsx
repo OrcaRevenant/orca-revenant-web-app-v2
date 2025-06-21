@@ -13,11 +13,14 @@ import Dialog, {
 } from "../../dialog";
 import IconSelector from "../../icon-selector";
 import FeedbackForm from "./feedback-form";
+import LoadingButton from "../../loading-button";
+import { toast } from "sonner";
 
 export default function FeedbackDialog() {
   const { mutate: createFeedback, isPending } = useCreateFeedback({
     onSuccess() {
       setIsOpen(false);
+      toast.success("Feedback sent!");
     },
   });
   const [isOpen, setIsOpen] = useState(false);
@@ -54,15 +57,15 @@ export default function FeedbackDialog() {
           >
             Cancel
           </Button>
-          <Button
+          <LoadingButton
             form="feedback-form"
-            disabled={isPending}
+            loading={isPending}
             className="flex-1"
             variant="primary"
             size="md"
           >
             Send
-          </Button>
+          </LoadingButton>
         </DialogFooter>
       </DialogContent>
     </Dialog>

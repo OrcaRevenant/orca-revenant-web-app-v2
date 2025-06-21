@@ -2,9 +2,9 @@ import Percentage from "@/app/components/percentage";
 import QuotedAmount from "@/app/components/quoted-amount";
 import { SupportedIcons } from "@/icons/icons";
 import { cn } from "@/lib/utils";
-import IconSelector from "../../../../components/icon-selector";
-import Paper from "../../../../components/paper";
-import Typography from "../../../../components/typography";
+import IconSelector from "../../../../../components/icon-selector";
+import Paper from "../../../../../components/paper";
+import Typography from "../../../../../components/typography";
 import { useControlPanel } from "@/providers/control-provider";
 
 export type StatCardProps = {

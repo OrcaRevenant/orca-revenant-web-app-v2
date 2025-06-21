@@ -12,8 +12,13 @@ import QuotedAmount from "@/app/components/quoted-amount";
 import Skeleton from "@/app/components/skeleton";
 import Typography from "@/app/components/typography";
 import { ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
 
-export default function AssetsTable() {
+export type AssetsTableProps = {
+  preview?: boolean;
+};
+
+export default function AssetsTable({ preview }: AssetsTableProps) {
   const { data: assets, isPending } = useAssets();
 
   const columns: ColumnDef<Asset>[] = [
@@ -85,10 +90,14 @@ export default function AssetsTable() {
       title="Assets"
       disablePadding
       action={
-        <Button variant={"primary"}>
-          See More
-          <IconSelector icon="ArrowRight" />
-        </Button>
+        preview && (
+          <Link href={"/assets"}>
+            <Button variant={"primary"}>
+              See More
+              <IconSelector icon="ArrowRight" />
+            </Button>
+          </Link>
+        )
       }
     >
       <DataTable<Asset>

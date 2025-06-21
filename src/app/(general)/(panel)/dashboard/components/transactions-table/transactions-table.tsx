@@ -10,11 +10,19 @@ import TransactionConnection from "./transaction-connection";
 import { Transaction, useTransactions } from "@/api";
 import DataTable from "@/app/components/data-table/data-table";
 import { ColumnDef } from "@tanstack/react-table";
+import { useState } from "react";
+import Link from "next/link";
 
-export default function TransactionsTable() {
+export type TransactionsTableProps = {
+  preview?: boolean;
+};
+
+export default function TransactionsTable({ preview }: TransactionsTableProps) {
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
   const { data: transactions, isPending } = useTransactions({
-    limit: 10,
-    page: 1,
+    limit,
+    page,
   });
 
   const columns: ColumnDef<Transaction>[] = [
@@ -61,10 +69,14 @@ export default function TransactionsTable() {
       title="Transactions"
       disablePadding
       action={
-        <Button variant={"primary"}>
-          See More
-          <IconSelector icon="ArrowRight" />
-        </Button>
+        preview && (
+          <Link href={"/transactions"}>
+            <Button variant={"primary"}>
+              See More
+              <IconSelector icon="ArrowRight" />
+            </Button>
+          </Link>
+        )
       }
     >
       <DataTable<Transaction>

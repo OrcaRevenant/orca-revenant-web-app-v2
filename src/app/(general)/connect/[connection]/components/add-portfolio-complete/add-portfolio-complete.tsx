@@ -1,11 +1,13 @@
 "use client";
 
+import { usePortfolios } from "@/api";
 import { ConnectedPortfolio } from "@/api/core/interface/portfolio";
 import Button from "@/app/components/button";
 import IconSelector from "@/app/components/icon-selector";
 import Typography from "@/app/components/typography";
 import { cn } from "@/lib/utils";
 import { usePortfolio } from "@/providers/portfolio-provider";
+import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 export type AddPortfolioCompleteProps = {
@@ -18,6 +20,7 @@ export default function AddPortfolioComplete({
   className,
 }: AddPortfolioCompleteProps) {
   const { setSelectedPortfolio, selectedPortfolio } = usePortfolio();
+  const queryClient = useQueryClient();
   const router = useRouter();
 
   return (
@@ -38,8 +41,12 @@ export default function AddPortfolioComplete({
       </div>
 
       <Button
-        onClick={() => {
+        onClick={async () => {
           if (portfolio.id === selectedPortfolio?.id) return;
+
+          await queryClient.refetchQueries({
+            queryKey: usePortfolios.queryKey,
+          });
 
           setSelectedPortfolio(portfolio);
           router.replace("/dashboard");

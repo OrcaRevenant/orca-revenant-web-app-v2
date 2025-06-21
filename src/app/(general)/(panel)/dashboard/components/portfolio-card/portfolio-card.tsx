@@ -80,7 +80,7 @@ export default function PortfolioCard({
               <DropdownMenuItem
                 onClick={(e) => {
                   e.stopPropagation();
-                  router.push(`/dashboard/portfolio/${portfolio.id}`);
+                  router.push(`/connect/${portfolio.connection.name}/${portfolio.id}`);
                 }}
               >
                 <IconSelector icon="Pencil01" className="size-4" />

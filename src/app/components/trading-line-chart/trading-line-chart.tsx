@@ -160,7 +160,6 @@ export default function TradingLineChart({
           const offsetX = 8;
           const offsetY = 8;
 
-          console.log(param.point.x);
           if (
             param.point.x >
             chartContainerRef.current!.clientWidth - tooltipWidth

@@ -8,12 +8,12 @@ import {
   useCreatePortfolio,
   usePortfolios,
 } from "@/api";
-import Button from "@/app/components/button";
 import FormLabel from "@/app/components/form-label";
 import HelperText from "@/app/components/helper-text";
 import IconSelector from "@/app/components/icon-selector";
 import Input from "@/app/components/input";
 import Label from "@/app/components/label/label";
+import LoadingButton from "@/app/components/loading-button";
 import { cn } from "@/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { HTMLAttributes } from "react";
@@ -96,10 +96,10 @@ export default function AddPortfolioForm({
           )
         )}
       </div>
-      <Button disabled={isPending} type="submit" size="lg">
+      <LoadingButton loading={isPending} type="submit" size="lg">
         <IconSelector icon="Rocket02" />
         Connect Portfolio
-      </Button>
+      </LoadingButton>
     </form>
   );
 }
