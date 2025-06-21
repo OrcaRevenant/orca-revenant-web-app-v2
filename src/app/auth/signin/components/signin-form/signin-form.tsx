@@ -7,13 +7,17 @@ import Input from "@/app/components/input";
 import Logo from "@/app/components/logo";
 import SocialButton from "@/app/components/social-button";
 import Typography from "@/app/components/typography";
-import { ACCESS_TOKEN_NAME, REFRESH_TOKEN_NAME } from "@/services/storage/storage";
+import {
+  ACCESS_TOKEN_NAME,
+  REFRESH_TOKEN_NAME,
+} from "@/services/storage/storage";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import Label from "@/app/components/label";
 import Checkbox from "@/app/components/checkbox";
+import LoadingButton from "@/app/components/loading-button";
 
 type SigninFormData = {
   email: string;
@@ -106,9 +110,13 @@ export default function SigninForm() {
           </Link>
         </div>
         <div className="flex flex-col gap-4 w-full">
-          <Button type="submit" disabled={isPending} variant="primary">
+          <LoadingButton
+            loading={isPending}
+            type="submit"
+            variant="primary"
+          >
             Sign in
-          </Button>
+          </LoadingButton>
           <SocialButton disabled icon="Google" label="Sign in with Google" />
         </div>
       </form>

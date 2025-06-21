@@ -16,21 +16,21 @@ function addSpace(
 
 export default function QuotedAmount({ ...rest }: QuotedAmountProps) {
   const {
-    config: { baseCurrency },
+    config: { quoteCurrency },
   } = useControlPanel();
 
   return (
     <Amount
       {...rest}
-      maxPrecision={baseCurrency.percision}
+      maxPrecision={quoteCurrency.percision}
       prefix={
-        baseCurrency.options?.align === `right`
+        quoteCurrency.options?.align === `right`
           ? ``
-          : addSpace(baseCurrency.symbol, `end`, baseCurrency.options?.space)
+          : addSpace(quoteCurrency.symbol, `end`, quoteCurrency.options?.space)
       }
       suffix={
-        baseCurrency.options?.align === `right`
-          ? addSpace(baseCurrency.symbol, `start`, baseCurrency.options?.space)
+        quoteCurrency.options?.align === `right`
+          ? addSpace(quoteCurrency.symbol, `start`, quoteCurrency.options?.space)
           : ``
       }
     />

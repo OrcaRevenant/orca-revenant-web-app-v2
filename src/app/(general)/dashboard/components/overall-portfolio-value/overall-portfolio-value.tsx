@@ -1,25 +1,18 @@
 "use client";
 
-import { Timeframe, usePortfolioValueOverTime } from "@/api";
+import { usePortfolioValueOverTime } from "@/api";
 import PaperWithTitle from "@/app/components/paper-with-title";
 import QuotedAmount from "@/app/components/quoted-amount";
-import Select, {
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/app/components/select";
 import TradingLineChart from "@/app/components/trading-line-chart";
 import Typography from "@/app/components/typography";
-import { useMemo, useState } from "react";
+import { useControlPanel } from "@/providers/control-provider";
+import { useMemo } from "react";
 
 export default function OverallPortfolioValue() {
-  const [timeframe, setTimeframe] = useState<Timeframe>("daily");
+  const { config } = useControlPanel();
 
   const { data: portfolioValueOverTime } = usePortfolioValueOverTime({
-    timeframe,
+    timeframe: config.timeframe.timeframe,
   });
 
   const overview = useMemo(() => {
@@ -48,31 +41,7 @@ export default function OverallPortfolioValue() {
   }, [portfolioValueOverTime]);
 
   return (
-    <PaperWithTitle
-      className="h-full"
-      title="Overall Portfolio Value"
-      action={
-        <Select
-          value={timeframe}
-          onValueChange={(value) => {
-            setTimeframe(value as Timeframe);
-          }}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Time" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Time Periods</SelectLabel>
-              <SelectItem value="daily">Daily</SelectItem>
-              <SelectItem value="weekly">Weekly</SelectItem>
-              <SelectItem value="monthly">Monthly</SelectItem>
-              <SelectItem value="yearly">Yearly</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      }
-    >
+    <PaperWithTitle className="h-full" title="Overall Portfolio Value">
       <div className="h-[240px]">
         <TradingLineChart
           data={

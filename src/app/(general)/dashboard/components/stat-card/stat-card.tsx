@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import IconSelector from "../../../../components/icon-selector";
 import Paper from "../../../../components/paper";
 import Typography from "../../../../components/typography";
+import { useControlPanel } from "@/providers/control-provider";
 
 export type StatCardProps = {
   title: string;
@@ -19,6 +20,8 @@ export default function StatCard({
   percentage = 0,
   icon,
 }: StatCardProps) {
+  const { config } = useControlPanel();
+
   const iconColor =
     +percentage > 0 ? `text-fg-success-secondary` : `text-fg-error-secondary`;
 
@@ -57,7 +60,10 @@ export default function StatCard({
           </div>
 
           <Typography variant={"small"} color={"tertiary"}>
-            vs last month
+            vs last{" "}
+            {config.timeframe.timeframe === "daily"
+              ? "day"
+              : config.timeframe.timeframe.replace("ly", "")}
           </Typography>
         </div>
       </div>

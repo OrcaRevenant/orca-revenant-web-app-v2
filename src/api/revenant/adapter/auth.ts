@@ -5,8 +5,12 @@ import * as service from "@/api/revenant";
 
 export default class AuthService extends Auth {
   @AsyncCatchError()
-  async renewToken(): Promise<Types.RenewTokenResponse> {
-    throw new Error("Method not implemented.");
+  async renewToken({
+    payload: { refreshToken },
+  }: Types.RenewToken): Promise<Types.RenewTokenResponse> {
+    const { data } = await service.renewToken({ payload: { refreshToken } });
+
+    return data as unknown as Types.User;
   }
 
   @AsyncCatchError()

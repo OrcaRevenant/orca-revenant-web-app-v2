@@ -1,14 +1,11 @@
 "use client";
 
-import { useControlPanelStore } from "@/hooks/useControlPanel";
 import { memo, useCallback } from "react";
 import DropdownMenu, {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuPortal,
-  DropdownMenuSeparator,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
@@ -17,12 +14,8 @@ import DropdownMenu, {
 import IconButton from "../icon-button";
 import IconSelector from "../icon-selector";
 import Switch from "../switch";
-
-const CURRENCIES = ["USD", "EUR", "GBP"] as const;
-const TIMEFRAMES = ["Daily", "Weekly", "Monthly", "Yearly"] as const;
-
-type Currency = (typeof CURRENCIES)[number];
-type Timeframe = (typeof TIMEFRAMES)[number];
+import { appConfig, BaseCurrency, BaseTimeframe } from "@/config";
+import { useControlPanel } from "@/providers/control-provider";
 
 interface MenuItemProps {
   value: string;
@@ -41,31 +34,21 @@ const MenuItem = memo(({ value, selectedValue, onClick }: MenuItemProps) => (
 
 MenuItem.displayName = "MenuItem";
 
-export default memo(function ControlPanel({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
-  const {
-    isDarkMode,
-    currency,
-    timeframe,
-    setDarkMode,
-    setCurrency,
-    setTimeframe,
-  } = useControlPanelStore();
+export default memo(function ControlPanel({}: React.ComponentProps<"div">) {
+  const { config, setConfig } = useControlPanel();
 
   const handleCurrencyChange = useCallback(
-    (newCurrency: Currency) => {
-      setCurrency(newCurrency);
+    (newCurrency: BaseCurrency) => {
+      setConfig({ quoteCurrency: newCurrency });
     },
-    [setCurrency]
+    [setConfig]
   );
 
-  const handleTimeframeChange = useCallback(
-    (newTimeframe: Timeframe) => {
-      setTimeframe(newTimeframe);
+  const handleBaseTimeframeChange = useCallback(
+    (newBaseTimeframe: BaseTimeframe) => {
+      setConfig({ timeframe: newBaseTimeframe });
     },
-    [setTimeframe]
+    [setConfig]
   );
 
   return (
@@ -75,20 +58,19 @@ export default memo(function ControlPanel({
           <IconSelector icon="Settings01" className="size-5" />
         </IconButton>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="start">
-        <DropdownMenuLabel>Control Panel</DropdownMenuLabel>
+      <DropdownMenuContent className="w-56" align="end">
         <DropdownMenuGroup>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>Currency</DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                {CURRENCIES.map((curr) => (
+                {appConfig.quote.currencies.map((curr) => (
                   <DropdownMenuItem
-                    key={curr}
+                    key={curr.key}
                     onClick={() => handleCurrencyChange(curr)}
                   >
-                    {curr}
-                    {currency === curr && (
+                    {curr.key.toUpperCase()}
+                    {config.quoteCurrency.key === curr.key && (
                       <IconSelector
                         icon="Check"
                         className="text-utility-brand-500 ml-auto"
@@ -103,13 +85,13 @@ export default memo(function ControlPanel({
             <DropdownMenuSubTrigger>Timeframe</DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                {TIMEFRAMES.map((tf) => (
+                {appConfig.timeframe.timeframes.map((tf) => (
                   <DropdownMenuItem
-                    key={tf}
-                    onClick={() => handleTimeframeChange(tf)}
+                    key={tf.key}
+                    onClick={() => handleBaseTimeframeChange(tf)}
                   >
-                    {tf}
-                    {timeframe === tf && (
+                    {tf.label}
+                    {config.timeframe.key === tf.key && (
                       <IconSelector
                         icon="Check"
                         className="text-utility-brand-500 ml-auto"
@@ -122,25 +104,23 @@ export default memo(function ControlPanel({
           </DropdownMenuSub>
         </DropdownMenuGroup>
 
-        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          onClick={() => {
+            if (config.palette === "dark")
+              document.documentElement.classList.remove("dark");
+            else document.documentElement.classList.add("dark");
 
-        <DropdownMenuItem onClick={() => setDarkMode(!isDarkMode)}>
+            setConfig({
+              palette: config.palette === "dark" ? "light" : "dark",
+            });
+          }}
+        >
           Dark
           <Switch
             id="dark-mode"
-            checked={isDarkMode}
-            onCheckedChange={setDarkMode}
+            checked={config.palette === "dark"}
             className="ml-auto cursor-pointer"
           />
-        </DropdownMenuItem>
-
-        <DropdownMenuSeparator />
-
-        <div className="w-full border-t border-border-secondary" />
-
-        <DropdownMenuItem className="text-text-error-primary">
-          Log out
-          <IconSelector icon="LogOut01" className="size-5 ml-auto" />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

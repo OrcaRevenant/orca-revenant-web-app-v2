@@ -4,10 +4,12 @@ import Percentage from "../percentage";
 
 export type FluctuationProps = {
   fluctuation?: number | string;
+  disableIcon?: boolean;
 } & BadgeProps;
 
 export default function Fluctuation({
   fluctuation = 0,
+  disableIcon = false,
   ...rest
 }: FluctuationProps) {
   const isPositive = +fluctuation > 0;
@@ -20,14 +22,18 @@ export default function Fluctuation({
 
   return (
     <Badge size={"sm"} color={getColor()} {...rest}>
-      {!isZero && (
+      {!isZero && !disableIcon && (
         <IconSelector
           icon={
             isZero ? "FlexAlignTop" : isPositive ? "TrendUp01" : "TrendDown01"
           }
         />
       )}
-      <Percentage variant={"inherit"} percentage={fluctuation} />
+      <Percentage
+        disableSign={!disableIcon}
+        variant={"inherit"}
+        percentage={fluctuation}
+      />
     </Badge>
   );
 }

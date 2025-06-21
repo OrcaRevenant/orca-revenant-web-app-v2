@@ -1,7 +1,6 @@
 "use client";
 
 import { ConnectedPortfolio } from "@/api/core/interface/portfolio";
-import PortfolioPanel from "@/app/(general)/dashboard/components/portfolio-panel/portfolio-panel";
 import Button from "@/app/components/button";
 import IconSelector from "@/app/components/icon-selector";
 import Typography from "@/app/components/typography";
@@ -28,7 +27,6 @@ export default function AddPortfolioComplete({
         className
       )}
     >
-      <PortfolioPanel />
       <div className="flex flex-col gap-5">
         <Typography variant="displaySmall" weight={"semibold"}>
           Your portfolio successfully connected!

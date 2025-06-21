@@ -31,10 +31,12 @@ export default function ConnectionLogo({
     connectionName === "mock" ? "unknown" : connectionName;
   return (
     <Avatar className={assetVariants({ size, className })} {...rest}>
-      <AvatarImage
-        src={`http://127.0.0.1:54321/storage/v1/object/public/logos/connections/${mappedConnectionName?.toLowerCase()}.svg`}
-        alt={connectionName}
-      />
+      {mappedConnectionName && (
+        <AvatarImage
+          src={`http://127.0.0.1:54321/storage/v1/object/public/logos/connections/${mappedConnectionName?.toLowerCase()}.svg`}
+          alt={connectionName}
+        />
+      )}
       <AvatarFallback>
         {connectionName?.slice(0, 1).toUpperCase()}
       </AvatarFallback>

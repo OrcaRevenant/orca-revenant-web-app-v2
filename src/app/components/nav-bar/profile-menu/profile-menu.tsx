@@ -5,24 +5,41 @@ import {
   REFRESH_TOKEN_NAME,
 } from "@/services/storage/storage";
 import Cookies from "js-cookie";
-import Button from "../../button/button";
 import IconSelector from "../../icon-selector/icon-selector";
+
+import DropdownMenu, {
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../../dropdown-menu";
+import IconButton from "../../icon-button";
 
 export default function ProfileMenu() {
   return (
-    <Button
-      onClick={() => {
-        Cookies.remove(ACCESS_TOKEN_NAME);
-        Cookies.remove(REFRESH_TOKEN_NAME);
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <IconButton
+          className="bg-bg-tertiary rounded-full"
+          variant="tertiaryGray"
+        >
+          <IconSelector icon="User01" className="size-5" />
+        </IconButton>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56" align="end">
+        <DropdownMenuItem
+          onClick={() => {
+            Cookies.remove(ACCESS_TOKEN_NAME);
+            Cookies.remove(REFRESH_TOKEN_NAME);
 
-        // Force a hard refresh to update the server-side rendered content
-        window.location.reload();
-      }}
-      variant="primary"
-      size="md"
-    >
-      <IconSelector icon="LogOut01" className="size-5" />
-      Logout
-    </Button>
+            // Force a hard refresh to update the server-side rendered content
+            window.location.reload();
+          }}
+          className="text-text-error-primary"
+        >
+          Log out
+          <IconSelector icon="LogOut01" className="size-5 ml-auto" />
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

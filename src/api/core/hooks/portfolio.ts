@@ -20,11 +20,11 @@ export function usePortfolios(
   >
 ) {
   const {
-    config: { baseCurrency },
+    config: { quoteCurrency },
   } = useControlPanel();
 
   const modifiedPayload: Types.GetPortfoliosPayload = {
-    quote: baseCurrency.key,
+    quote: quoteCurrency.key,
   };
 
   return useQuery({
@@ -64,13 +64,13 @@ export function useAssets(
 ) {
   const selectedPortfolio = useSelectedPortfolio();
   const {
-    config: { baseCurrency },
+    config: { quoteCurrency },
   } = useControlPanel();
 
   const modifiedPayload: Types.GetAssetsPayload = {
     id: selectedPortfolio?.id as string,
     type: selectedPortfolio?.type as "portfolio" | "group",
-    quote: baseCurrency.key,
+    quote: quoteCurrency.key,
   };
 
   const enabled = !!selectedPortfolio?.isAvailable;
@@ -98,13 +98,13 @@ export function useAssetAllocation(
 ) {
   const selectedPortfolio = useSelectedPortfolio();
   const {
-    config: { baseCurrency },
+    config: { quoteCurrency },
   } = useControlPanel();
 
   const modifiedPayload: Types.GetAssetAllocationPayload = {
     id: selectedPortfolio?.id as string,
     type: selectedPortfolio?.type as "portfolio" | "group",
-    quote: baseCurrency.key,
+    quote: quoteCurrency.key,
   };
 
   const enabled = !!selectedPortfolio?.isAvailable;
@@ -134,13 +134,13 @@ export function usePortfolioAllocation(
 ) {
   const selectedPortfolio = useSelectedPortfolio();
   const {
-    config: { baseCurrency },
+    config: { quoteCurrency },
   } = useControlPanel();
 
   const modifiedPayload: Types.GetAssetAllocationPayload = {
     id: selectedPortfolio?.id as string,
     type: selectedPortfolio?.type as "portfolio" | "group",
-    quote: baseCurrency.key,
+    quote: quoteCurrency.key,
   };
 
   const enabled = !!selectedPortfolio?.isAvailable;
@@ -158,30 +158,30 @@ export function usePortfolioAllocation(
   });
 }
 
-useStatistics.queryKey = (payload: Types.GetStatisticsPayload) => [
-  `statistics`,
+useBalance.queryKey = (payload: Types.GetBalancePayload) => [
+  `balance`,
   ...Object.values(payload),
 ];
-export function useStatistics(
-  options?: UseQueryOptions<unknown, Error, Types.GetStatisticsResponse>
+export function useBalance(
+  options?: UseQueryOptions<unknown, Error, Types.GetBalanceResponse>
 ) {
   const selectedPortfolio = useSelectedPortfolio();
   const {
-    config: { baseCurrency },
+    config: { quoteCurrency },
   } = useControlPanel();
 
-  const modifiedPayload: Types.GetStatisticsPayload = {
+  const modifiedPayload: Types.GetBalancePayload = {
     id: selectedPortfolio?.id as string,
     type: selectedPortfolio?.type as "portfolio" | "group",
-    quote: baseCurrency.key,
+    quote: quoteCurrency.key,
   };
 
   const enabled = !!selectedPortfolio?.isAvailable;
 
   return useQuery({
-    queryKey: useStatistics.queryKey(modifiedPayload),
+    queryKey: useBalance.queryKey(modifiedPayload),
     queryFn: () =>
-      service.portfolio.getStatistics({
+      service.portfolio.getBalance({
         payload: modifiedPayload,
       }),
     refetchOnWindowFocus: false,
@@ -205,13 +205,13 @@ export function usePortfolioValueOverTime(
 ) {
   const selectedPortfolio = useSelectedPortfolio();
   const {
-    config: { baseCurrency },
+    config: { quoteCurrency },
   } = useControlPanel();
 
   const modifiedPayload: Types.GetPortfolioValueOverTimePayload = {
     id: selectedPortfolio?.id as string,
     type: selectedPortfolio?.type as "portfolio" | "group",
-    quote: baseCurrency.key,
+    quote: quoteCurrency.key,
     timeframe: payload.timeframe,
   };
 
@@ -241,14 +241,14 @@ export function useAssetPerformance(
 ) {
   const selectedPortfolio = useSelectedPortfolio();
   const {
-    config: { baseCurrency },
+    config: { quoteCurrency },
   } = useControlPanel();
 
   const modifiedPayload: Types.GetAssetPerformancePayload = {
     id: selectedPortfolio?.id as string,
     type: selectedPortfolio?.type as "portfolio" | "group",
     ...payload,
-    quote: baseCurrency.key,
+    quote: quoteCurrency.key,
   };
 
   const enabled = !!selectedPortfolio?.isAvailable;
@@ -281,12 +281,12 @@ export function useAssetPerformanceOverTime(
   const selectedPortfolio = useSelectedPortfolio();
   const enabled = !!selectedPortfolio?.isAvailable && !!payload.assetName;
   const {
-    config: { baseCurrency },
+    config: { quoteCurrency },
   } = useControlPanel();
 
   const modifiedPayload: Types.GetAssetPerformanceOverTimePayload = {
     ...payload,
-    quote: baseCurrency.key,
+    quote: quoteCurrency.key,
   };
 
   return useQuery({
@@ -398,14 +398,14 @@ export function useTransactions(
   const selectedPortfolio = useSelectedPortfolio();
 
   const {
-    config: { baseCurrency },
+    config: { quoteCurrency },
   } = useControlPanel();
 
   const modifiedPayload: Types.GetTransactionsPayload = {
     ...payload,
     id: selectedPortfolio?.id as string,
     type: selectedPortfolio?.type as "portfolio" | "group",
-    quote: baseCurrency.key,
+    quote: quoteCurrency.key,
   };
 
   const enabled = !!selectedPortfolio?.isAvailable;

@@ -96,8 +96,7 @@ function serializeAsset(asset: service.Asset): Types.Asset {
 }
 
 export default class PortfolioService extends Portfolio {
-
-  @AsyncCatchError()  
+  @AsyncCatchError()
   async generateAdvice(
     params: Types.GenerateAdvice
   ): Promise<Types.GenerateAdviceResponse> {
@@ -264,9 +263,9 @@ export default class PortfolioService extends Portfolio {
   }
 
   @AsyncCatchError()
-  async getStatistics(
-    params: Types.GetStatistics
-  ): Promise<Types.GetStatisticsResponse> {
+  async getBalance(
+    params: Types.GetBalance
+  ): Promise<Types.GetBalanceResponse> {
     const response = await service.getBalance({
       param: {
         id: params.payload.id,
@@ -278,11 +277,7 @@ export default class PortfolioService extends Portfolio {
     });
 
     return {
-      pnl: {
-        amount: 0,
-        percentage: 0,
-      },
-      totalValue: response.data?.balance,
+      balance: response.data?.balance,
     };
   }
 

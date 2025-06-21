@@ -41,8 +41,9 @@ export default function PortfolioAllGroupCard({
         All Portfolios
       </Typography>
 
-      <div className="flex flex-row items-center justify-between">
+      <div className="flex flex-row items-center justify-between gap-2">
         <QuotedAmount
+          className="max-w-full overflow-hidden text-ellipsis"
           amount={stats.totalValue}
           weight={"semibold"}
           variant={"displaySmall"}

@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { useAssetPerformance } from "@/api";
 import AssetPerformanceChart from "./asset-performance-chart";
 import QuotedAmount from "@/app/components/quoted-amount";
+import { useControlPanel } from "@/providers/control-provider";
 
 export type AssetPerformanceProps = {
   performance: "best" | "worst";
@@ -19,8 +20,9 @@ export default function AssetPerformance({
   performance = "best",
   ...rest
 }: AssetPerformanceProps) {
+  const { config } = useControlPanel();
   const { data: assetPerformance } = useAssetPerformance({
-    timeframe: "yearly",
+    timeframe: config.timeframe.timeframe,
     performance,
   });
 

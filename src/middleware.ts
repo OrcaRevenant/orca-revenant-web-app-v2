@@ -82,7 +82,6 @@ export async function middleware(request: NextRequest) {
   }
 
   if (isLoggedIn) {
-    console.log("isLoggedIn", pathname);
     if (publicPaths.some((path) => pathname.startsWith(path))) {
       const dashboardUrl = `/dashboard`;
       return NextResponse.redirect(new URL(dashboardUrl, request.url), 307);

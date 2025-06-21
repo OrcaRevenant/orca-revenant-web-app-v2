@@ -1,9 +1,10 @@
 "use client";
 
 import { AreaChart as RechartsAreaChart, Area } from "recharts";
-import ChartContainer, { ChartTooltip, ChartTooltipContent } from "../chart";
+import ChartContainer, { ChartTooltip } from "../chart";
 import { cn } from "@/lib/utils";
 import { useId } from "react";
+import ChartPriceTooltipContent from "../chart/chart-price-tooltip-content";
 
 export type AreaChartProps = {
   className?: string;
@@ -32,7 +33,14 @@ export default function AreaChart({
   const chartColor = getChartColor();
 
   return (
-    <ChartContainer className={cn("h-[72px] w-full", className)} config={{}}>
+    <ChartContainer
+      className={cn("h-[72px] w-full", className)}
+      config={{
+        value: {
+          label: "Price",
+        },
+      }}
+    >
       <RechartsAreaChart>
         <defs>
           <linearGradient
@@ -55,7 +63,7 @@ export default function AreaChart({
           data={data}
           dataKey={dataKey}
         />
-        <ChartTooltip content={<ChartTooltipContent />} />
+        <ChartTooltip content={<ChartPriceTooltipContent hideLabel />} />
       </RechartsAreaChart>
     </ChartContainer>
   );

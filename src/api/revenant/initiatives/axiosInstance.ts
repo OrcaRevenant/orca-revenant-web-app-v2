@@ -54,7 +54,9 @@ instance.interceptors.response.use(
       if (!isRefreshing) {
         isRefreshing = true;
         try {
-          const loginResponse = await new AuthService().renewToken();
+          const loginResponse = await new AuthService().renewToken({
+            payload: { refreshToken },
+          });
 
           error.config!.headers.Authorization = `Bearer ${loginResponse.session.access_token}`;
           Cookies.set(REFRESH_TOKEN_NAME, loginResponse.session.refresh_token);

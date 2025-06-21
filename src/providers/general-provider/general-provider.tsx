@@ -7,6 +7,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
+import { useLayoutEffect } from "react";
+import { useControlPanel } from "../control-provider";
 
 function makeQueryClient() {
   return new QueryClient({
@@ -46,6 +48,13 @@ export default function GeneralProviders({
   //       suspend because React will throw away the client on the initial
   //       render if it suspends and there is no boundary
   const queryClient = getQueryClient();
+  const { config } = useControlPanel();
+
+  useLayoutEffect(() => {
+    if (config.palette === "light")
+      document.documentElement.classList.remove("dark");
+    else document.documentElement.classList.add("dark");
+  }, [config.palette]);
 
   return (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>

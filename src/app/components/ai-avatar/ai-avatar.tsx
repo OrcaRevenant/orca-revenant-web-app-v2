@@ -3,7 +3,7 @@ import { HTMLAttributes } from "react";
 import IconSelector from "../icon-selector";
 
 export const aiAvatarVariants = cva(
-  "relative flex items-center justify-center rounded-full bg-black border border-utility-gray-blue-600 p-2 overflow-hidden",
+  "relative flex items-center justify-center rounded-full border-1 border-utility-gray-blue-400 p-2 overflow-hidden",
   {
     variants: {
       size: {
@@ -27,14 +27,15 @@ export default function AiAvatar({ className, size }: AiAvatarProps) {
       <IconSelector
         data-slot={"ai-avatar-icon"}
         icon="Stars01"
-        className="absolute text-utility-gray-blue-700 z-10"
+        className="absolute dark:text-utility-gray-blue-700 text-utility-gray-blue-100 z-10"
       />
       <video
+        data-slot={"ai-avatar-video"}
         src="/assets/videos/stella.webm"
         autoPlay
         muted
         loop
-        className="absolute w-32 h-32 object-cover rounded-full z-0"
+        className="absolute blur-xs w-32 brightness-200 transition-all h-32 object-cover rounded-full z-0"
       />
     </div>
   );

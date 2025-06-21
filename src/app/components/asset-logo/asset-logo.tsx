@@ -28,10 +28,12 @@ export default function AssetLogo({
 }: AssetLogoProps) {
   return (
     <Avatar className={assetVariants({ size, className })} {...rest}>
-      <AvatarImage
-        src={`http://127.0.0.1:54321/storage/v1/object/public/logos/assets/${shortName?.toLowerCase()}.svg`}
-        alt={shortName}
-      />
+      {shortName && (
+        <AvatarImage
+          src={`http://127.0.0.1:54321/storage/v1/object/public/logos/assets/${shortName?.toLowerCase()}.svg`}
+          alt={shortName}
+        />
+      )}
       <AvatarFallback>{shortName}</AvatarFallback>
     </Avatar>
   );

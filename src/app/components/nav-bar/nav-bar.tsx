@@ -39,20 +39,20 @@ export default async function NavBar({ className }: NavBarProps) {
               <Navigation />
             </div>
           </div>
-          <div className="flex flex-row items-center gap-4">
+          <div className="flex flex-row items-center gap-2">
             {isLoggedIn && (
-              <>
+              <div className="flex flex-row items-center gap-4">
                 <div className="hidden md:flex">
                   <Feedback />
                 </div>
                 <div>
                   <ControlPanel />
                 </div>
-                <div className="block md:hidden">
-                  <NavigationSheet />
-                </div>
-              </>
+              </div>
             )}
+            <div className="block md:hidden">
+              <NavigationSheet />
+            </div>
             {isLoggedIn ? (
               <div className="hidden md:flex">
                 <ProfileMenu />

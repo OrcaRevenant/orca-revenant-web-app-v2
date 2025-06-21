@@ -7,7 +7,7 @@ export abstract class Portfolio {
 
   abstract getAssets(params: GetAssets): Promise<GetAssetsResponse>;
 
-  abstract getStatistics(params: GetStatistics): Promise<GetStatisticsResponse>;
+  abstract getBalance(params: GetBalance): Promise<GetBalanceResponse>;
 
   abstract getAssetAllocation(
     params: GetAssetAllocation
@@ -167,15 +167,14 @@ export type GetAssetsResponse = Asset[];
 type PriceChange = { amount: number; percentage: number };
 
 // Get Statistics
-export type GetStatistics = {
-  payload: GetStatisticsPayload;
+export type GetBalance = {
+  payload: GetBalancePayload;
 };
 
-export type GetStatisticsPayload = PayloadWithPortfolio<PayloadWithQuote>;
+export type GetBalancePayload = PayloadWithPortfolio<PayloadWithQuote>;
 
-export type GetStatisticsResponse = {
-  pnl: PriceChange;
-  totalValue: number;
+export type GetBalanceResponse = {
+  balance: number;
 };
 
 export type Group = {

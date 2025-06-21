@@ -94,10 +94,13 @@ export default function TradingLineChart({
       lastValueVisible: false,
       priceLineVisible: false,
       bottomColor: "transparent",
-      topColor: getComputedColor("--utility-brand-500"),
+      topColor:
+        config.palette === "light"
+          ? `${getComputedColor("--utility-brand-500")}2f`
+          : getComputedColor("--utility-brand-500"),
       lineType: LineType.Curved,
-      lineColor: getComputedColor("--utility-brand-600"),
-      crosshairMarkerBackgroundColor: getComputedColor("--utility-brand-900"),
+      lineColor: getComputedColor("--utility-brand-500"),
+      crosshairMarkerBackgroundColor: getComputedColor("--utility-brand-500"),
       crosshairMarkerRadius: 4,
       lineWidth: 2,
       ...options?.line,
@@ -110,6 +113,8 @@ export default function TradingLineChart({
       "absolute z-50 hidden bg-bg-secondary border border-border-secondary rounded-lg px-2.5 py-1.5 text-xs shadow-xl";
 
     tooltip.style.pointerEvents = "none";
+    tooltip.style.transition = "all 400ms";
+
     chartContainerRef.current?.appendChild(tooltip);
 
     chart.subscribeCrosshairMove((param) => {
@@ -133,21 +138,43 @@ export default function TradingLineChart({
 
           const formattedValue = numberFormat(value, {
             minimumFractionDigits: 0,
-            maximumFractionDigits: config.baseCurrency.percision,
+            maximumFractionDigits: config.quoteCurrency.percision,
           });
 
-          const prefix = config.baseCurrency.options?.align === "right" 
-            ? "" 
-            : config.baseCurrency.symbol + (config.baseCurrency.options?.space ? " " : "");
-          
-          const suffix = config.baseCurrency.options?.align === "right"
-            ? (config.baseCurrency.options?.space ? " " : "") + config.baseCurrency.symbol
-            : "";
+          const prefix =
+            config.quoteCurrency.options?.align === "right"
+              ? ""
+              : config.quoteCurrency.symbol +
+                (config.quoteCurrency.options?.space ? " " : "");
+
+          const suffix =
+            config.quoteCurrency.options?.align === "right"
+              ? (config.quoteCurrency.options?.space ? " " : "") +
+                config.quoteCurrency.symbol
+              : "";
 
           tooltip.style.display = "block";
-          tooltip.style.left = param.point.x + "px";
-          tooltip.style.top = param.point.y + "px";
-          tooltip.style.transform = "translate(8px, 8px)";
+          tooltip.style.top = "0px";
+
+          const tooltipWidth = tooltip.clientWidth;
+          const offsetX = 8;
+          const offsetY = 8;
+
+          console.log(param.point.x);
+          if (
+            param.point.x >
+            chartContainerRef.current!.clientWidth - tooltipWidth
+          ) {
+            // // if is crossing the normal boundary
+            tooltip.style.transform = `translate(${
+              param.point.x - tooltipWidth - offsetX
+            }px, ${param.point.y - offsetY}px)`;
+          } else {
+            // if is in normal boundary
+            tooltip.style.transform = `translate(${
+              param.point.x + offsetX
+            }px, ${param.point.y - offsetY}px)`;
+          }
 
           tooltip.innerHTML = `
             <div class="grid gap-1.5 text-nowrap">
