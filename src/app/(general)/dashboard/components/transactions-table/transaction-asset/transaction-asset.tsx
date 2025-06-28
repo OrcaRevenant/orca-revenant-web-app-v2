@@ -1,5 +1,4 @@
 import AssetLogo from "@/app/components/asset-logo";
-import AssetPairAvatar from "@/app/components/asset-pair-avatar";
 import QuotedAmount from "@/app/components/quoted-amount";
 import Typography from "@/app/components/typography";
 

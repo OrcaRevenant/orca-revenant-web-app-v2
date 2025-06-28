@@ -1,6 +1,5 @@
 import IconSelector from "@/app/components/icon-selector";
 import { SupportedIcons } from "@/icons";
-import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { HTMLAttributes } from "react";
 import { FeaturedIconColor, FeaturedIconSize } from "../../types";

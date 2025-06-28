@@ -1,6 +1,5 @@
 import IconSelector from "@/app/components/icon-selector";
 import { SupportedIcons } from "@/icons";
-import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { HTMLAttributes } from "react";
 import { FeaturedIconColor, FeaturedIconSize } from "../../types";
@@ -36,7 +35,13 @@ const lightVariants = cva("flex items-center justify-center rounded-full", {
   },
 });
 
-export default function Light({ size, color, icon, className,...rest }: LightProps) {
+export default function Light({
+  size,
+  color,
+  icon,
+  className,
+  ...rest
+}: LightProps) {
   return (
     <div
       className={lightVariants({

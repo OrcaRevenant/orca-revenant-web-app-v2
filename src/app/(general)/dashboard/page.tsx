@@ -1,27 +1,28 @@
 "use client";
 
-import Container from "@/app/components/container";
-import Typography from "@/app/components/typography";
+import { usePortfolios, usePortfolioStatus } from "@/api/core/hooks/portfolio";
 import AssetsTable from "@/app/(general)/dashboard/components/assets-table/assets-table";
-import OverallPortfolioValue from "./components/overall-portfolio-value/overall-portfolio-value";
-import PortfolioHoldings from "./components/portfolio-holdings";
-import AssetPerformance from "./components/asset-performance";
-import AssetAllocation from "./components/asset-allocation";
-import TransactionsTable from "./components/transactions-table/transactions-table";
-import PortfolioPanel from "./components/portfolio-panel";
-import TotalBalanceCard from "./components/total-balance-card";
+import AiActionButton from "@/app/components/ai-action-button";
+import Container from "@/app/components/container";
 import Empty from "@/app/components/empty";
+import LoadingText from "@/app/components/loading-text";
+import Typography from "@/app/components/typography";
+import {
+  useSelectedPortfolio,
+  useSyncSelectedPortfolio,
+} from "@/providers/portfolio-provider";
+import Image from "next/image";
+import { useEffect } from "react";
+import AssetAllocation from "./components/asset-allocation";
+import AssetPerformance from "./components/asset-performance";
 import MainTokenCard from "./components/main-token-card";
 import MainTokenValueCard from "./components/main-token-value-card";
-import { usePortfolios } from "@/api/core/hooks/portfolio";
-import { useSelectedPortfolio } from "@/providers/portfolio-provider";
-import { usePortfolioStatus } from "@/api/core/hooks/portfolio";
-import { useSyncSelectedPortfolio } from "@/providers/portfolio-provider";
-import { useEffect } from "react";
-import LoadingText from "@/app/components/loading-text";
-import Image from "next/image";
+import OverallPortfolioValue from "./components/overall-portfolio-value/overall-portfolio-value";
+import PortfolioHoldings from "./components/portfolio-holdings";
+import PortfolioPanel from "./components/portfolio-panel";
 import SyncButton from "./components/sync-button";
-import AiActionButton from "@/app/components/ai-action-button";
+import TotalBalanceCard from "./components/total-balance-card";
+import TransactionsTable from "./components/transactions-table/transactions-table";
 
 export default function DashboardPage() {
   const { data, isSuccess, isLoading, refetch } = usePortfolios();
@@ -35,17 +36,24 @@ export default function DashboardPage() {
   useEffect(() => {
     if (!isSuccess) return;
     syncSelectedPortfolio();
-  }, [isSuccess]);
+  }, [isSuccess, syncSelectedPortfolio]);
 
   useEffect(() => {
     if (
       selectedPortfolio?.type === "portfolio" &&
-      syncPortfolioStatus?.data === selectedPortfolio?.status
+      syncPortfolioStatus?.data ===
+        (selectedPortfolio as { status?: string })?.status
     )
       return;
 
     refetch().then(syncSelectedPortfolio);
-  }, [selectedPortfolio?.id, syncPortfolioStatus.dataUpdatedAt]);
+  }, [
+    selectedPortfolio,
+    syncPortfolioStatus.dataUpdatedAt,
+    syncPortfolioStatus?.data,
+    refetch,
+    syncSelectedPortfolio,
+  ]);
 
   const isSyncing =
     syncPortfolioStatus.data === "syncing" ||

@@ -96,8 +96,7 @@ function serializeAsset(asset: service.Asset): Types.Asset {
 }
 
 export default class PortfolioService extends Portfolio {
-
-  @AsyncCatchError()  
+  @AsyncCatchError()
   async generateAdvice(
     params: Types.GenerateAdvice
   ): Promise<Types.GenerateAdviceResponse> {
@@ -258,7 +257,6 @@ export default class PortfolioService extends Portfolio {
     });
 
     const assets = response.data.list || [];
-    const meta = response.data?.meta || {};
 
     return assets.map(serializeAsset);
   }

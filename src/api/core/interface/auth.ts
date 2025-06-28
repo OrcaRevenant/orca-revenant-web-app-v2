@@ -14,7 +14,7 @@ export interface UserIdentity {
   id: string;
   user_id: string;
   identity_data?: {
-    [key: string]: any;
+    [key: string]: unknown;
   };
   identity_id: string;
   provider: string;
@@ -25,11 +25,11 @@ export interface UserIdentity {
 
 export interface UserAppMetadata {
   provider?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface UserMetadata {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export type Factor = {

@@ -136,13 +136,17 @@ export default function TradingLineChart({
             maximumFractionDigits: config.baseCurrency.percision,
           });
 
-          const prefix = config.baseCurrency.options?.align === "right" 
-            ? "" 
-            : config.baseCurrency.symbol + (config.baseCurrency.options?.space ? " " : "");
-          
-          const suffix = config.baseCurrency.options?.align === "right"
-            ? (config.baseCurrency.options?.space ? " " : "") + config.baseCurrency.symbol
-            : "";
+          const prefix =
+            config.baseCurrency.options?.align === "right"
+              ? ""
+              : config.baseCurrency.symbol +
+                (config.baseCurrency.options?.space ? " " : "");
+
+          const suffix =
+            config.baseCurrency.options?.align === "right"
+              ? (config.baseCurrency.options?.space ? " " : "") +
+                config.baseCurrency.symbol
+              : "";
 
           tooltip.style.display = "block";
           tooltip.style.left = param.point.x + "px";
@@ -166,7 +170,7 @@ export default function TradingLineChart({
       chart.remove();
       tooltip.remove();
     };
-  }, [data, config]);
+  }, [data, config, isEmpty, options?.chart, options?.line]);
 
   return (
     <div className="w-full h-full relative" ref={chartContainerRef as any} />
