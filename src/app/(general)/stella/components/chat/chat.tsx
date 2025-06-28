@@ -1,24 +1,28 @@
 "use client";
 
+import { useStella } from "@/api/core/hooks/stella";
+import PortfolioPanel from "@/app/(general)/dashboard/components/portfolio-panel";
 import Button from "@/app/components/button";
 import ChatHistory from "@/app/components/chat-history";
 import Container from "@/app/components/container";
 import IconSelector from "@/app/components/icon-selector";
 import Typography from "@/app/components/typography";
+import { useSelectedPortfolio } from "@/providers/portfolio-provider";
+import { getCookie } from "cookies-next";
 import { useEffect, useRef, useState } from "react";
 import ChatInput from "./chat-input/chat-input";
 import ChatMessages from "./chat-messages";
 
-interface Message {
+interface ChatMessage {
   id: string;
   text: string;
   sender: "user" | "bot";
+  timestamp: number;
 }
 
 export default function Chat() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -26,26 +30,11 @@ export default function Chat() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [chatMessages]);
 
-  const handleSendMessage = (text: string) => {
-    const newMessage: Message = {
-      id: Date.now().toString(),
-      text,
-      sender: "user",
-    };
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
-    setIsLoading(true);
-    setTimeout(() => {
-      const botResponse: Message = {
-        id: Date.now().toString() + "-bot",
-        text: `${text}`,
-        sender: "bot",
-      };
-      setMessages((prevMessages) => [...prevMessages, botResponse]);
-      setIsLoading(false);
-    }, 1000);
-  };
+  const stellaMutation = useStella();
+  const selectedPortfolio = useSelectedPortfolio();
+  const accessToken = getCookie("orca_access_token") as string;
 
   return (
     <div className="flex flex-col p-2 sm:p-4 w-full h-[calc(100vh-72px)] md:h-[calc(100vh-72px)] justify-between md:justify-start overflow-y-auto">
@@ -55,12 +44,15 @@ export default function Chat() {
       >
         <div className="flex w-full gap-3 mb-4">
           <ChatHistory />
-          <Button variant="secondaryColor" size="sm">
+          <Button variant="secondaryColor">
             <IconSelector icon="Plus" />
             <Typography variant="xSmall" weight={"medium"}>
               New Chat
             </Typography>
           </Button>
+          <div className="flex-1 flex justify-end">
+            <PortfolioPanel />
+          </div>
         </div>
         <div
           className={
@@ -68,7 +60,7 @@ export default function Chat() {
           }
         >
           <div className={"flex flex-col w-full flex-1 md:flex-none"}>
-            {messages.length === 0 && (
+            {chatMessages.length === 0 && (
               <Typography
                 variant="displayMedium"
                 weight={"medium"}
@@ -77,17 +69,83 @@ export default function Chat() {
                 How can I assist you?
               </Typography>
             )}
-            {messages.length !== 0 && (
+            {chatMessages.length !== 0 && (
               <div className="w-full flex flex-col overflow-y-auto flex-1">
-                <ChatMessages messages={messages} isLoading={isLoading} />
+                <ChatMessages
+                  messages={chatMessages}
+                  isLoading={stellaMutation.isPending}
+                />
                 <div ref={messagesEndRef} />
               </div>
             )}
           </div>
           <div className="w-full sticky pb-4 left-0 right-0 z-10 bg-bg-secondary">
             <ChatInput
-              isLoading={isLoading}
-              onSendMessage={handleSendMessage}
+              isLoading={stellaMutation.isPending}
+              onSendMessage={(text) => {
+                const timestamp = Date.now();
+                const userMessage: ChatMessage = {
+                  id: `user-${timestamp}`,
+                  text: text,
+                  sender: "user",
+                  timestamp,
+                };
+
+                // Add user message immediately
+                setChatMessages((prevMessages) => [
+                  ...prevMessages,
+                  userMessage,
+                ]);
+
+                stellaMutation.mutate(
+                  {
+                    payload: {
+                      question: text,
+                      token: accessToken,
+                      portfolio_id: selectedPortfolio?.id.toString() ?? "",
+                    },
+                  },
+                  {
+                    onSuccess: (response) => {
+                      console.log("API Response:", response); // Debug log
+
+                      // Handle response structure
+                      const answer =
+                        response.answer ||
+                        "Sorry, I couldn't process your request.";
+
+                      const botMessage: ChatMessage = {
+                        id: `bot-${Date.now()}`,
+                        text: answer,
+                        sender: "bot",
+                        timestamp: Date.now(),
+                      };
+
+                      // Add bot response
+                      setChatMessages((prevMessages) => [
+                        ...prevMessages,
+                        botMessage,
+                      ]);
+                    },
+                    onError: (error) => {
+                      console.error("API Error:", error);
+
+                      const errorMessage: ChatMessage = {
+                        id: `error-${Date.now()}`,
+                        text: "Sorry, I encountered an error. Please try again.",
+                        sender: "bot",
+                        timestamp: Date.now(),
+                      };
+
+                      // Add error message
+                      setChatMessages((prevMessages) => [
+                        ...prevMessages,
+                        errorMessage,
+                      ]);
+                    },
+                  }
+                );
+              }}
             />
           </div>
         </div>

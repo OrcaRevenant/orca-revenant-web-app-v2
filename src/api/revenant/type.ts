@@ -581,3 +581,20 @@ export type GenerateAdviceResponse = Ok<{
   content: string;
   id: string;
 }>;
+
+export type SendMessage = {
+  payload: SendMessagePayload;
+};
+
+export type SendMessagePayload = {
+  question: string;
+  token: string;
+  portfolio_id: string;
+};
+
+export type SendMessageResponse = {
+  data: {
+    question: string;
+    answer: string;
+  };
+};

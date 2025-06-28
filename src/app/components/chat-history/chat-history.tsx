@@ -15,7 +15,7 @@ export default function ChatHistory() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <IconButton variant="secondaryColor" size="sm">
+        <IconButton variant="secondaryColor">
           <IconSelector icon="ClockFastForward" />
         </IconButton>
       </SheetTrigger>
