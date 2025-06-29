@@ -237,3 +237,11 @@ export async function generateAdvice({
   );
   return data;
 }
+
+export async function sendMessage({ payload }: Types.SendMessage) {
+  const { data } = await instance.post<Types.SendMessageResponse>(
+    "/ask",
+    payload
+  );
+  return data;
+}
