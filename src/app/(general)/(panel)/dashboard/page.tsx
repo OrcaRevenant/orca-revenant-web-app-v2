@@ -136,7 +136,7 @@ export default function DashboardPage() {
                     </div>
 
                     <div className="col-span-12 lg:col-span-8">
-                      <div className="space-y-5">
+                      <div className="gap-5 h-full flex flex-col">
                         <AssetAllocation />
                         <div className="flex flex-col md:flex-row gap-5">
                           <MainTokenCard />

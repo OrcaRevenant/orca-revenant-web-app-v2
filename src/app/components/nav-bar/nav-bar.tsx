@@ -26,13 +26,13 @@ export default async function NavBar({ className }: NavBarProps) {
   return (
     <AppBar
       className={cn(
-        "bg-bg-primary border-border-secondary border-b-1 h-[var(--navbar-height)]",
+        "bg-bg-primary px-2.5 border-border-secondary border-b-1 h-[var(--navbar-height)]",
         className
       )}
       position="sticky"
     >
       <Container className="h-full" maxWidth="3xl">
-        <div className="flex flex-row items-center h-full px-2.5 md:px-0 transition-all duration-300">
+        <div className="flex flex-row items-center h-full transition-all duration-300">
           <div className="flex flex-row items-center h-full w-full">
             <Logo />
             <div className="hidden md:flex">

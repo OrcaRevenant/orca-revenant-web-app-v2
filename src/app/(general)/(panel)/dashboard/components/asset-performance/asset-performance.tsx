@@ -10,6 +10,8 @@ import { useAssetPerformance } from "@/api";
 import AssetPerformanceChart from "./asset-performance-chart";
 import QuotedAmount from "@/app/components/quoted-amount";
 import { useControlPanel } from "@/providers/control-provider";
+import Placeholder from "@/app/components/placeholder";
+import LoadingText from "@/app/components/loading-text";
 
 export type AssetPerformanceProps = {
   performance: "best" | "worst";
@@ -21,7 +23,7 @@ export default function AssetPerformance({
   ...rest
 }: AssetPerformanceProps) {
   const { config } = useControlPanel();
-  const { data: assetPerformance } = useAssetPerformance({
+  const { data: assetPerformance, isLoading } = useAssetPerformance({
     timeframe: config.timeframe.timeframe,
     performance,
   });
@@ -34,30 +36,47 @@ export default function AssetPerformance({
       className={cn(className)}
       {...rest}
     >
-      <div className="space-y-10">
-        <div className="flex flex-row w-full justify-between items-center">
-          <Typography variant={"displaySmall"} weight={"bold"}>
-            {assetPerformance?.shortName.toUpperCase()}
-          </Typography>
-
-          <div className="flex flex-row items-center gap-2">
-            <Fluctuation
-              size={"md"}
-              className="border-none! px-0!"
-              variant={"outline"}
-              fluctuation={assetPerformance?.change.percentage}
-            />
-            <QuotedAmount
-              amount={assetPerformance?.change.amount}
-              variant={"small"}
-              weight={"semibold"}
-              color={"tertiary"}
-            />
+      <Placeholder
+        NothingToShowPlaceholderProps={{
+          icon: "LineChartUp04",
+          title: "It's like a desert",
+          description: "We couldn't find any data to show",
+          decorativeSize: "sm",
+          size: "sm",
+        }}
+        placeholder={
+          <div className="w-full h-full flex justify-center items-center">
+            <LoadingText text="Loading" />
           </div>
-        </div>
+        }
+        loading={isLoading}
+        data={assetPerformance}
+      >
+        <div className="space-y-10">
+          <div className="flex flex-row w-full justify-between items-center">
+            <Typography variant={"displaySmall"} weight={"bold"}>
+              {assetPerformance?.shortName.toUpperCase()}
+            </Typography>
 
-        <AssetPerformanceChart assetName={assetPerformance?.shortName} />
-      </div>
+            <div className="flex flex-row items-center gap-2">
+              <Fluctuation
+                size={"md"}
+                className="border-none! px-0!"
+                variant={"outline"}
+                fluctuation={assetPerformance?.change.percentage}
+              />
+              <QuotedAmount
+                amount={assetPerformance?.change.amount}
+                variant={"small"}
+                weight={"semibold"}
+                color={"tertiary"}
+              />
+            </div>
+          </div>
+
+          <AssetPerformanceChart assetName={assetPerformance?.shortName} />
+        </div>
+      </Placeholder>
     </PaperWithTitle>
   );
 }

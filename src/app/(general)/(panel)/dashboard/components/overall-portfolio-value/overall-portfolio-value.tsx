@@ -1,7 +1,9 @@
 "use client";
 
 import { usePortfolioValueOverTime } from "@/api";
+import LoadingText from "@/app/components/loading-text";
 import PaperWithTitle from "@/app/components/paper-with-title";
+import Placeholder from "@/app/components/placeholder";
 import QuotedAmount from "@/app/components/quoted-amount";
 import TradingLineChart from "@/app/components/trading-line-chart";
 import Typography from "@/app/components/typography";
@@ -11,9 +13,11 @@ import { useMemo } from "react";
 export default function OverallPortfolioValue() {
   const { config } = useControlPanel();
 
-  const { data: portfolioValueOverTime } = usePortfolioValueOverTime({
-    timeframe: config.timeframe.timeframe,
-  });
+  const { data: portfolioValueOverTime, isLoading } = usePortfolioValueOverTime(
+    {
+      timeframe: config.timeframe.timeframe,
+    }
+  );
 
   const overview = useMemo(() => {
     if (!portfolioValueOverTime?.length) {
@@ -43,14 +47,30 @@ export default function OverallPortfolioValue() {
   return (
     <PaperWithTitle className="h-full" title="Overall Portfolio Value">
       <div className="h-[240px]">
-        <TradingLineChart
-          data={
-            portfolioValueOverTime?.map((item) => ({
-              time: item.time,
-              value: +item.value,
-            })) || []
+        <Placeholder
+          NothingToShowPlaceholderProps={{
+            icon: "LineChartUp04",
+            title: "It's like a desert",
+            description: "We couldn't find any data to show",
+            decorativeSize: "sm"
+          }}
+          placeholder={
+            <div className="w-full h-full flex justify-center items-center">
+              <LoadingText text="Loading Chart" />
+            </div>
           }
-        />
+          loading={isLoading}
+          data={portfolioValueOverTime}
+        >
+          <TradingLineChart
+            data={
+              portfolioValueOverTime?.map((item) => ({
+                time: item.time,
+                value: +item.value,
+              })) || []
+            }
+          />
+        </Placeholder>
       </div>
 
       <div className="flex flex-1 items-center gap-4 justify-evenly overflow-auto">

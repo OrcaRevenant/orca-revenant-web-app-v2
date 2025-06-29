@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
 import Typography, { TypographyProps } from "../typography";
 
-type LoadingTextProps = TypographyProps<"div">;
+type LoadingTextProps = { text?: string } & TypographyProps<"div">;
 
 export default function LoadingText({
-  children = "Loading",
+  text = "Loading",
   className,
   ...props
 }: LoadingTextProps) {
@@ -14,7 +14,7 @@ export default function LoadingText({
       className={cn("inline-flex items-center", className)}
       {...props}
     >
-      {children}
+      {text}
       <span className="ml-1 inline-flex">
         <span className="animate-[caret-blink_1s_infinite_0ms]">.</span>
         <span className="animate-[caret-blink_1s_infinite_200ms]">.</span>
