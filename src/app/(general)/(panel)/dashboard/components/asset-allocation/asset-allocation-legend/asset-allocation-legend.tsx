@@ -1,9 +1,9 @@
-import { useMemo } from "react";
-import { destructure } from "@/utils/destructure";
-import AssetAllocationLegendProgress from "./asset-allocation-legend-progress";
-import Typography from "@/app/components/typography";
 import AssetAvatarGroup from "@/app/components/asset-avatar-group";
 import AssetLogo from "@/app/components/asset-logo";
+import Typography from "@/app/components/typography";
+import { destructure } from "@/utils/destructure";
+import { useMemo } from "react";
+import AssetAllocationLegendProgress from "./asset-allocation-legend-progress";
 
 type AssetAllocationLegendProps = {
   data: { key: string; label: string; value: number }[];
@@ -25,7 +25,7 @@ export default function AssetAllocationLegend({
       assets: items,
       others: others.slice(0, 3),
     };
-  }, [data]);
+  }, [data, max]);
 
   return (
     <div className="space-y-6 w-full">

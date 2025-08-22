@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useControlPanel } from "@/providers/control-provider";
@@ -32,7 +31,7 @@ export default function TradingLineChart({
   data,
   options,
 }: TradingLineChartProps) {
-  const chartContainerRef = useRef<HTMLElement>(null);
+  const chartContainerRef = useRef<HTMLDivElement>(null);
   const { config } = useControlPanel();
 
   const isEmpty = !data.length;
@@ -58,7 +57,7 @@ export default function TradingLineChart({
         textColor: getComputedColor("--text-tertiary"),
         fontFamily: getComputedColor("--font-montserrat"),
         fontSize: 12,
-      } as any,
+      } as any, // eslint-disable-line @typescript-eslint/no-explicit-any
       crosshair: {
         mode: CrosshairMode.Magnet,
         horzLine: {
@@ -134,7 +133,7 @@ export default function TradingLineChart({
           const date = new Date(timestamp);
           const formattedDate = date.toLocaleDateString();
           const formattedTime = date.toLocaleTimeString();
-          const value = (data as any).value;
+          const value = (data as { value: number }).value;
 
           const formattedValue = numberFormat(value, {
             minimumFractionDigits: 0,
@@ -192,9 +191,7 @@ export default function TradingLineChart({
       chart.remove();
       tooltip.remove();
     };
-  }, [data, config]);
+  }, [data, config, isEmpty, options?.chart, options?.line]);
 
-  return (
-    <div className="w-full h-full relative" ref={chartContainerRef as any} />
-  );
+  return <div className="w-full h-full relative" ref={chartContainerRef} />;
 }

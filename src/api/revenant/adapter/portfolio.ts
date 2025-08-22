@@ -257,7 +257,6 @@ export default class PortfolioService extends Portfolio {
     });
 
     const assets = response.data.list || [];
-    const meta = response.data?.meta || {};
 
     return assets.map(serializeAsset);
   }

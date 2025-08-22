@@ -1,9 +1,9 @@
-import { NextResponse, type NextRequest } from "next/server";
 import { getProfile, renewToken } from "@/api/revenant";
 import {
   ACCESS_TOKEN_NAME,
   REFRESH_TOKEN_NAME,
 } from "@/services/storage/storage";
+import { NextResponse, type NextRequest } from "next/server";
 
 const excludedUrls = [
   "/auth/verify",
@@ -102,7 +102,6 @@ export async function middleware(request: NextRequest) {
     const redirectResponse = NextResponse.redirect(
       new URL(homeUrl, request.url),
       307
-      
     );
     redirectResponse.cookies.delete(ACCESS_TOKEN_NAME);
     redirectResponse.cookies.delete(REFRESH_TOKEN_NAME);

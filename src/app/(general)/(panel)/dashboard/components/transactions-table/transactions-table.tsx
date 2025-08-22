@@ -1,25 +1,25 @@
 "use client";
 
+import { Transaction, useTransactions } from "@/api";
 import Button from "@/app/components/button";
+import DataTable from "@/app/components/data-table/data-table";
 import IconSelector from "@/app/components/icon-selector";
 import PaperWithTitle from "@/app/components/paper-with-title";
-import TransactionType from "./transaction-type";
-import TransactionDate from "./transaction-date";
+import { ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
+import { useState } from "react";
 import TransactionAsset from "./transaction-asset";
 import TransactionConnection from "./transaction-connection";
-import { Transaction, useTransactions } from "@/api";
-import DataTable from "@/app/components/data-table/data-table";
-import { ColumnDef } from "@tanstack/react-table";
-import { useState } from "react";
-import Link from "next/link";
+import TransactionDate from "./transaction-date";
+import TransactionType from "./transaction-type";
 
 export type TransactionsTableProps = {
   preview?: boolean;
 };
 
 export default function TransactionsTable({ preview }: TransactionsTableProps) {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [page] = useState(1);
+  const [limit] = useState(10);
   const { data: transactions, isPending } = useTransactions({
     limit,
     page,

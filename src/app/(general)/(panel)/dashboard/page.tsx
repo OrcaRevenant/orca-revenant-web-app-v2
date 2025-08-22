@@ -10,6 +10,7 @@ import {
   useSyncSelectedPortfolio,
 } from "@/providers/portfolio-provider";
 import { useEffect } from "react";
+import PageHeader from "../components/page-header";
 import AssetAllocation from "./components/asset-allocation";
 import AssetPerformance from "./components/asset-performance";
 import MainTokenCard from "./components/main-token-card";
@@ -18,7 +19,6 @@ import OverallPortfolioValue from "./components/overall-portfolio-value/overall-
 import PortfolioHoldings from "./components/portfolio-holdings";
 import TotalBalanceCard from "./components/total-balance-card";
 import TransactionsTable from "./components/transactions-table/transactions-table";
-import PageHeader from "../components/page-header";
 
 export default function DashboardPage() {
   const { data, isSuccess, isLoading, refetch } = usePortfolios();
@@ -32,7 +32,12 @@ export default function DashboardPage() {
   useEffect(() => {
     if (!isSuccess) return;
     syncSelectedPortfolio();
-  }, [isSuccess]);
+  }, [isSuccess, syncSelectedPortfolio]);
+
+  const portfolioStatus =
+    selectedPortfolio?.type === "portfolio"
+      ? selectedPortfolio?.status
+      : undefined;
 
   useEffect(() => {
     if (
@@ -42,7 +47,15 @@ export default function DashboardPage() {
       return;
 
     refetch().then(syncSelectedPortfolio);
-  }, [selectedPortfolio?.id, syncPortfolioStatus.dataUpdatedAt]);
+  }, [
+    selectedPortfolio?.id,
+    selectedPortfolio?.type,
+    portfolioStatus,
+    syncPortfolioStatus?.data,
+    syncPortfolioStatus.dataUpdatedAt,
+    refetch,
+    syncSelectedPortfolio,
+  ]);
 
   const isSyncing =
     syncPortfolioStatus.data === "syncing" ||

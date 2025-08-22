@@ -1,7 +1,7 @@
 "use client";
 
 import { useStella } from "@/api/core/hooks/stella";
-import PortfolioPanel from "@/app/(general)/dashboard/components/portfolio-panel";
+import PortfolioPanel from "@/app/(general)/(panel)/dashboard/components/portfolio-panel";
 import Button from "@/app/components/button";
 import ChatHistory from "@/app/components/chat-history";
 import Container from "@/app/components/container";
