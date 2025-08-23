@@ -1,7 +1,6 @@
 "use client";
 
 import { useStella } from "@/api/core/hooks/stella";
-import PortfolioPanel from "@/app/(general)/dashboard/components/portfolio-panel";
 import Button from "@/app/components/button";
 import ChatHistory from "@/app/components/chat-history";
 import Container from "@/app/components/container";
@@ -12,6 +11,7 @@ import { getCookie } from "cookies-next";
 import { useEffect, useRef, useState } from "react";
 import ChatInput from "./chat-input/chat-input";
 import ChatMessages from "./chat-messages";
+import PortfolioPanel from "@/app/(general)/(panel)/dashboard/components/portfolio-panel";
 
 interface ChatMessage {
   id: string;

@@ -18,8 +18,8 @@ export type TransactionsTableProps = {
 };
 
 export default function TransactionsTable({ preview }: TransactionsTableProps) {
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [page] = useState(1);
+  const [limit] = useState(10);
   const { data: transactions, isPending } = useTransactions({
     limit,
     page,
