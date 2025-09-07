@@ -1,6 +1,6 @@
 services:
-  next-app:
-    container_name: next-app
+  orca-revenant-next-app:
+    container_name: orca-revenant-next-app
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,12 +10,12 @@ services:
     ports:
       - 3001:3000
     networks:
-      - my_network
+      - orca-revenant-network
 
   # Add more containers below (nginx, postgres, etc.)
 
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
 networks:
-  my_network:
+  orca-revenant-network:
     external: true
