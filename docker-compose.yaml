@@ -1,5 +1,5 @@
 services:
-  frontend:
+  orca-revenant-next-app:
     container_name: orca-revenant-next-app
     build:
       context: .
@@ -18,4 +18,5 @@ services:
 # with each other, by using their container name as a hostname
 networks:
   orca-revenant-network:
+    name: orca-revenant-network
     driver: bridge
