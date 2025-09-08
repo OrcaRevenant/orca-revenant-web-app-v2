@@ -1,5 +1,5 @@
 services:
-  orca-revenant-next-app:
+  frontend:
     container_name: orca-revenant-next-app
     build:
       context: .
