@@ -2,8 +2,11 @@
 
 import { useLogin } from "@/api";
 import Button from "@/app/components/button";
+import Checkbox from "@/app/components/checkbox";
 import FormLabel from "@/app/components/form-label";
 import Input from "@/app/components/input";
+import Label from "@/app/components/label";
+import LoadingButton from "@/app/components/loading-button";
 import Logo from "@/app/components/logo";
 import SocialButton from "@/app/components/social-button";
 import Typography from "@/app/components/typography";
@@ -11,13 +14,10 @@ import {
   ACCESS_TOKEN_NAME,
   REFRESH_TOKEN_NAME,
 } from "@/services/storage/storage";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Label from "@/app/components/label";
-import Checkbox from "@/app/components/checkbox";
-import LoadingButton from "@/app/components/loading-button";
+import { useForm } from "react-hook-form";
 
 type SigninFormData = {
   email: string;
@@ -29,8 +29,8 @@ export default function SigninForm() {
 
   const form = useForm<SigninFormData>({
     defaultValues: {
-      email: `adam@orca.com`,
-      password: `123456`,
+      email: process.env.NODE_ENV === "production" ? "" : `adam@orca.com`,
+      password: process.env.NODE_ENV === "production" ? "" : `123456`,
     },
   });
 
@@ -110,11 +110,7 @@ export default function SigninForm() {
           </Link>
         </div>
         <div className="flex flex-col gap-4 w-full">
-          <LoadingButton
-            loading={isPending}
-            type="submit"
-            variant="primary"
-          >
+          <LoadingButton loading={isPending} type="submit" variant="primary">
             Sign in
           </LoadingButton>
           <SocialButton disabled icon="Google" label="Sign in with Google" />
