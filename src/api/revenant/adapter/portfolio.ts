@@ -296,6 +296,10 @@ export default class PortfolioService extends Portfolio {
       },
     });
 
+    if (!response?.data) {
+      return [];
+    }
+
     return response.data.map((point) => ({
       time: (new Date(point.time).getTime() / 1000) as UTCTimestamp,
       value: Number(point.total_value),
@@ -316,11 +320,17 @@ export default class PortfolioService extends Portfolio {
       },
     });
 
-    return response.data.map((asset) => ({
-      id: asset.asset.symbol,
-      label: asset.asset.name,
-      value: asset.percentage,
-    }));
+    if (!response?.data) {
+      return [];
+    }
+
+    return response.data
+      .filter((asset) => asset?.asset)
+      .map((asset) => ({
+        id: asset.asset.symbol,
+        label: asset.asset.name,
+        value: asset.percentage,
+      }));
   }
 
   @AsyncCatchError()
@@ -337,11 +347,17 @@ export default class PortfolioService extends Portfolio {
       },
     });
 
-    return response.data.map((portfolio) => ({
-      id: `${portfolio.portfolio.id}`,
-      label: portfolio.portfolio.title,
-      value: portfolio.percentage,
-    }));
+    if (!response?.data) {
+      return [];
+    }
+
+    return response.data
+      .filter((portfolio) => portfolio?.portfolio)
+      .map((portfolio) => ({
+        id: `${portfolio.portfolio.id}`,
+        label: portfolio.portfolio.title,
+        value: portfolio.percentage,
+      }));
   }
 
   @AsyncCatchError()
