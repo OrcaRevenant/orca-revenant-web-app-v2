@@ -6,17 +6,52 @@ services:
       dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_BASE_URL: ${NEXT_PUBLIC_BASE_URL}
-    restart: always
+      # Optimize build cache
+      cache_from:
+        - node:18-alpine
+    restart: unless-stopped # More efficient than 'always'
     ports:
       - 3001:3000
     networks:
       - orca-revenant-network
+    # Environment variables for Node.js optimization
+    environment:
+      - NODE_ENV=production
+      - NODE_OPTIONS=--max-old-space-size=3072 # Limit Node.js heap to 3GB (leaving 1GB for system)
+    # Logging configuration to prevent disk space issues
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m" # Rotate logs at 10MB
+        max-file: "3" # Keep only 3 log files
+    # Healthcheck with optimized intervals
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:3000/ || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+    # Resource limits and reservations
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0" # Limit to 2 CPU cores (50% of 4 cores)
+          memory: 4G # Limit to 4GB RAM (25% of 16GB)
+        reservations:
+          cpus: "0.5" # Reserve 0.5 CPU cores minimum
+          memory: 1G # Reserve 1GB RAM minimum
+    # Shared memory size for better performance (important for Next.js)
+    shm_size: 256m
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+    # File descriptor limits
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    # Graceful shutdown period (30 seconds)
+    stop_grace_period: 30s
 
   # Add more containers below (nginx, postgres, etc.)
 
@@ -26,3 +61,7 @@ networks:
   orca-revenant-network:
     name: orca-revenant-network
     driver: bridge
+    # Network optimization
+    driver_opts:
+      com.docker.network.bridge.enable_icc: "true"
+      com.docker.network.bridge.enable_ip_masquerade: "true"
